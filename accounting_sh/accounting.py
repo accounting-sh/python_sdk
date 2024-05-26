@@ -305,8 +305,8 @@ class Accounting:
         :return:
         """
         kwargs.setdefault("headers", {})
-        kwargs["headers"]["Authorization"] = f"Authorization {self.token}"
-        kwargs["headers"]["User-Agent"] = "AccountingSh/python_sdk"
+        kwargs["headers"]["Authorization"] = f"Bearer {self.token}"
+        kwargs["headers"]["User-Agent"] = "AccountingSh/0.0.1/python"
 
         if comment is not None:
             kwargs["headers"]["X-Audit-Comment"] = comment
