@@ -1,0 +1,39 @@
+[project]
+name = "accounting_sh"
+version = "0.0.1"
+description = "Accounting API"
+authors = [{"name" = "STAN-TAB CORP. LTD", email="support@stantabcorp.com"}]
+license = { file = "LICENSE" }
+readme = "README.md"
+keywords = ["OpenAPI", "Accounting API"]
+requires-python = ">=3.10"
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: Apache Software License",
+    "Topic :: Office/Business",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Office/Business :: Financial :: Accounting",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "requests >= 2.32.2",
+    "typing-extensions >= 4.7.1"
+]
+
+[project.urls]
+Homepage = "https://accounting.sh"
+Repository = "https://github.com/accounting-sh/python_sdk.git"
+Issues = "https://github.com/accounting-sh/python_sdk/issues"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
