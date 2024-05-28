@@ -13,7 +13,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.0.5"
+__version__ = "0.1.0"
 
 # import ApiClient
 from accounting_sh.accounting import Accounting
