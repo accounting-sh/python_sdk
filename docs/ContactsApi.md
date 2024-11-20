@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**list_contact_bills**](ContactsApi.md#list_contact_bills) | **GET** /contacts/{uuid}/bills | List a contact&#39;s bills
 [**list_contact_invoices**](ContactsApi.md#list_contact_invoices) | **GET** /contacts/{uuid}/invoices | List a contact&#39;s invoices
 [**list_contacts**](ContactsApi.md#list_contacts) | **GET** /contacts | List company&#39;s contacts
-[**update_contact**](ContactsApi.md#update_contact) | **PUT** /contact/{uuid} | Update a contact
+[**update_contact**](ContactsApi.md#update_contact) | **PUT** /contacts/{uuid} | Update a contact
 
 
 # **add_contact**
