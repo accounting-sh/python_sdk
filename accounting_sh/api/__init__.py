@@ -5,6 +5,7 @@ from accounting_sh.api.account_connections_api import AccountConnectionsApi
 from accounting_sh.api.accounting_codes_api import AccountingCodesApi
 from accounting_sh.api.accounts_api import AccountsApi
 from accounting_sh.api.attachments_api import AttachmentsApi
+from accounting_sh.api.auth_api import AuthApi
 from accounting_sh.api.bills_api import BillsApi
 from accounting_sh.api.categories_api import CategoriesApi
 from accounting_sh.api.companies_api import CompaniesApi
@@ -32,5 +33,6 @@ from accounting_sh.api.tags_api import TagsApi
 from accounting_sh.api.tax_api import TaxApi
 from accounting_sh.api.transactions_api import TransactionsApi
 from accounting_sh.api.transfers_api import TransfersApi
+from accounting_sh.api.users_api import UsersApi
 from accounting_sh.api.vatid_api import VATIDApi
 from accounting_sh.api.webhooks_api import WebhooksApi

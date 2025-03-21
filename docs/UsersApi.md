@@ -1,24 +1,22 @@
-# accounting_sh.DocumentsApi
+# accounting_sh.UsersApi
 
 All URIs are relative to *https://api.accounting.sh*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**cancel_review**](DocumentsApi.md#cancel_review) | **DELETE** /documents/{uuid}/review | Cancel document review
-[**delete_document**](DocumentsApi.md#delete_document) | **DELETE** /documents/{uuid} | Delete a document
-[**get_document**](DocumentsApi.md#get_document) | **GET** /documents/{uuid} | Get a document
-[**list_documents**](DocumentsApi.md#list_documents) | **GET** /documents | List company&#39;s documents
-[**process_document**](DocumentsApi.md#process_document) | **GET** /documents/{uuid}/process | Process a document
-[**review_url**](DocumentsApi.md#review_url) | **GET** /documents/{uuid}/review | Get url to review a document
-[**update_document**](DocumentsApi.md#update_document) | **PUT** /documents/{uuid} | Update a document
-[**upload_document**](DocumentsApi.md#upload_document) | **POST** /documents | Upload a document
-[**view_document**](DocumentsApi.md#view_document) | **GET** /documents/{uuid}/view | View a document
+[**add_user**](UsersApi.md#add_user) | **POST** /users | Add user
+[**get_user**](UsersApi.md#get_user) | **GET** /users/{uuid} | View user
+[**list_users**](UsersApi.md#list_users) | **GET** /users | List company&#39;s users
+[**update_user**](UsersApi.md#update_user) | **PUT** /users/{uuid} | Update user
+[**update_user_0**](UsersApi.md#update_user_0) | **DELETE** /users/{uuid} | Update user
+[**users_companies**](UsersApi.md#users_companies) | **GET** /users/me/companies | List current user companies
+[**users_me**](UsersApi.md#users_me) | **GET** /users/me | View current user details
 
 
-# **cancel_review**
-> cancel_review(uuid)
+# **add_user**
+> add_user(add_user_request)
 
-Cancel document review
+Add user
 
 ### Example
 
@@ -28,16 +26,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-uuid = 'uuid_example' # str | The document uuid
+add_user_request = accounting_sh.AddUserRequest() # AddUserRequest | 
 
 accounting = accounting_sh.Accounting("access_token")
 try:
-    # Cancel document review
-    api_response = accounting.documents_api.cancel_review(uuid)
-    print("The response of DocumentsApi->cancel_review:\n")
+    # Add user
+    api_response = accounting.users_api.add_user(add_user_request)
+    print("The response of UsersApi->add_user:\n")
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DocumentsApi->cancel_review: %s\n" % e)
+    print("Exception when calling UsersApi->add_user: %s\n" % e)
 ```
 
 
@@ -47,11 +45,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The document uuid | 
+ **add_user_request** | [**AddUserRequest**](AddUserRequest.md)|  | 
 
 ### Return type
 
-[**AuthInit200Response**](AuthInit200Response.md)
+[**AddUser200Response**](AddUser200Response.md)
 
 ### HTTP response details
 
@@ -65,10 +63,10 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_document**
-> delete_document(uuid)
+# **get_user**
+> get_user(uuid)
 
-Delete a document
+View user
 
 ### Example
 
@@ -78,16 +76,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-uuid = 'uuid_example' # str | The document uuid
+uuid = 'uuid_example' # str | The user uuid
 
 accounting = accounting_sh.Accounting("access_token")
 try:
-    # Delete a document
-    api_response = accounting.documents_api.delete_document(uuid)
-    print("The response of DocumentsApi->delete_document:\n")
+    # View user
+    api_response = accounting.users_api.get_user(uuid)
+    print("The response of UsersApi->get_user:\n")
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DocumentsApi->delete_document: %s\n" % e)
+    print("Exception when calling UsersApi->get_user: %s\n" % e)
 ```
 
 
@@ -97,11 +95,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The document uuid | 
+ **uuid** | **str**| The user uuid | 
 
 ### Return type
 
-[**DeleteAccountConnection200Response**](DeleteAccountConnection200Response.md)
+[**AddUser200Response**](AddUser200Response.md)
 
 ### HTTP response details
 
@@ -115,60 +113,10 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_document**
-> get_document(uuid)
+# **list_users**
+> list_users(fields=fields, page=page, per_page=per_page)
 
-Get a document
-
-### Example
-
-
-```python
-import accounting_sh
-from accounting_sh.exceptions import ApiException
-from pprint import pprint
-
-uuid = 'uuid_example' # str | The document uuid
-
-accounting = accounting_sh.Accounting("access_token")
-try:
-    # Get a document
-    api_response = accounting.documents_api.get_document(uuid)
-    print("The response of DocumentsApi->get_document:\n")
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DocumentsApi->get_document: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The document uuid | 
-
-### Return type
-
-[**UploadDocument200Response**](UploadDocument200Response.md)
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **list_documents**
-> list_documents(fields=fields, page=page, per_page=per_page)
-
-List company's documents
+List company's users
 
 ### Example
 
@@ -184,12 +132,12 @@ per_page = 'per_page_example' # str | The number of items per page (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
-    # List company's documents
-    api_response = accounting.documents_api.list_documents(fields=fields, page=page, per_page=per_page)
-    print("The response of DocumentsApi->list_documents:\n")
+    # List company's users
+    api_response = accounting.users_api.list_users(fields=fields, page=page, per_page=per_page)
+    print("The response of UsersApi->list_users:\n")
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DocumentsApi->list_documents: %s\n" % e)
+    print("Exception when calling UsersApi->list_users: %s\n" % e)
 ```
 
 
@@ -205,23 +153,24 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListDocuments200Response**](ListDocuments200Response.md)
+[**ListUsers200Response**](ListUsers200Response.md)
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
+**200** | OK |  -  |
 **500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
 **401** | Authentication is required to access the resource. |  -  |
 **403** | The server has understood the request, but refuses to execute it. |  -  |
+**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **process_document**
-> process_document(uuid)
+# **update_user**
+> update_user(uuid, update_user_request)
 
-Process a document
+Update user
 
 ### Example
 
@@ -231,16 +180,17 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-uuid = 'uuid_example' # str | The document uuid
+uuid = 'uuid_example' # str | The user uuid
+update_user_request = accounting_sh.UpdateUserRequest() # UpdateUserRequest | 
 
 accounting = accounting_sh.Accounting("access_token")
 try:
-    # Process a document
-    api_response = accounting.documents_api.process_document(uuid)
-    print("The response of DocumentsApi->process_document:\n")
+    # Update user
+    api_response = accounting.users_api.update_user(uuid, update_user_request)
+    print("The response of UsersApi->update_user:\n")
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DocumentsApi->process_document: %s\n" % e)
+    print("Exception when calling UsersApi->update_user: %s\n" % e)
 ```
 
 
@@ -250,7 +200,58 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The document uuid | 
+ **uuid** | **str**| The user uuid | 
+ **update_user_request** | [**UpdateUserRequest**](UpdateUserRequest.md)|  | 
+
+### Return type
+
+[**AddUser200Response**](AddUser200Response.md)
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
+**401** | Authentication is required to access the resource. |  -  |
+**403** | The server has understood the request, but refuses to execute it. |  -  |
+**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_user_0**
+> update_user_0(uuid)
+
+Update user
+
+### Example
+
+
+```python
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = 'uuid_example' # str | The user uuid
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Update user
+    api_response = accounting.users_api.update_user_0(uuid)
+    print("The response of UsersApi->update_user_0:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UsersApi->update_user_0: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **str**| The user uuid | 
 
 ### Return type
 
@@ -268,10 +269,10 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **review_url**
-> review_url(uuid)
+# **users_companies**
+> users_companies()
 
-Get url to review a document
+List current user companies
 
 ### Example
 
@@ -281,30 +282,26 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-uuid = 'uuid_example' # str | The document uuid
 
 accounting = accounting_sh.Accounting("access_token")
 try:
-    # Get url to review a document
-    api_response = accounting.documents_api.review_url(uuid)
-    print("The response of DocumentsApi->review_url:\n")
+    # List current user companies
+    api_response = accounting.users_api.users_companies()
+    print("The response of UsersApi->users_companies:\n")
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DocumentsApi->review_url: %s\n" % e)
+    print("Exception when calling UsersApi->users_companies: %s\n" % e)
 ```
 
 
 
 ### Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The document uuid | 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**AuthInit200Response**](AuthInit200Response.md)
+[**UsersCompanies200Response**](UsersCompanies200Response.md)
 
 ### HTTP response details
 
@@ -318,10 +315,10 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_document**
-> update_document(uuid, update_document_request)
+# **users_me**
+> users_me()
 
-Update a document
+View current user details
 
 ### Example
 
@@ -331,130 +328,26 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-uuid = 'uuid_example' # str | The document uuid
-update_document_request = accounting_sh.UpdateDocumentRequest() # UpdateDocumentRequest | 
 
 accounting = accounting_sh.Accounting("access_token")
 try:
-    # Update a document
-    api_response = accounting.documents_api.update_document(uuid, update_document_request)
-    print("The response of DocumentsApi->update_document:\n")
+    # View current user details
+    api_response = accounting.users_api.users_me()
+    print("The response of UsersApi->users_me:\n")
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DocumentsApi->update_document: %s\n" % e)
+    print("Exception when calling UsersApi->users_me: %s\n" % e)
 ```
 
 
 
 ### Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The document uuid | 
- **update_document_request** | [**UpdateDocumentRequest**](UpdateDocumentRequest.md)|  | 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**UploadDocument200Response**](UploadDocument200Response.md)
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **upload_document**
-> upload_document(name, file)
-
-Upload a document
-
-### Example
-
-
-```python
-import accounting_sh
-from accounting_sh.exceptions import ApiException
-from pprint import pprint
-
-name = 'name_example' # str | 
-file = None # bytearray | 
-
-accounting = accounting_sh.Accounting("access_token")
-try:
-    # Upload a document
-    api_response = accounting.documents_api.upload_document(name, file)
-    print("The response of DocumentsApi->upload_document:\n")
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DocumentsApi->upload_document: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **str**|  | 
- **file** | [**bytearray**](bytearray.md)|  | 
-
-### Return type
-
-[**UploadDocument200Response**](UploadDocument200Response.md)
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **view_document**
-> view_document(uuid)
-
-View a document
-
-### Example
-
-
-```python
-import accounting_sh
-from accounting_sh.exceptions import ApiException
-from pprint import pprint
-
-uuid = 'uuid_example' # str | The document uuid
-
-accounting = accounting_sh.Accounting("access_token")
-try:
-    # View a document
-accounting.documents_api.view_document(uuid)
-except ApiException as e:
-    print("Exception when calling DocumentsApi->view_document: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The document uuid | 
-
-### Return type
-
-void (empty response body)
+[**UsersMe200Response**](UsersMe200Response.md)
 
 ### HTTP response details
 

@@ -1,6 +1,6 @@
 [project]
 name = "accounting_sh"
-version = "0.6.0"
+version = "1.0.0"
 description = "Accounting API"
 authors = [{"name" = "STAN-TAB CORP. LTD", email="support@stantabcorp.com"}]
 license = { file = "LICENSE" }
