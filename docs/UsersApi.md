@@ -5,10 +5,10 @@ All URIs are relative to *https://api.accounting.sh*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_user**](UsersApi.md#add_user) | **POST** /users | Add user
+[**delete_user**](UsersApi.md#delete_user) | **DELETE** /users/{uuid} | Delete user
 [**get_user**](UsersApi.md#get_user) | **GET** /users/{uuid} | View user
 [**list_users**](UsersApi.md#list_users) | **GET** /users | List company&#39;s users
 [**update_user**](UsersApi.md#update_user) | **PUT** /users/{uuid} | Update user
-[**update_user_0**](UsersApi.md#update_user_0) | **DELETE** /users/{uuid} | Update user
 [**users_companies**](UsersApi.md#users_companies) | **GET** /users/me/companies | List current user companies
 [**users_me**](UsersApi.md#users_me) | **GET** /users/me | View current user details
 
@@ -50,6 +50,56 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AddUser200Response**](AddUser200Response.md)
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
+**401** | Authentication is required to access the resource. |  -  |
+**403** | The server has understood the request, but refuses to execute it. |  -  |
+**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_user**
+> delete_user(uuid)
+
+Delete user
+
+### Example
+
+
+```python
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = 'uuid_example' # str | The user uuid
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Delete user
+    api_response = accounting.users_api.delete_user(uuid)
+    print("The response of UsersApi->delete_user:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UsersApi->delete_user: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **str**| The user uuid | 
+
+### Return type
+
+[**DeleteAccountConnection200Response**](DeleteAccountConnection200Response.md)
 
 ### HTTP response details
 
@@ -206,56 +256,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AddUser200Response**](AddUser200Response.md)
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_user_0**
-> update_user_0(uuid)
-
-Update user
-
-### Example
-
-
-```python
-import accounting_sh
-from accounting_sh.exceptions import ApiException
-from pprint import pprint
-
-uuid = 'uuid_example' # str | The user uuid
-
-accounting = accounting_sh.Accounting("access_token")
-try:
-    # Update user
-    api_response = accounting.users_api.update_user_0(uuid)
-    print("The response of UsersApi->update_user_0:\n")
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling UsersApi->update_user_0: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The user uuid | 
-
-### Return type
-
-[**DeleteAccountConnection200Response**](DeleteAccountConnection200Response.md)
 
 ### HTTP response details
 
