@@ -36,6 +36,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ContactsApi->add_contact: %s\n" % e)
+
 ```
 
 
@@ -85,6 +86,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ContactsApi->delete_contact: %s\n" % e)
+
 ```
 
 
@@ -135,6 +137,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ContactsApi->get_contact: %s\n" % e)
+
 ```
 
 
@@ -188,6 +191,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ContactsApi->list_contact_bills: %s\n" % e)
+
 ```
 
 
@@ -244,6 +248,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ContactsApi->list_contact_invoices: %s\n" % e)
+
 ```
 
 
@@ -299,6 +304,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ContactsApi->list_contacts: %s\n" % e)
+
 ```
 
 
@@ -351,6 +357,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ContactsApi->update_contact: %s\n" % e)
+
 ```
 
 

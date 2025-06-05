@@ -34,6 +34,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AccountsApi->add_account: %s\n" % e)
+
 ```
 
 
@@ -83,6 +84,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AccountsApi->delete_account: %s\n" % e)
+
 ```
 
 
@@ -133,6 +135,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AccountsApi->get_account: %s\n" % e)
+
 ```
 
 
@@ -185,6 +188,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AccountsApi->list_accounts: %s\n" % e)
+
 ```
 
 
@@ -237,6 +241,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AccountsApi->update_account: %s\n" % e)
+
 ```
 
 

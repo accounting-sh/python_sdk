@@ -33,6 +33,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling NotificationApi->list_notification_preferences: %s\n" % e)
+
 ```
 
 
@@ -84,6 +85,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling NotificationApi->list_notifications: %s\n" % e)
+
 ```
 
 
@@ -135,6 +137,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling NotificationApi->send_notification: %s\n" % e)
+
 ```
 
 
@@ -185,6 +188,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling NotificationApi->update_notification_preferences: %s\n" % e)
+
 ```
 
 

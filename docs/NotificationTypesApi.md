@@ -34,6 +34,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling NotificationTypesApi->add_notification_type: %s\n" % e)
+
 ```
 
 
@@ -83,6 +84,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling NotificationTypesApi->delete_notification_type: %s\n" % e)
+
 ```
 
 
@@ -133,6 +135,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling NotificationTypesApi->get_notification_type: %s\n" % e)
+
 ```
 
 
@@ -185,6 +188,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling NotificationTypesApi->list_notification_types: %s\n" % e)
+
 ```
 
 
@@ -237,6 +241,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling NotificationTypesApi->update_notification_type: %s\n" % e)
+
 ```
 
 

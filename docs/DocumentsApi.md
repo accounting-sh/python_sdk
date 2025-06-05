@@ -38,6 +38,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DocumentsApi->cancel_review: %s\n" % e)
+
 ```
 
 
@@ -88,6 +89,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DocumentsApi->delete_document: %s\n" % e)
+
 ```
 
 
@@ -138,6 +140,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DocumentsApi->get_document: %s\n" % e)
+
 ```
 
 
@@ -190,6 +193,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DocumentsApi->list_documents: %s\n" % e)
+
 ```
 
 
@@ -241,6 +245,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DocumentsApi->process_document: %s\n" % e)
+
 ```
 
 
@@ -291,6 +296,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DocumentsApi->review_url: %s\n" % e)
+
 ```
 
 
@@ -342,6 +348,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DocumentsApi->update_document: %s\n" % e)
+
 ```
 
 
@@ -393,6 +400,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DocumentsApi->upload_document: %s\n" % e)
+
 ```
 
 
@@ -438,9 +446,10 @@ uuid = 'uuid_example' # str | The document uuid
 accounting = accounting_sh.Accounting("access_token")
 try:
     # View a document
-accounting.documents_api.view_document(uuid)
+   accounting.documents_api.view_document(uuid)
 except ApiException as e:
     print("Exception when calling DocumentsApi->view_document: %s\n" % e)
+
 ```
 
 

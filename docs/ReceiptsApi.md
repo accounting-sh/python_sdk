@@ -35,6 +35,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ReceiptsApi->add_receipt: %s\n" % e)
+
 ```
 
 
@@ -84,6 +85,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ReceiptsApi->delete_receipt: %s\n" % e)
+
 ```
 
 
@@ -134,6 +136,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ReceiptsApi->get_receipt: %s\n" % e)
+
 ```
 
 
@@ -179,9 +182,10 @@ uuid = 'uuid_example' # str | The receipt uuid
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Get a receipt in PDF
-accounting.receipts_api.get_receipt_document(uuid)
+   accounting.receipts_api.get_receipt_document(uuid)
 except ApiException as e:
     print("Exception when calling ReceiptsApi->get_receipt_document: %s\n" % e)
+
 ```
 
 
@@ -234,6 +238,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ReceiptsApi->list_receipts: %s\n" % e)
+
 ```
 
 
@@ -286,6 +291,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ReceiptsApi->update_receipt: %s\n" % e)
+
 ```
 
 

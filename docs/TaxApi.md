@@ -31,6 +31,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TaxApi->get_tax_rate: %s\n" % e)
+
 ```
 
 
@@ -80,6 +81,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TaxApi->verify_vat_id: %s\n" % e)
+
 ```
 
 

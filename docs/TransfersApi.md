@@ -34,6 +34,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TransfersApi->add_transfer: %s\n" % e)
+
 ```
 
 
@@ -83,6 +84,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TransfersApi->delete_transfer: %s\n" % e)
+
 ```
 
 
@@ -133,6 +135,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TransfersApi->get_transfer: %s\n" % e)
+
 ```
 
 
@@ -185,6 +188,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TransfersApi->list_transfers: %s\n" % e)
+
 ```
 
 
@@ -237,6 +241,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TransfersApi->update_transfer: %s\n" % e)
+
 ```
 
 

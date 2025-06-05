@@ -32,6 +32,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling SearchApi->search: %s\n" % e)
+
 ```
 
 

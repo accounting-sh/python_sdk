@@ -36,6 +36,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UsersApi->add_user: %s\n" % e)
+
 ```
 
 
@@ -86,6 +87,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UsersApi->delete_user: %s\n" % e)
+
 ```
 
 
@@ -136,6 +138,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UsersApi->get_user: %s\n" % e)
+
 ```
 
 
@@ -188,6 +191,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UsersApi->list_users: %s\n" % e)
+
 ```
 
 
@@ -241,6 +245,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UsersApi->update_user: %s\n" % e)
+
 ```
 
 
@@ -291,6 +296,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UsersApi->users_companies: %s\n" % e)
+
 ```
 
 
@@ -337,6 +343,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UsersApi->users_me: %s\n" % e)
+
 ```
 
 

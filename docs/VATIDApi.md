@@ -35,6 +35,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling VATIDApi->add_company_vat_id: %s\n" % e)
+
 ```
 
 
@@ -86,6 +87,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling VATIDApi->delete_company_vat_id: %s\n" % e)
+
 ```
 
 
@@ -138,6 +140,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling VATIDApi->get_company_vat_id: %s\n" % e)
+
 ```
 
 
@@ -192,6 +195,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling VATIDApi->list_company_vat_id: %s\n" % e)
+
 ```
 
 
@@ -246,6 +250,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling VATIDApi->update_company_vat_id: %s\n" % e)
+
 ```
 
 

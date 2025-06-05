@@ -37,6 +37,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling BillsApi->add_bill: %s\n" % e)
+
 ```
 
 
@@ -87,6 +88,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling BillsApi->add_bill_payment: %s\n" % e)
+
 ```
 
 
@@ -138,6 +140,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling BillsApi->delete_bill: %s\n" % e)
+
 ```
 
 
@@ -188,6 +191,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling BillsApi->get_bill: %s\n" % e)
+
 ```
 
 
@@ -235,9 +239,10 @@ uuid = 'uuid_example' # str | The invoice uuid
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Get a bill in PDF
-accounting.bills_api.get_bill_document(uuid)
+   accounting.bills_api.get_bill_document(uuid)
 except ApiException as e:
     print("Exception when calling BillsApi->get_bill_document: %s\n" % e)
+
 ```
 
 
@@ -290,6 +295,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling BillsApi->list_bills: %s\n" % e)
+
 ```
 
 
@@ -342,6 +348,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling BillsApi->update_bill: %s\n" % e)
+
 ```
 
 
@@ -395,6 +402,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling BillsApi->update_bill_payment: %s\n" % e)
+
 ```
 
 

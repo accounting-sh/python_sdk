@@ -37,6 +37,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CredentialsApi->add_credential: %s\n" % e)
+
 ```
 
 
@@ -86,6 +87,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CredentialsApi->delete_credential: %s\n" % e)
+
 ```
 
 
@@ -136,6 +138,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CredentialsApi->get_credential: %s\n" % e)
+
 ```
 
 
@@ -188,6 +191,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CredentialsApi->list_credentials: %s\n" % e)
+
 ```
 
 
@@ -238,6 +242,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CredentialsApi->list_permissions: %s\n" % e)
+
 ```
 
 
@@ -280,6 +285,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CredentialsApi->me: %s\n" % e)
+
 ```
 
 
@@ -327,6 +333,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CredentialsApi->update_credential: %s\n" % e)
+
 ```
 
 
@@ -377,6 +384,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CredentialsApi->userveria: %s\n" % e)
+
 ```
 
 

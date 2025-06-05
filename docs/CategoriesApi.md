@@ -34,6 +34,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CategoriesApi->add_category: %s\n" % e)
+
 ```
 
 
@@ -83,6 +84,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CategoriesApi->delete_category: %s\n" % e)
+
 ```
 
 
@@ -133,6 +135,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CategoriesApi->get_category: %s\n" % e)
+
 ```
 
 
@@ -185,6 +188,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CategoriesApi->list_categories: %s\n" % e)
+
 ```
 
 
@@ -237,6 +241,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CategoriesApi->update_category: %s\n" % e)
+
 ```
 
 

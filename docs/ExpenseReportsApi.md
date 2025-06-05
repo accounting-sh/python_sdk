@@ -41,6 +41,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExpenseReportsApi->add_expense_report: %s\n" % e)
+
 ```
 
 
@@ -90,6 +91,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExpenseReportsApi->delete_expense_report: %s\n" % e)
+
 ```
 
 
@@ -140,6 +142,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExpenseReportsApi->expense_report_o_auth_login: %s\n" % e)
+
 ```
 
 
@@ -189,6 +192,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExpenseReportsApi->get_expense_report: %s\n" % e)
+
 ```
 
 
@@ -238,6 +242,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExpenseReportsApi->get_expense_report_account: %s\n" % e)
+
 ```
 
 
@@ -285,6 +290,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExpenseReportsApi->get_expense_report_user: %s\n" % e)
+
 ```
 
 
@@ -339,6 +345,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExpenseReportsApi->list_expense_reports: %s\n" % e)
+
 ```
 
 
@@ -390,6 +397,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExpenseReportsApi->send_expense_report_login_email: %s\n" % e)
+
 ```
 
 
@@ -440,6 +448,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExpenseReportsApi->update_expense_report: %s\n" % e)
+
 ```
 
 
@@ -490,6 +499,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExpenseReportsApi->update_expense_report_account: %s\n" % e)
+
 ```
 
 
@@ -541,6 +551,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExpenseReportsApi->update_expense_report_settings: %s\n" % e)
+
 ```
 
 
@@ -590,6 +601,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExpenseReportsApi->verify_expense_report_settings: %s\n" % e)
+
 ```
 
 

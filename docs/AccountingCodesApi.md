@@ -34,6 +34,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AccountingCodesApi->add_accounting_code: %s\n" % e)
+
 ```
 
 
@@ -83,6 +84,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AccountingCodesApi->delete_accounting_code: %s\n" % e)
+
 ```
 
 
@@ -133,6 +135,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AccountingCodesApi->get_accounting_code: %s\n" % e)
+
 ```
 
 
@@ -182,6 +185,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AccountingCodesApi->list_accounting_codes: %s\n" % e)
+
 ```
 
 
@@ -229,6 +233,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AccountingCodesApi->update_accounting_code: %s\n" % e)
+
 ```
 
 

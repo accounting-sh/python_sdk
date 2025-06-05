@@ -38,6 +38,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling LogsApi->logs: %s\n" % e)
+
 ```
 
 

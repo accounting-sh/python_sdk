@@ -35,6 +35,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling QuotesApi->add_quote: %s\n" % e)
+
 ```
 
 
@@ -84,6 +85,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling QuotesApi->delete_quote: %s\n" % e)
+
 ```
 
 
@@ -134,6 +136,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling QuotesApi->get_quote: %s\n" % e)
+
 ```
 
 
@@ -179,9 +182,10 @@ uuid = 'uuid_example' # str | The quote uuid
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Get a quote in PDF
-accounting.quotes_api.get_quote_document(uuid)
+   accounting.quotes_api.get_quote_document(uuid)
 except ApiException as e:
     print("Exception when calling QuotesApi->get_quote_document: %s\n" % e)
+
 ```
 
 
@@ -234,6 +238,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling QuotesApi->list_quotes: %s\n" % e)
+
 ```
 
 
@@ -286,6 +291,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling QuotesApi->update_quote: %s\n" % e)
+
 ```
 
 

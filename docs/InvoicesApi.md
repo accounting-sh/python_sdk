@@ -38,6 +38,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InvoicesApi->add_invoice: %s\n" % e)
+
 ```
 
 
@@ -88,6 +89,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InvoicesApi->add_invoice_payment: %s\n" % e)
+
 ```
 
 
@@ -139,6 +141,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InvoicesApi->delete_invoice: %s\n" % e)
+
 ```
 
 
@@ -189,6 +192,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InvoicesApi->get_invoice: %s\n" % e)
+
 ```
 
 
@@ -234,9 +238,10 @@ uuid = 'uuid_example' # str | The invoice uuid
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Get an invoice in PDF
-accounting.invoices_api.get_invoice_document(uuid)
+   accounting.invoices_api.get_invoice_document(uuid)
 except ApiException as e:
     print("Exception when calling InvoicesApi->get_invoice_document: %s\n" % e)
+
 ```
 
 
@@ -289,6 +294,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InvoicesApi->list_invoices: %s\n" % e)
+
 ```
 
 
@@ -339,6 +345,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InvoicesApi->list_unpaid_invoices: %s\n" % e)
+
 ```
 
 
@@ -386,6 +393,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InvoicesApi->update_invoice: %s\n" % e)
+
 ```
 
 
@@ -439,6 +447,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling InvoicesApi->update_invoice_payment: %s\n" % e)
+
 ```
 
 

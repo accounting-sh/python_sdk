@@ -35,6 +35,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AttachmentsApi->add_attachment: %s\n" % e)
+
 ```
 
 
@@ -84,6 +85,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AttachmentsApi->delete_attachment: %s\n" % e)
+
 ```
 
 
@@ -134,6 +136,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AttachmentsApi->get_attachment: %s\n" % e)
+
 ```
 
 
@@ -186,6 +189,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AttachmentsApi->list_attachments: %s\n" % e)
+
 ```
 
 
@@ -240,6 +244,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AttachmentsApi->retrieve_attachments: %s\n" % e)
+
 ```
 
 
@@ -293,6 +298,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AttachmentsApi->update_attachment: %s\n" % e)
+
 ```
 
 

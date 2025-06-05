@@ -30,6 +30,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CountriesApi->get_translated_countries: %s\n" % e)
+
 ```
 
 

@@ -31,6 +31,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CurrencyApi->get_exchange_rate: %s\n" % e)
+
 ```
 
 

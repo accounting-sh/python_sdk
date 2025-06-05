@@ -32,6 +32,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AuthApi->auth_init: %s\n" % e)
+
 ```
 
 
@@ -79,6 +80,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AuthApi->login: %s\n" % e)
+
 ```
 
 
@@ -128,6 +130,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AuthApi->logout: %s\n" % e)
+
 ```
 
 
@@ -175,6 +178,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AuthApi->switch_company: %s\n" % e)
+
 ```
 
 

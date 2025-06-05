@@ -35,6 +35,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TagsApi->add_tag: %s\n" % e)
+
 ```
 
 
@@ -84,6 +85,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TagsApi->delete_tag: %s\n" % e)
+
 ```
 
 
@@ -134,6 +136,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TagsApi->get_tag: %s\n" % e)
+
 ```
 
 
@@ -186,6 +189,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TagsApi->list_tags: %s\n" % e)
+
 ```
 
 
@@ -240,6 +244,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TagsApi->list_tags_by_resource: %s\n" % e)
+
 ```
 
 
@@ -293,6 +298,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TagsApi->update_tag: %s\n" % e)
+
 ```
 
 

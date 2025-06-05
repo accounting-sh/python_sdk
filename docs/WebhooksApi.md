@@ -36,6 +36,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling WebhooksApi->add_webhook: %s\n" % e)
+
 ```
 
 
@@ -85,6 +86,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling WebhooksApi->delete_webhook: %s\n" % e)
+
 ```
 
 
@@ -135,6 +137,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling WebhooksApi->get_webhook: %s\n" % e)
+
 ```
 
 
@@ -185,6 +188,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling WebhooksApi->get_webhook_history: %s\n" % e)
+
 ```
 
 
@@ -234,6 +238,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling WebhooksApi->list_webhook_events: %s\n" % e)
+
 ```
 
 
@@ -279,6 +284,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling WebhooksApi->list_webhooks: %s\n" % e)
+
 ```
 
 
@@ -331,6 +337,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling WebhooksApi->update_webhook: %s\n" % e)
+
 ```
 
 

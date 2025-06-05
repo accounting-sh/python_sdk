@@ -36,6 +36,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CompaniesApi->add_company: %s\n" % e)
+
 ```
 
 
@@ -85,6 +86,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CompaniesApi->delete_company: %s\n" % e)
+
 ```
 
 
@@ -135,6 +137,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CompaniesApi->get_company: %s\n" % e)
+
 ```
 
 
@@ -185,6 +188,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CompaniesApi->get_company_customization: %s\n" % e)
+
 ```
 
 
@@ -235,6 +239,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CompaniesApi->get_company_feature_set: %s\n" % e)
+
 ```
 
 
@@ -287,6 +292,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CompaniesApi->list_companies: %s\n" % e)
+
 ```
 
 
@@ -339,6 +345,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CompaniesApi->update_company: %s\n" % e)
+
 ```
 
 

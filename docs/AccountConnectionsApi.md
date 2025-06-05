@@ -32,6 +32,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AccountConnectionsApi->delete_account_connection: %s\n" % e)
+
 ```
 
 
@@ -85,6 +86,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AccountConnectionsApi->list_account_connections: %s\n" % e)
+
 ```
 
 
@@ -138,6 +140,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AccountConnectionsApi->list_banks: %s\n" % e)
+
 ```
 
 

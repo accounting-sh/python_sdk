@@ -35,6 +35,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OAuthConfigApi->add_o_auth_configuration: %s\n" % e)
+
 ```
 
 
@@ -84,6 +85,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OAuthConfigApi->delete_o_auth_configuration: %s\n" % e)
+
 ```
 
 
@@ -134,6 +136,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OAuthConfigApi->get_o_auth_configuration: %s\n" % e)
+
 ```
 
 
@@ -186,6 +189,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OAuthConfigApi->list_o_auth_configurations: %s\n" % e)
+
 ```
 
 
@@ -236,6 +240,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OAuthConfigApi->list_providers: %s\n" % e)
+
 ```
 
 
@@ -280,6 +285,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling OAuthConfigApi->update_o_auth_configuration: %s\n" % e)
+
 ```
 
 

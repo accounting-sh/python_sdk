@@ -39,6 +39,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TransactionsApi->add_transaction: %s\n" % e)
+
 ```
 
 
@@ -89,6 +90,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TransactionsApi->add_transaction_code: %s\n" % e)
+
 ```
 
 
@@ -140,6 +142,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TransactionsApi->delete_transaction: %s\n" % e)
+
 ```
 
 
@@ -191,6 +194,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TransactionsApi->delete_transaction_code: %s\n" % e)
+
 ```
 
 
@@ -242,6 +246,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TransactionsApi->get_transaction: %s\n" % e)
+
 ```
 
 
@@ -294,6 +299,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TransactionsApi->import_transactions: %s\n" % e)
+
 ```
 
 
@@ -347,6 +353,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TransactionsApi->list_transaction_codes: %s\n" % e)
+
 ```
 
 
@@ -404,6 +411,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TransactionsApi->list_transactions: %s\n" % e)
+
 ```
 
 
@@ -457,6 +465,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TransactionsApi->update_transaction: %s\n" % e)
+
 ```
 
 
@@ -509,6 +518,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TransactionsApi->update_transaction_code: %s\n" % e)
+
 ```
 
 

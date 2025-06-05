@@ -33,6 +33,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling SettingsApi->get_settings: %s\n" % e)
+
 ```
 
 
@@ -87,6 +88,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling SettingsApi->list_settings: %s\n" % e)
+
 ```
 
 
@@ -141,6 +143,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling SettingsApi->update_settings: %s\n" % e)
+
 ```
 
 

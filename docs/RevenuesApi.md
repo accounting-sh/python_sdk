@@ -34,6 +34,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RevenuesApi->add_revenue: %s\n" % e)
+
 ```
 
 
@@ -83,6 +84,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RevenuesApi->delete_revenue: %s\n" % e)
+
 ```
 
 
@@ -133,6 +135,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RevenuesApi->get_revenue: %s\n" % e)
+
 ```
 
 
@@ -185,6 +188,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RevenuesApi->list_revenues: %s\n" % e)
+
 ```
 
 
@@ -237,6 +241,7 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RevenuesApi->update_revenue: %s\n" % e)
+
 ```
 
 
