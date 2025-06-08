@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**delete_transaction_code**](TransactionsApi.md#delete_transaction_code) | **DELETE** /transactions/{uuid}/codes/{code} | Delete a transaction&#39;s code
 [**get_transaction**](TransactionsApi.md#get_transaction) | **GET** /transactions/{uuid} | Get a transaction
 [**import_transactions**](TransactionsApi.md#import_transactions) | **POST** /transactions/import | Import transactions - INTERNAL
+[**ledger**](TransactionsApi.md#ledger) | **GET** /transactions/ledger | List company&#39;s transactions and transfers
 [**list_transaction_codes**](TransactionsApi.md#list_transaction_codes) | **GET** /transactions/{uuid}/codes | List transaction&#39;s codes
 [**list_transactions**](TransactionsApi.md#list_transactions) | **GET** /transactions | List company&#39;s transactions
 [**update_transaction**](TransactionsApi.md#update_transaction) | **PUT** /transactions/{uuid} | Update a transaction
@@ -23,6 +24,7 @@ Add a transaction
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -73,6 +75,7 @@ Add a transaction's code
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -126,6 +129,7 @@ Delete a transaction
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -177,6 +181,7 @@ Delete a transaction's code
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -230,6 +235,7 @@ Get a transaction
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -283,6 +289,7 @@ Import transaction from a file or directly from extracted details
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -326,6 +333,64 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ledger**
+> ledger(fields=fields, page=page, per_page=per_page, account=account)
+
+List company's transactions and transfers
+
+### Example
+
+* Bearer (Api Key) Authentication (bearer):
+
+```python
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+fields = 'fields_example' # str | A comma separated list of fields requested in the response (optional)
+page = 'page_example' # str | The response page (optional)
+per_page = 'per_page_example' # str | The number of items per page (optional)
+account = 'account_example' # str | An account uuid to filter results (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List company's transactions and transfers
+    api_response = accounting.transactions_api.ledger(fields=fields, page=page, per_page=per_page, account=account)
+    print("The response of TransactionsApi->ledger:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling TransactionsApi->ledger: %s\n" % e)
+
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fields** | **str**| A comma separated list of fields requested in the response | [optional] 
+ **page** | **str**| The response page | [optional] 
+ **per_page** | **str**| The number of items per page | [optional] 
+ **account** | **str**| An account uuid to filter results | [optional] 
+
+### Return type
+
+[**Ledger200Response**](Ledger200Response.md)
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
+**401** | Authentication is required to access the resource. |  -  |
+**403** | The server has understood the request, but refuses to execute it. |  -  |
+**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **list_transaction_codes**
 > list_transaction_codes(uuid, fields=fields, page=page, per_page=per_page, account=account)
 
@@ -333,6 +398,7 @@ List transaction's codes
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -392,6 +458,7 @@ List company's transactions
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -448,6 +515,7 @@ Update a transaction
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -501,6 +569,7 @@ Update a transaction's code
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh

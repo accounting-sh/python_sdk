@@ -22,6 +22,7 @@ Add an invoice
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -72,6 +73,7 @@ Add an invoice payment
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -125,6 +127,7 @@ Delete an invoice
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -176,6 +179,7 @@ Get an invoice
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -227,6 +231,7 @@ Get an invoice in PDF
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -276,6 +281,7 @@ List company's invoices
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -330,6 +336,7 @@ List company's unpaid invoices
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -376,6 +383,7 @@ Update an invoice
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -429,6 +437,7 @@ Update an invoice payment
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh

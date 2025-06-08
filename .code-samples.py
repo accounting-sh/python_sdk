@@ -2835,6 +2835,28 @@ except ApiException as e:
     print("Exception when calling TransactionsApi->import_transactions: %s\n" % e)
 
 
+# ..ledger
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
+page = "page_example"  # str | The response page (optional)
+per_page = "per_page_example"  # str | The number of items per page (optional)
+account = "account_example"  # str | An account uuid to filter results (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List company's transactions and transfers
+    api_response = accounting.transactions_api.ledger(
+        fields=fields, page=page, per_page=per_page, account=account
+    )
+    print("The response of TransactionsApi->ledger:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling TransactionsApi->ledger: %s\n" % e)
+
+
 # ..list_transaction_codes
 import accounting_sh
 from accounting_sh.exceptions import ApiException

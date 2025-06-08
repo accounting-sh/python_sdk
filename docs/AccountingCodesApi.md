@@ -18,6 +18,7 @@ Add an accounting code
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -68,6 +69,7 @@ Delete an accounting code
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -119,6 +121,7 @@ Get an accounting code
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -170,6 +173,7 @@ List company's accounting code
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -216,6 +220,7 @@ Update an accounting code
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh

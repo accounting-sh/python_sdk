@@ -21,6 +21,7 @@ Add a credential
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -71,6 +72,7 @@ Delete a credential
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -122,6 +124,7 @@ Get a credential
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -173,6 +176,7 @@ List company's credentials
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -270,6 +274,7 @@ Get current credential informations
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -316,6 +321,7 @@ Update a credential
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh

@@ -16,6 +16,7 @@ Get a company's settings
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -69,6 +70,7 @@ List company's settings
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -125,6 +127,7 @@ Update a company's settings
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh

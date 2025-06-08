@@ -14,6 +14,7 @@ List company's logs
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh

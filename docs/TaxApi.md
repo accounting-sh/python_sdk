@@ -15,6 +15,7 @@ Get the latest tax rate for a country
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -65,6 +66,7 @@ Verify a VAT ID
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh

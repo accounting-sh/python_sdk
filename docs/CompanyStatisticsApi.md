@@ -14,6 +14,7 @@ Get company's statistic
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh

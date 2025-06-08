@@ -19,6 +19,7 @@ Add an OAuth configuration
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -69,6 +70,7 @@ Delete an oauth configuration
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -120,6 +122,7 @@ Get an OAuth configuration
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -171,6 +174,7 @@ List company's oauth configurations
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -268,6 +272,7 @@ Update an oauth configuration
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh

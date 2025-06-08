@@ -14,6 +14,7 @@ List documents to be reviewes
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh

@@ -14,6 +14,7 @@ Get the latest currency exchange rate
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh

@@ -18,6 +18,7 @@ Add a company's Vat Id
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -70,6 +71,7 @@ Delete a company's Vat Id
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -123,6 +125,7 @@ Get a company's Vat Id
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -176,6 +179,7 @@ List company's Vat Id
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -232,6 +236,7 @@ Update a company's Vat Id
 
 ### Example
 
+* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
