@@ -4,18 +4,77 @@ All URIs are relative to *https://api.accounting.sh*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**add_link**](TransactionsApi.md#add_link) | **POST** /transactions/{uuid}/links | Add a new transaction link
 [**add_transaction**](TransactionsApi.md#add_transaction) | **POST** /transactions | Add a transaction
 [**add_transaction_code**](TransactionsApi.md#add_transaction_code) | **POST** /transactions/{uuid}/codes | Add a transaction&#39;s code
+[**delete_link**](TransactionsApi.md#delete_link) | **DELETE** /transactions/{uuid}/links/{link_uuid} | Delete a transaction link
 [**delete_transaction**](TransactionsApi.md#delete_transaction) | **DELETE** /transactions/{uuid} | Delete a transaction
 [**delete_transaction_code**](TransactionsApi.md#delete_transaction_code) | **DELETE** /transactions/{uuid}/codes/{code} | Delete a transaction&#39;s code
 [**get_transaction**](TransactionsApi.md#get_transaction) | **GET** /transactions/{uuid} | Get a transaction
 [**import_transactions**](TransactionsApi.md#import_transactions) | **POST** /transactions/import | Import transactions - INTERNAL
 [**ledger**](TransactionsApi.md#ledger) | **GET** /transactions/ledger | List company&#39;s transactions and transfers
+[**list_links**](TransactionsApi.md#list_links) | **GET** /transactions/{uuid}/links | List a transaction links
 [**list_transaction_codes**](TransactionsApi.md#list_transaction_codes) | **GET** /transactions/{uuid}/codes | List transaction&#39;s codes
 [**list_transactions**](TransactionsApi.md#list_transactions) | **GET** /transactions | List company&#39;s transactions
+[**update_link**](TransactionsApi.md#update_link) | **PUT** /transactions/{uuid}/links/{link_uuid} | Update a transaction link
 [**update_transaction**](TransactionsApi.md#update_transaction) | **PUT** /transactions/{uuid} | Update a transaction
 [**update_transaction_code**](TransactionsApi.md#update_transaction_code) | **PUT** /transactions/{uuid}/codes | Update a transaction&#39;s code
+[**view_link**](TransactionsApi.md#view_link) | **GET** /transactions/{uuid}/links/{link_uuid} | View a transaction link
 
+
+# **add_link**
+> add_link(list_links200_response_links_inner, uuid=uuid)
+
+Add a new transaction link
+
+### Example
+
+* Bearer (Api Key) Authentication (bearer):
+
+```python
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+list_links200_response_links_inner = accounting_sh.ListLinks200ResponseLinksInner() # ListLinks200ResponseLinksInner | 
+uuid = 'uuid_example' # str | A transaction uuid (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Add a new transaction link
+    api_response = accounting.transactions_api.add_link(list_links200_response_links_inner, uuid=uuid)
+    print("The response of TransactionsApi->add_link:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling TransactionsApi->add_link: %s\n" % e)
+
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **list_links200_response_links_inner** | [**ListLinks200ResponseLinksInner**](ListLinks200ResponseLinksInner.md)|  | 
+ **uuid** | **str**| A transaction uuid | [optional] 
+
+### Return type
+
+[**AddLink200Response**](AddLink200Response.md)
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
+**401** | Authentication is required to access the resource. |  -  |
+**403** | The server has understood the request, but refuses to execute it. |  -  |
+**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **add_transaction**
 > add_transaction(add_transaction_request)
@@ -109,6 +168,60 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UpdateTransactionCode200Response**](UpdateTransactionCode200Response.md)
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
+**401** | Authentication is required to access the resource. |  -  |
+**403** | The server has understood the request, but refuses to execute it. |  -  |
+**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_link**
+> delete_link(uuid=uuid, link_uuid=link_uuid)
+
+Delete a transaction link
+
+### Example
+
+* Bearer (Api Key) Authentication (bearer):
+
+```python
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = 'uuid_example' # str | A transaction uuid (optional)
+link_uuid = 'link_uuid_example' # str | A transaction link uuid OR the target uuid (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Delete a transaction link
+    api_response = accounting.transactions_api.delete_link(uuid=uuid, link_uuid=link_uuid)
+    print("The response of TransactionsApi->delete_link:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling TransactionsApi->delete_link: %s\n" % e)
+
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **str**| A transaction uuid | [optional] 
+ **link_uuid** | **str**| A transaction link uuid OR the target uuid | [optional] 
+
+### Return type
+
+[**DeleteAccountConnection200Response**](DeleteAccountConnection200Response.md)
 
 ### HTTP response details
 
@@ -391,6 +504,64 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **list_links**
+> list_links(fields=fields, page=page, per_page=per_page, uuid=uuid)
+
+List a transaction links
+
+### Example
+
+* Bearer (Api Key) Authentication (bearer):
+
+```python
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+fields = 'fields_example' # str | A comma separated list of fields requested in the response (optional)
+page = 'page_example' # str | The response page (optional)
+per_page = 'per_page_example' # str | The number of items per page (optional)
+uuid = 'uuid_example' # str | A transaction uuid (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List a transaction links
+    api_response = accounting.transactions_api.list_links(fields=fields, page=page, per_page=per_page, uuid=uuid)
+    print("The response of TransactionsApi->list_links:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling TransactionsApi->list_links: %s\n" % e)
+
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fields** | **str**| A comma separated list of fields requested in the response | [optional] 
+ **page** | **str**| The response page | [optional] 
+ **per_page** | **str**| The number of items per page | [optional] 
+ **uuid** | **str**| A transaction uuid | [optional] 
+
+### Return type
+
+[**ListLinks200Response**](ListLinks200Response.md)
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
+**401** | Authentication is required to access the resource. |  -  |
+**403** | The server has understood the request, but refuses to execute it. |  -  |
+**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **list_transaction_codes**
 > list_transaction_codes(uuid, fields=fields, page=page, per_page=per_page, account=account)
 
@@ -508,6 +679,62 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **update_link**
+> update_link(list_links200_response_links_inner, uuid=uuid, link_uuid=link_uuid)
+
+Update a transaction link
+
+### Example
+
+* Bearer (Api Key) Authentication (bearer):
+
+```python
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+list_links200_response_links_inner = accounting_sh.ListLinks200ResponseLinksInner() # ListLinks200ResponseLinksInner | 
+uuid = 'uuid_example' # str | A transaction uuid (optional)
+link_uuid = 'link_uuid_example' # str | A transaction link uuid OR the target uuid (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Update a transaction link
+    api_response = accounting.transactions_api.update_link(list_links200_response_links_inner, uuid=uuid, link_uuid=link_uuid)
+    print("The response of TransactionsApi->update_link:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling TransactionsApi->update_link: %s\n" % e)
+
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **list_links200_response_links_inner** | [**ListLinks200ResponseLinksInner**](ListLinks200ResponseLinksInner.md)|  | 
+ **uuid** | **str**| A transaction uuid | [optional] 
+ **link_uuid** | **str**| A transaction link uuid OR the target uuid | [optional] 
+
+### Return type
+
+[**ViewLink200Response**](ViewLink200Response.md)
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
+**401** | Authentication is required to access the resource. |  -  |
+**403** | The server has understood the request, but refuses to execute it. |  -  |
+**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_transaction**
 > update_transaction(uuid, add_transaction_request)
 
@@ -603,6 +830,60 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UpdateTransactionCode200Response**](UpdateTransactionCode200Response.md)
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
+**401** | Authentication is required to access the resource. |  -  |
+**403** | The server has understood the request, but refuses to execute it. |  -  |
+**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **view_link**
+> view_link(uuid=uuid, link_uuid=link_uuid)
+
+View a transaction link
+
+### Example
+
+* Bearer (Api Key) Authentication (bearer):
+
+```python
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = 'uuid_example' # str | A transaction uuid (optional)
+link_uuid = 'link_uuid_example' # str | A transaction link uuid OR the target uuid (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # View a transaction link
+    api_response = accounting.transactions_api.view_link(uuid=uuid, link_uuid=link_uuid)
+    print("The response of TransactionsApi->view_link:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling TransactionsApi->view_link: %s\n" % e)
+
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **str**| A transaction uuid | [optional] 
+ **link_uuid** | **str**| A transaction link uuid OR the target uuid | [optional] 
+
+### Return type
+
+[**ViewLink200Response**](ViewLink200Response.md)
 
 ### HTTP response details
 

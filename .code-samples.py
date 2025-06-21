@@ -2499,13 +2499,13 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 q = "q_example"  # str | Query string
-excluse = "excluse_example"  # str | Exclude specific types. This is a comma separated list. (optional)
+exclude = "exclude_example"  # str | Exclude specific types. This is a comma separated list. (optional)
 only = "only_example"  # str | Perfom search only on those types. This is a comma separated list. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Search
-    api_response = accounting.search_api.search(q, excluse=excluse, only=only)
+    api_response = accounting.search_api.search(q, exclude=exclude, only=only)
     print("The response of SearchApi->search:\n")
     pprint(api_response)
 except ApiException as e:
@@ -2721,6 +2721,28 @@ except ApiException as e:
     print("Exception when calling TaxApi->verify_vat_id: %s\n" % e)
 
 
+# ..add_link
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+list_links200_response_links_inner = (
+    accounting_sh.ListLinks200ResponseLinksInner()
+)  # ListLinks200ResponseLinksInner |
+uuid = "uuid_example"  # str | A transaction uuid (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Add a new transaction link
+    api_response = accounting.transactions_api.add_link(
+        list_links200_response_links_inner, uuid=uuid
+    )
+    print("The response of TransactionsApi->add_link:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling TransactionsApi->add_link: %s\n" % e)
+
+
 # ..add_transaction
 import accounting_sh
 from accounting_sh.exceptions import ApiException
@@ -2760,6 +2782,28 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TransactionsApi->add_transaction_code: %s\n" % e)
+
+
+# ..delete_link
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str | A transaction uuid (optional)
+link_uuid = (
+    "link_uuid_example"  # str | A transaction link uuid OR the target uuid (optional)
+)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Delete a transaction link
+    api_response = accounting.transactions_api.delete_link(
+        uuid=uuid, link_uuid=link_uuid
+    )
+    print("The response of TransactionsApi->delete_link:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling TransactionsApi->delete_link: %s\n" % e)
 
 
 # ..delete_transaction
@@ -2857,6 +2901,28 @@ except ApiException as e:
     print("Exception when calling TransactionsApi->ledger: %s\n" % e)
 
 
+# ..list_links
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
+page = "page_example"  # str | The response page (optional)
+per_page = "per_page_example"  # str | The number of items per page (optional)
+uuid = "uuid_example"  # str | A transaction uuid (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List a transaction links
+    api_response = accounting.transactions_api.list_links(
+        fields=fields, page=page, per_page=per_page, uuid=uuid
+    )
+    print("The response of TransactionsApi->list_links:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling TransactionsApi->list_links: %s\n" % e)
+
+
 # ..list_transaction_codes
 import accounting_sh
 from accounting_sh.exceptions import ApiException
@@ -2902,6 +2968,31 @@ except ApiException as e:
     print("Exception when calling TransactionsApi->list_transactions: %s\n" % e)
 
 
+# ..update_link
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+list_links200_response_links_inner = (
+    accounting_sh.ListLinks200ResponseLinksInner()
+)  # ListLinks200ResponseLinksInner |
+uuid = "uuid_example"  # str | A transaction uuid (optional)
+link_uuid = (
+    "link_uuid_example"  # str | A transaction link uuid OR the target uuid (optional)
+)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Update a transaction link
+    api_response = accounting.transactions_api.update_link(
+        list_links200_response_links_inner, uuid=uuid, link_uuid=link_uuid
+    )
+    print("The response of TransactionsApi->update_link:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling TransactionsApi->update_link: %s\n" % e)
+
+
 # ..update_transaction
 import accounting_sh
 from accounting_sh.exceptions import ApiException
@@ -2944,6 +3035,26 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TransactionsApi->update_transaction_code: %s\n" % e)
+
+
+# ..view_link
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str | A transaction uuid (optional)
+link_uuid = (
+    "link_uuid_example"  # str | A transaction link uuid OR the target uuid (optional)
+)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # View a transaction link
+    api_response = accounting.transactions_api.view_link(uuid=uuid, link_uuid=link_uuid)
+    print("The response of TransactionsApi->view_link:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling TransactionsApi->view_link: %s\n" % e)
 
 
 # ..add_transfer

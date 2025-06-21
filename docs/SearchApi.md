@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **search**
-> search(q, excluse=excluse, only=only)
+> search(q, exclude=exclude, only=only)
 
 Search
 
@@ -22,13 +22,13 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 q = 'q_example' # str | Query string
-excluse = 'excluse_example' # str | Exclude specific types. This is a comma separated list. (optional)
+exclude = 'exclude_example' # str | Exclude specific types. This is a comma separated list. (optional)
 only = 'only_example' # str | Perfom search only on those types. This is a comma separated list. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Search
-    api_response = accounting.search_api.search(q, excluse=excluse, only=only)
+    api_response = accounting.search_api.search(q, exclude=exclude, only=only)
     print("The response of SearchApi->search:\n")
     pprint(api_response)
 except ApiException as e:
@@ -44,7 +44,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **q** | **str**| Query string | 
- **excluse** | **str**| Exclude specific types. This is a comma separated list. | [optional] 
+ **exclude** | **str**| Exclude specific types. This is a comma separated list. | [optional] 
  **only** | **str**| Perfom search only on those types. This is a comma separated list. | [optional] 
 
 ### Return type
