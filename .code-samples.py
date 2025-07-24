@@ -61,6 +61,99 @@ except ApiException as e:
     print("Exception when calling AccountConnectionsApi->list_banks: %s\n" % e)
 
 
+# ..list_connectable_bank_accounts
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+connection = "connection_example"  # str | The connection request UUID (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List connectable bank accounts
+    api_response = accounting.account_connections_api.list_connectable_bank_accounts(
+        connection=connection
+    )
+    print("The response of AccountConnectionsApi->list_connectable_bank_accounts:\n")
+    pprint(api_response)
+except ApiException as e:
+    print(
+        "Exception when calling AccountConnectionsApi->list_connectable_bank_accounts: %s\n"
+        % e
+    )
+
+
+# ..list_connected_account_transactions
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+period = 3.4  # float | The number of days to look back for transactions. Default is 7 days. (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List the connected account's transactions
+    api_response = (
+        accounting.account_connections_api.list_connected_account_transactions(
+            period=period
+        )
+    )
+    print(
+        "The response of AccountConnectionsApi->list_connected_account_transactions:\n"
+    )
+    pprint(api_response)
+except ApiException as e:
+    print(
+        "Exception when calling AccountConnectionsApi->list_connected_account_transactions: %s\n"
+        % e
+    )
+
+
+# ..request_bank_connection
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+request_bank_connection_request = (
+    accounting_sh.RequestBankConnectionRequest()
+)  # RequestBankConnectionRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Request a new bank connection
+    api_response = accounting.account_connections_api.request_bank_connection(
+        request_bank_connection_request
+    )
+    print("The response of AccountConnectionsApi->request_bank_connection:\n")
+    pprint(api_response)
+except ApiException as e:
+    print(
+        "Exception when calling AccountConnectionsApi->request_bank_connection: %s\n"
+        % e
+    )
+
+
+# ..select_bank_account
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+select_bank_account_request = (
+    accounting_sh.SelectBankAccountRequest()
+)  # SelectBankAccountRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Select a bank account to connect
+    api_response = accounting.account_connections_api.select_bank_account(
+        select_bank_account_request
+    )
+    print("The response of AccountConnectionsApi->select_bank_account:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AccountConnectionsApi->select_bank_account: %s\n" % e)
+
+
 # ..add_accounting_code
 import accounting_sh
 from accounting_sh.exceptions import ApiException
