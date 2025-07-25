@@ -66,13 +66,14 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
+uuid = "uuid_example"  # str | The account uuid
 connection = "connection_example"  # str | The connection request UUID (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List connectable bank accounts
     api_response = accounting.account_connections_api.list_connectable_bank_accounts(
-        connection=connection
+        uuid, connection=connection
     )
     print("The response of AccountConnectionsApi->list_connectable_bank_accounts:\n")
     pprint(api_response)
@@ -88,6 +89,8 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
+uuid = "uuid_example"  # str | The account uuid
+connection = "connection_example"  # str | The connection uuid
 period = 3.4  # float | The number of days to look back for transactions. Default is 7 days. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
@@ -95,7 +98,7 @@ try:
     # List the connected account's transactions
     api_response = (
         accounting.account_connections_api.list_connected_account_transactions(
-            period=period
+            uuid, connection, period=period
         )
     )
     print(
@@ -114,6 +117,7 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
+uuid = "uuid_example"  # str | The account uuid
 request_bank_connection_request = (
     accounting_sh.RequestBankConnectionRequest()
 )  # RequestBankConnectionRequest |
@@ -122,7 +126,7 @@ accounting = accounting_sh.Accounting("access_token")
 try:
     # Request a new bank connection
     api_response = accounting.account_connections_api.request_bank_connection(
-        request_bank_connection_request
+        uuid, request_bank_connection_request
     )
     print("The response of AccountConnectionsApi->request_bank_connection:\n")
     pprint(api_response)
@@ -138,6 +142,7 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
+uuid = "uuid_example"  # str | The account uuid
 select_bank_account_request = (
     accounting_sh.SelectBankAccountRequest()
 )  # SelectBankAccountRequest |
@@ -146,7 +151,7 @@ accounting = accounting_sh.Accounting("access_token")
 try:
     # Select a bank account to connect
     api_response = accounting.account_connections_api.select_bank_account(
-        select_bank_account_request
+        uuid, select_bank_account_request
     )
     print("The response of AccountConnectionsApi->select_bank_account:\n")
     pprint(api_response)
