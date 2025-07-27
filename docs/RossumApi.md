@@ -4,13 +4,13 @@ All URIs are relative to *https://api.accounting.sh*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**list_reviews**](RossumApi.md#list_reviews) | **GET** /external/rossum/reviews | List documents to be reviewes
+[**list_reviews**](RossumApi.md#list_reviews) | **GET** /external/rossum/reviews | List documents to be reviewed
 
 
 # **list_reviews**
 > list_reviews(fields=fields, page=page, per_page=per_page)
 
-List documents to be reviewes
+List documents to be reviewed
 
 ### Example
 
@@ -27,7 +27,7 @@ per_page = 'per_page_example' # str | The number of items per page (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
-    # List documents to be reviewes
+    # List documents to be reviewed
     api_response = accounting.rossum_api.list_reviews(fields=fields, page=page, per_page=per_page)
     print("The response of RossumApi->list_reviews:\n")
     pprint(api_response)

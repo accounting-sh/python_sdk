@@ -4,7 +4,7 @@ All URIs are relative to *https://api.accounting.sh*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_account_connection**](AccountConnectionsApi.md#delete_account_connection) | **DELETE** /accounts/{uuid}/connect | Delete an account&#39;s connection
+[**delete_account_connection**](AccountConnectionsApi.md#delete_account_connection) | **DELETE** /accounts/{uuid}/connect/{connection} | Delete an account&#39;s connection
 [**list_account_connections**](AccountConnectionsApi.md#list_account_connections) | **GET** /accounts/{uuid}/connect | List account&#39;s connections
 [**list_banks**](AccountConnectionsApi.md#list_banks) | **GET** /accounts/{uuid}/connect/banks | List available bank connections
 [**list_connectable_bank_accounts**](AccountConnectionsApi.md#list_connectable_bank_accounts) | **GET** /accounts/{uuid}/connect/accounts | List connectable bank accounts
@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **delete_account_connection**
-> delete_account_connection(uuid)
+> delete_account_connection(uuid, connection)
 
 Delete an account's connection
 
@@ -28,11 +28,12 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = 'uuid_example' # str | The account uuid
+connection = 'connection_example' # str | The connection uuid
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Delete an account's connection
-    api_response = accounting.account_connections_api.delete_account_connection(uuid)
+    api_response = accounting.account_connections_api.delete_account_connection(uuid, connection)
     print("The response of AccountConnectionsApi->delete_account_connection:\n")
     pprint(api_response)
 except ApiException as e:
@@ -48,6 +49,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | **str**| The account uuid | 
+ **connection** | **str**| The connection uuid | 
 
 ### Return type
 

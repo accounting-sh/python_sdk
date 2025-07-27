@@ -4,11 +4,14 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The account uuid
+connection = "connection_example"  # str | The connection uuid
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Delete an account's connection
-    api_response = accounting.account_connections_api.delete_account_connection(uuid)
+    api_response = accounting.account_connections_api.delete_account_connection(
+        uuid, connection
+    )
     print("The response of AccountConnectionsApi->delete_account_connection:\n")
     pprint(api_response)
 except ApiException as e:
@@ -2581,7 +2584,7 @@ per_page = "per_page_example"  # str | The number of items per page (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
-    # List documents to be reviewes
+    # List documents to be reviewed
     api_response = accounting.rossum_api.list_reviews(
         fields=fields, page=page, per_page=per_page
     )
