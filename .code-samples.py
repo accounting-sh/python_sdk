@@ -887,27 +887,6 @@ except ApiException as e:
     print("Exception when calling CompaniesApi->update_company: %s\n" % e)
 
 
-# ..get_statistics
-import accounting_sh
-from accounting_sh.exceptions import ApiException
-from pprint import pprint
-
-uuid = "uuid_example"  # str | The company uuid
-start = "start_example"  # str | Start date (optional)
-end = "end_example"  # str | End date (optional)
-
-accounting = accounting_sh.Accounting("access_token")
-try:
-    # Get company's statistic
-    api_response = accounting.company_statistics_api.get_statistics(
-        uuid, start=start, end=end
-    )
-    print("The response of CompanyStatisticsApi->get_statistics:\n")
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling CompanyStatisticsApi->get_statistics: %s\n" % e)
-
-
 # ..add_contact
 import accounting_sh
 from accounting_sh.exceptions import ApiException
@@ -2674,6 +2653,27 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling SettingsApi->update_settings: %s\n" % e)
+
+
+# ..summary_statistics_period
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str | The company uuid
+start = "2013-10-20"  # date | The start date (optional)
+end = "2013-10-20"  # date | The end date (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Company's summary statistics
+    api_response = accounting.statistics_api.summary_statistics_period(
+        uuid, start=start, end=end
+    )
+    print("The response of StatisticsApi->summary_statistics_period:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling StatisticsApi->summary_statistics_period: %s\n" % e)
 
 
 # ..add_tag

@@ -9,7 +9,6 @@ from accounting_sh.api.auth_api import AuthApi
 from accounting_sh.api.bills_api import BillsApi
 from accounting_sh.api.categories_api import CategoriesApi
 from accounting_sh.api.companies_api import CompaniesApi
-from accounting_sh.api.company_statistics_api import CompanyStatisticsApi
 from accounting_sh.api.contacts_api import ContactsApi
 from accounting_sh.api.countries_api import CountriesApi
 from accounting_sh.api.credentials_api import CredentialsApi
@@ -29,6 +28,7 @@ from accounting_sh.api.revenues_api import RevenuesApi
 from accounting_sh.api.rossum_api import RossumApi
 from accounting_sh.api.search_api import SearchApi
 from accounting_sh.api.settings_api import SettingsApi
+from accounting_sh.api.statistics_api import StatisticsApi
 from accounting_sh.api.tags_api import TagsApi
 from accounting_sh.api.tax_api import TaxApi
 from accounting_sh.api.transactions_api import TransactionsApi
