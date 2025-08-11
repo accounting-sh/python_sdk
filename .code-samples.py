@@ -3320,6 +3320,24 @@ except ApiException as e:
     print("Exception when calling UsersApi->list_users: %s\n" % e)
 
 
+# ..update_me
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+name = "name_example"  # str |  (optional)
+avatar = None  # bytearray |  (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Update current user details
+    api_response = accounting.users_api.update_me(name=name, avatar=avatar)
+    print("The response of UsersApi->update_me:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UsersApi->update_me: %s\n" % e)
+
+
 # ..update_user
 import accounting_sh
 from accounting_sh.exceptions import ApiException

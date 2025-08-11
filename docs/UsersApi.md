@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**delete_user**](UsersApi.md#delete_user) | **DELETE** /users/{uuid} | Delete user
 [**get_user**](UsersApi.md#get_user) | **GET** /users/{uuid} | View user
 [**list_users**](UsersApi.md#list_users) | **GET** /users | List company&#39;s users
+[**update_me**](UsersApi.md#update_me) | **PATCH** /users/me | Update current user details
 [**update_user**](UsersApi.md#update_user) | **PUT** /users/{uuid} | Update user
 [**users_companies**](UsersApi.md#users_companies) | **GET** /users/me/companies | List current user companies
 [**users_me**](UsersApi.md#users_me) | **GET** /users/me | View current user details
@@ -212,6 +213,60 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ListUsers200Response**](ListUsers200Response.md)
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
+**401** | Authentication is required to access the resource. |  -  |
+**403** | The server has understood the request, but refuses to execute it. |  -  |
+**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_me**
+> update_me(name=name, avatar=avatar)
+
+Update current user details
+
+### Example
+
+* Bearer (Api Key) Authentication (bearer):
+
+```python
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+name = 'name_example' # str |  (optional)
+avatar = None # bytearray |  (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Update current user details
+    api_response = accounting.users_api.update_me(name=name, avatar=avatar)
+    print("The response of UsersApi->update_me:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UsersApi->update_me: %s\n" % e)
+
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **str**|  | [optional] 
+ **avatar** | [**bytearray**](bytearray.md)|  | [optional] 
+
+### Return type
+
+[**UsersMe200Response**](UsersMe200Response.md)
 
 ### HTTP response details
 
