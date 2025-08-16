@@ -11,7 +11,6 @@ Method | HTTP request | Description
 [**list_permissions**](CredentialsApi.md#list_permissions) | **GET** /credentials/permissions | List available permissions
 [**me**](CredentialsApi.md#me) | **GET** /me | Get current credential informations
 [**update_credential**](CredentialsApi.md#update_credential) | **PUT** /credentials/{uuid} | Update a credential
-[**userveria**](CredentialsApi.md#userveria) | **POST** /userveria | Exchange a my stantabcorp (userveria) token for an Accounting Token
 
 
 # **add_credential**
@@ -365,52 +364,6 @@ Name | Type | Description  | Notes
 **401** | Authentication is required to access the resource. |  -  |
 **403** | The server has understood the request, but refuses to execute it. |  -  |
 **404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **userveria**
-> userveria()
-
-Exchange a my stantabcorp (userveria) token for an Accounting Token
-
-### Example
-
-
-```python
-import accounting_sh
-from accounting_sh.exceptions import ApiException
-from pprint import pprint
-
-
-accounting = accounting_sh.Accounting("access_token")
-try:
-    # Exchange a my stantabcorp (userveria) token for an Accounting Token
-    api_response = accounting.credentials_api.userveria()
-    print("The response of CredentialsApi->userveria:\n")
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling CredentialsApi->userveria: %s\n" % e)
-
-```
-
-
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**Userveria200Response**](Userveria200Response.md)
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

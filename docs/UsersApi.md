@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**delete_user**](UsersApi.md#delete_user) | **DELETE** /users/{uuid} | Delete user
 [**get_user**](UsersApi.md#get_user) | **GET** /users/{uuid} | View user
 [**list_users**](UsersApi.md#list_users) | **GET** /users | List company&#39;s users
-[**update_me**](UsersApi.md#update_me) | **PATCH** /users/me | Update current user details
+[**update_me**](UsersApi.md#update_me) | **POST** /users/me | Update current user details
 [**update_user**](UsersApi.md#update_user) | **PUT** /users/{uuid} | Update user
 [**users_companies**](UsersApi.md#users_companies) | **GET** /users/me/companies | List current user companies
 [**users_me**](UsersApi.md#users_me) | **GET** /users/me | View current user details

@@ -1162,22 +1162,6 @@ except ApiException as e:
     print("Exception when calling CredentialsApi->update_credential: %s\n" % e)
 
 
-# ..userveria
-import accounting_sh
-from accounting_sh.exceptions import ApiException
-from pprint import pprint
-
-
-accounting = accounting_sh.Accounting("access_token")
-try:
-    # Exchange a my stantabcorp (userveria) token for an Accounting Token
-    api_response = accounting.credentials_api.userveria()
-    print("The response of CredentialsApi->userveria:\n")
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling CredentialsApi->userveria: %s\n" % e)
-
-
 # ..get_exchange_rate
 import accounting_sh
 from accounting_sh.exceptions import ApiException
