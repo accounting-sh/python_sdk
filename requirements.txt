@@ -1,2 +1,5 @@
-requests>=2.32.2
-typing-extensions>=4.7.1
+requests>=2.34.2,<3
+urllib3>=2.8.0,<3
+idna>=3.20,<4
+certifi>=2026.7.22
+typing-extensions>=4.16.0,<5

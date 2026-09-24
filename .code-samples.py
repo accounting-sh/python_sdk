@@ -222,7 +222,6 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's accounting code
@@ -464,7 +463,6 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Init authentication process
@@ -496,7 +494,6 @@ except ApiException as e:
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
-
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1115,7 +1112,6 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List available permissions
@@ -1130,7 +1126,6 @@ except ApiException as e:
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
-
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1420,7 +1415,6 @@ except ApiException as e:
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
-
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1741,7 +1735,6 @@ except ApiException as e:
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
-
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -2110,7 +2103,6 @@ except ApiException as e:
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
-
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -3345,7 +3337,6 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List current user companies
@@ -3360,7 +3351,6 @@ except ApiException as e:
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
-
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -3547,7 +3537,6 @@ except ApiException as e:
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
-
 
 accounting = accounting_sh.Accounting("access_token")
 try:

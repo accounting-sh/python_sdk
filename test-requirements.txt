@@ -1,5 +1,5 @@
-pytest
-flake8
-isort
-black
-requests-mock
+pytest>=9.1.1,<10
+flake8>=7.4.1,<8
+isort>=9.0.1,<10
+black>=26.5.1,<27
+requests-mock>=1.12.1,<2
