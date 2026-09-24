@@ -339,7 +339,7 @@ class Accounting:
         """
         kwargs.setdefault("headers", {})
         kwargs["headers"]["Authorization"] = f"Bearer {self.token}"
-        kwargs["headers"]["User-Agent"] = "AccountingSh//python"
+        kwargs["headers"]["User-Agent"] = "AccountingSh/1.3.6/python"
 
         if comment is not None:
             kwargs["headers"]["X-Audit-Comment"] = comment

@@ -19,7 +19,7 @@ from setuptools import find_packages, setup  # noqa: H301
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 NAME = "accounting-sh"
-VERSION = ""
+VERSION = "1.3.6"
 PYTHON_REQUIRES = ">=3.10"
 REQUIRES = [
     "requests>=2.34.2,<3",
