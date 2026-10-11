@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteAccountConnection200Response**](DeleteAccountConnection200Response.md)
+[**ImportAccountTransactions202Response**](ImportAccountTransactions202Response.md)
 
 ### HTTP response details
 
@@ -273,7 +273,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteAccountConnection200Response**](DeleteAccountConnection200Response.md)
+[**ImportAccountTransactions202Response**](ImportAccountTransactions202Response.md)
 
 ### HTTP response details
 
@@ -327,7 +327,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteAccountConnection200Response**](DeleteAccountConnection200Response.md)
+[**ImportAccountTransactions202Response**](ImportAccountTransactions202Response.md)
 
 ### HTTP response details
 

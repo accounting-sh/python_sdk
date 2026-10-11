@@ -5,6 +5,7 @@ All URIs are relative to *https://api.accounting.sh*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**delete_account_connection**](AccountConnectionsApi.md#delete_account_connection) | **DELETE** /accounts/{uuid}/connect/{connection} | Delete an account&#39;s connection
+[**import_account_transactions**](AccountConnectionsApi.md#import_account_transactions) | **POST** /accounts/{uuid}/transactions/import | Import all available bank transaction history asynchronously
 [**list_account_connections**](AccountConnectionsApi.md#list_account_connections) | **GET** /accounts/{uuid}/connect | List account&#39;s connections
 [**list_banks**](AccountConnectionsApi.md#list_banks) | **GET** /accounts/{uuid}/connect/banks | List available bank connections
 [**list_connectable_bank_accounts**](AccountConnectionsApi.md#list_connectable_bank_accounts) | **GET** /accounts/{uuid}/connect/accounts | List connectable bank accounts
@@ -53,7 +54,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteAccountConnection200Response**](DeleteAccountConnection200Response.md)
+[**ImportAccountTransactions202Response**](ImportAccountTransactions202Response.md)
 
 ### HTTP response details
 
@@ -64,6 +65,61 @@ Name | Type | Description  | Notes
 **401** | Authentication is required to access the resource. |  -  |
 **403** | The server has understood the request, but refuses to execute it. |  -  |
 **404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **import_account_transactions**
+> import_account_transactions(uuid)
+
+Import all available bank transaction history asynchronously
+
+Queues an import from all linked bank accounts. A completion notification is sent using the bank transaction notification preferences.
+
+### Example
+
+* Bearer (Api Key) Authentication (bearer):
+
+```python
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = 'uuid_example' # str | The account UUID
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Import all available bank transaction history asynchronously
+    api_response = accounting.account_connections_api.import_account_transactions(uuid)
+    print("The response of AccountConnectionsApi->import_account_transactions:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AccountConnectionsApi->import_account_transactions: %s\n" % e)
+
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **str**| The account UUID | 
+
+### Return type
+
+[**ImportAccountTransactions202Response**](ImportAccountTransactions202Response.md)
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Import queued |  -  |
+**400** | No bank account is linked |  -  |
+**401** | Authentication is required to access the resource. |  -  |
+**403** | The server has understood the request, but refuses to execute it. |  -  |
+**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -381,7 +437,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteAccountConnection200Response**](DeleteAccountConnection200Response.md)
+[**ImportAccountTransactions202Response**](ImportAccountTransactions202Response.md)
 
 ### HTTP response details
 

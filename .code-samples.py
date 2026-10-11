@@ -21,6 +21,26 @@ except ApiException as e:
     )
 
 
+# ..import_account_transactions
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str | The account UUID
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Import all available bank transaction history asynchronously
+    api_response = accounting.account_connections_api.import_account_transactions(uuid)
+    print("The response of AccountConnectionsApi->import_account_transactions:\n")
+    pprint(api_response)
+except ApiException as e:
+    print(
+        "Exception when calling AccountConnectionsApi->import_account_transactions: %s\n"
+        % e
+    )
+
+
 # ..list_account_connections
 import accounting_sh
 from accounting_sh.exceptions import ApiException
