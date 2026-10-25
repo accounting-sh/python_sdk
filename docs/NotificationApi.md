@@ -15,9 +15,11 @@ Method | HTTP request | Description
 
 List notification preferences
 
+List notification preferences. Use the parameters and response fields below for this operation. Requires at least one permission: `manage.notification_preferences`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -54,35 +56,39 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_notifications**
-> list_notifications(fields=fields, page=page, per_page=per_page)
+> list_notifications(fields=fields, page=page, per_page=per_page, order_by=order_by)
 
 List company's notifications
 
+List company's notifications. Retrieve records using the query parameters below. Requires at least one permission: `list_notification`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = 'fields_example' # str | A comma separated list of fields requested in the response (optional)
-page = 'page_example' # str | The response page (optional)
-per_page = 'per_page_example' # str | The number of items per page (optional)
+fields = 'uuid,notification' # str | Comma-separated fields to include in each record. Default fields: uuid, notification. (optional)
+page = 1 # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10 # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = 'created_at:desc' # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's notifications
-    api_response = accounting.notification_api.list_notifications(fields=fields, page=page, per_page=per_page)
+    api_response = accounting.notification_api.list_notifications(fields=fields, page=page, per_page=per_page, order_by=order_by)
     print("The response of NotificationApi->list_notifications:\n")
     pprint(api_response)
 except ApiException as e:
@@ -97,9 +103,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **str**| A comma separated list of fields requested in the response | [optional] 
- **page** | **str**| The response page | [optional] 
- **per_page** | **str**| The number of items per page | [optional] 
+ **fields** | **str**| Comma-separated fields to include in each record. Default fields: uuid, notification. | [optional] 
+ **page** | **int**| Page number, starting at 1. Values below 1 are treated as 1. | [optional] [default to 1]
+ **per_page** | **int**| Records per page. The server caps page size to 100. Values below 1 use that maximum. | [optional] [default to 10]
+ **order_by** | **str**| Sort by a supported field and direction, using field:asc or field:desc. | [optional] 
 
 ### Return type
 
@@ -109,10 +116,10 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -121,16 +128,18 @@ Name | Type | Description  | Notes
 
 Send a notification
 
+Send a notification using the supplied delivery options. This action can contact recipients; avoid automatic retries. Requires at least one permission: `send_notification`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-send_notification_request = accounting_sh.SendNotificationRequest() # SendNotificationRequest | 
+send_notification_request = accounting_sh.SendNotificationRequest() # SendNotificationRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -150,7 +159,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **send_notification_request** | [**SendNotificationRequest**](SendNotificationRequest.md)|  | 
+ **send_notification_request** | [**SendNotificationRequest**](SendNotificationRequest.md)| Send a JSON object with the fields below. Fields marked required must be supplied. | 
 
 ### Return type
 
@@ -160,10 +169,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**400** | The request failed validation or could not be processed. Inspect errors, correct the input, and try again. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -172,9 +182,11 @@ Name | Type | Description  | Notes
 
 Update notification preferences
 
+Update notification preferences. Send the fields accepted by this operation in the request body. Omitted optional fields retain their existing values. Requires at least one permission: `manage.notification_preferences`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -182,7 +194,7 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 notification = 'notification_example' # str | The notification name
-update_notification_preferences_request = accounting_sh.UpdateNotificationPreferencesRequest() # UpdateNotificationPreferencesRequest | 
+update_notification_preferences_request = accounting_sh.UpdateNotificationPreferencesRequest() # UpdateNotificationPreferencesRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -203,7 +215,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **notification** | **str**| The notification name | 
- **update_notification_preferences_request** | [**UpdateNotificationPreferencesRequest**](UpdateNotificationPreferencesRequest.md)|  | 
+ **update_notification_preferences_request** | [**UpdateNotificationPreferencesRequest**](UpdateNotificationPreferencesRequest.md)| Send a JSON object with the fields below. Fields marked required must be supplied. | 
 
 ### Return type
 
@@ -213,10 +225,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

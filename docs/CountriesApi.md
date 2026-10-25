@@ -12,9 +12,10 @@ Method | HTTP request | Description
 
 Get translated list of countries
 
+Retrieve country reference data translated into the requested language.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -51,10 +52,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**delete_invoice**](InvoicesApi.md#delete_invoice) | **DELETE** /incomes/invoices/{uuid} | Delete an invoice
 [**get_invoice**](InvoicesApi.md#get_invoice) | **GET** /incomes/invoices/{uuid} | Get an invoice
 [**get_invoice_document**](InvoicesApi.md#get_invoice_document) | **GET** /incomes/invoices/{uuid}/document | Get an invoice in PDF
+[**get_invoice_issuance**](InvoicesApi.md#get_invoice_issuance) | **GET** /incomes/invoices/{uuid}/issuance | Retrieve the immutable source snapshot and original document fingerprints
 [**list_invoices**](InvoicesApi.md#list_invoices) | **GET** /incomes/invoices | List company&#39;s invoices
 [**list_unpaid_invoices**](InvoicesApi.md#list_unpaid_invoices) | **GET** /incomes/invoices/unpaid | List company&#39;s unpaid invoices
 [**update_invoice**](InvoicesApi.md#update_invoice) | **PUT** /incomes/invoices/{uuid} | Update an invoice
@@ -20,16 +21,18 @@ Method | HTTP request | Description
 
 Add an invoice
 
+Create an invoice. Send status=draft to keep it editable with a temporary draft reference. The default status is received and triggers issuance, allocating a legal number and freezing invoice facts and original documents. French issuance requires resolved supply, buyer and VAT particulars. UK foreign-currency invoices retain sterling VAT conversion evidence. Requires at least one permission: `add.invoice`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_invoice_request = accounting_sh.AddInvoiceRequest() # AddInvoiceRequest | 
+add_invoice_request = accounting_sh.AddInvoiceRequest() # AddInvoiceRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -49,7 +52,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **add_invoice_request** | [**AddInvoiceRequest**](AddInvoiceRequest.md)|  | 
+ **add_invoice_request** | [**AddInvoiceRequest**](AddInvoiceRequest.md)| Send a JSON object with the fields below. Fields marked required must be supplied. | 
 
 ### Return type
 
@@ -59,10 +62,12 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
+**503** | Issuance, archival, persistence or required HMRC rate data is unavailable. Inspect errors before retrying. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**400** | The request failed validation or could not be processed. Inspect errors, correct the input, and try again. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -71,9 +76,11 @@ Name | Type | Description  | Notes
 
 Add an invoice payment
 
+Add an invoice payment. Use the parameters and response fields below for this operation. Requires at least one permission: `add.invoice.payment`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -81,7 +88,7 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = 'uuid_example' # str | The invoice uuid
-add_bill_payment_request = accounting_sh.AddBillPaymentRequest() # AddBillPaymentRequest | 
+add_bill_payment_request = accounting_sh.AddBillPaymentRequest() # AddBillPaymentRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -102,21 +109,23 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | **str**| The invoice uuid | 
- **add_bill_payment_request** | [**AddBillPaymentRequest**](AddBillPaymentRequest.md)|  | 
+ **add_bill_payment_request** | [**AddBillPaymentRequest**](AddBillPaymentRequest.md)| Send a JSON object with the fields below. Fields marked required must be supplied. | 
 
 ### Return type
 
-[**AddInvoicePayment200Response**](AddInvoicePayment200Response.md)
+[**AddInvoice200Response**](AddInvoice200Response.md)
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**503** | Issuance, archival, persistence or required HMRC rate data is unavailable. Inspect errors before retrying. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
+**400** | The request failed validation or could not be processed. Inspect errors, correct the input, and try again. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -125,9 +134,11 @@ Name | Type | Description  | Notes
 
 Delete an invoice
 
+Delete an unissued draft. Issued invoices cannot be deleted; use a credit note to correct them. Requires at least one permission: `invoice.delete`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -164,11 +175,12 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**400** | Issued invoices cannot be deleted; only unissued drafts may be removed. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -177,9 +189,11 @@ Name | Type | Description  | Notes
 
 Get an invoice
 
+Get an invoice. Use the identifier returned by the corresponding list or create operation. Requires at least one permission: `view.invoice`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -216,11 +230,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -229,9 +243,11 @@ Name | Type | Description  | Notes
 
 Get an invoice in PDF
 
+Retrieve the generated PDF for this record. HTTP 200 returns application/pdf. If generation is still pending, HTTP 202 returns JSON with success=false and an explanation; retry later. Requires at least one permission: `regenerate.invoice`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -243,7 +259,9 @@ uuid = 'uuid_example' # str | The invoice uuid
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Get an invoice in PDF
-   accounting.invoices_api.get_invoice_document(uuid)
+    api_response = accounting.invoices_api.get_invoice_document(uuid)
+    print("The response of InvoicesApi->get_invoice_document:\n")
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling InvoicesApi->get_invoice_document: %s\n" % e)
 
@@ -260,42 +278,98 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**bytearray**
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**503** | Issuance, archival, persistence or required HMRC rate data is unavailable. Inspect errors before retrying. |  -  |
+**200** | Generated PDF document. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
+**202** | Background work is pending. Inspect the JSON response before retrying. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **list_invoices**
-> list_invoices(fields=fields, page=page, per_page=per_page)
+# **get_invoice_issuance**
+> get_invoice_issuance(uuid)
 
-List company's invoices
+Retrieve the immutable source snapshot and original document fingerprints
+
+Read the frozen invoice facts, document hashes and archive provenance. Requires permission: `view.invoice`.
 
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = 'fields_example' # str | A comma separated list of fields requested in the response (optional)
-page = 'page_example' # str | The response page (optional)
-per_page = 'per_page_example' # str | The number of items per page (optional)
+uuid = 'uuid_example' # str | 
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Retrieve the immutable source snapshot and original document fingerprints
+    api_response = accounting.invoices_api.get_invoice_issuance(uuid)
+    print("The response of InvoicesApi->get_invoice_issuance:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling InvoicesApi->get_invoice_issuance: %s\n" % e)
+
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **str**|  | 
+
+### Return type
+
+[**GetInvoiceIssuance200Response**](GetInvoiceIssuance200Response.md)
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Issuance snapshot and archive provenance |  -  |
+**404** | Invoice or issuance archive not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_invoices**
+> list_invoices(fields=fields, page=page, per_page=per_page, order_by=order_by)
+
+List company's invoices
+
+List company's invoices. Retrieve records using the query parameters below. Requires at least one permission: `list.invoices`.
+
+### Example
+
+* Bearer (API key) Authentication (bearer):
+
+```python
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+fields = 'uuid,contact,status,emitted' # str | Comma-separated fields to include in each record. Default fields: uuid, contact, status, emitted. (optional)
+page = 1 # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10 # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = 'created_at:desc' # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's invoices
-    api_response = accounting.invoices_api.list_invoices(fields=fields, page=page, per_page=per_page)
+    api_response = accounting.invoices_api.list_invoices(fields=fields, page=page, per_page=per_page, order_by=order_by)
     print("The response of InvoicesApi->list_invoices:\n")
     pprint(api_response)
 except ApiException as e:
@@ -310,9 +384,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **str**| A comma separated list of fields requested in the response | [optional] 
- **page** | **str**| The response page | [optional] 
- **per_page** | **str**| The number of items per page | [optional] 
+ **fields** | **str**| Comma-separated fields to include in each record. Default fields: uuid, contact, status, emitted. | [optional] 
+ **page** | **int**| Page number, starting at 1. Values below 1 are treated as 1. | [optional] [default to 1]
+ **per_page** | **int**| Records per page. The server caps page size to 100. Values below 1 use that maximum. | [optional] [default to 10]
+ **order_by** | **str**| Sort by a supported field and direction, using field:asc or field:desc. | [optional] 
 
 ### Return type
 
@@ -322,10 +397,10 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -334,9 +409,11 @@ Name | Type | Description  | Notes
 
 List company's unpaid invoices
 
+List company's unpaid invoices. Use the parameters and response fields below for this operation. Requires at least one permission: `list.invoices`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -369,21 +446,23 @@ This endpoint does not need any parameter.
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_invoice**
-> update_invoice(uuid, add_invoice_request)
+> update_invoice(uuid, update_invoice_request)
 
 Update an invoice
 
+Update a draft or replay unchanged issued facts. Issued invoice facts, lines and original documents are immutable; corrections require a credit note. Omit particulars and vat_conversion to retain existing values; supplying particulars replaces the whole object. Requires at least one permission: `edit.invoice`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -391,12 +470,12 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = 'uuid_example' # str | The invoice uuid
-add_invoice_request = accounting_sh.AddInvoiceRequest() # AddInvoiceRequest | 
+update_invoice_request = accounting_sh.UpdateInvoiceRequest() # UpdateInvoiceRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Update an invoice
-    api_response = accounting.invoices_api.update_invoice(uuid, add_invoice_request)
+    api_response = accounting.invoices_api.update_invoice(uuid, update_invoice_request)
     print("The response of InvoicesApi->update_invoice:\n")
     pprint(api_response)
 except ApiException as e:
@@ -412,7 +491,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | **str**| The invoice uuid | 
- **add_invoice_request** | [**AddInvoiceRequest**](AddInvoiceRequest.md)|  | 
+ **update_invoice_request** | [**UpdateInvoiceRequest**](UpdateInvoiceRequest.md)| Send a JSON object with the fields below. Fields marked required must be supplied. | 
 
 ### Return type
 
@@ -422,11 +501,13 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**503** | Issuance, archival, persistence or required HMRC rate data is unavailable. Inspect errors before retrying. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
+**400** | The request failed validation or could not be processed. Inspect errors, correct the input, and try again. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -435,9 +516,11 @@ Name | Type | Description  | Notes
 
 Update an invoice payment
 
+Update an invoice payment. Send the fields accepted by this operation in the request body. Requires at least one permission: `edit.invoice.revenues`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -446,7 +529,7 @@ from pprint import pprint
 
 uuid = 'uuid_example' # str | The invoice uuid
 payment = 'payment_example' # str | The invoice payment uuid
-add_bill_payment_request = accounting_sh.AddBillPaymentRequest() # AddBillPaymentRequest | 
+add_bill_payment_request = accounting_sh.AddBillPaymentRequest() # AddBillPaymentRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -468,21 +551,23 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | **str**| The invoice uuid | 
  **payment** | **str**| The invoice payment uuid | 
- **add_bill_payment_request** | [**AddBillPaymentRequest**](AddBillPaymentRequest.md)|  | 
+ **add_bill_payment_request** | [**AddBillPaymentRequest**](AddBillPaymentRequest.md)| Send a JSON object with the fields below. Fields marked required must be supplied. | 
 
 ### Return type
 
-[**AddInvoicePayment200Response**](AddInvoicePayment200Response.md)
+[**AddInvoice200Response**](AddInvoice200Response.md)
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**503** | Issuance, archival, persistence or required HMRC rate data is unavailable. Inspect errors before retrying. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
+**400** | The request failed validation or could not be processed. Inspect errors, correct the input, and try again. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

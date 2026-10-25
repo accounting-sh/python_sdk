@@ -18,16 +18,18 @@ Method | HTTP request | Description
 
 Add a webhook
 
+Add a webhook. Send the resource fields in the request body; the response contains the saved record. Requires at least one permission: `add.webhook`. Requires company feature(s): `webhooks`. Returns 402 if unavailable.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_webhook_request = accounting_sh.AddWebhookRequest() # AddWebhookRequest | 
+add_webhook_request = accounting_sh.AddWebhookRequest() # AddWebhookRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -47,7 +49,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **add_webhook_request** | [**AddWebhookRequest**](AddWebhookRequest.md)|  | 
+ **add_webhook_request** | [**AddWebhookRequest**](AddWebhookRequest.md)| Send a JSON object with the fields below. Fields marked required must be supplied. | 
 
 ### Return type
 
@@ -57,33 +59,37 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**400** | The request failed validation or could not be processed. Inspect errors, correct the input, and try again. |  -  |
+**402** | The company does not have the required feature. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_webhook**
-> delete_webhook(uuid=uuid)
+> delete_webhook(uuid)
 
 Delete a webhook
 
+Delete a webhook. This action deletes the selected record. Review references to it before deletion. Requires at least one permission: `delete.webhook`. Requires company feature(s): `webhooks`. Returns 402 if unavailable.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-uuid = 'uuid_example' # str | The webhook uuid (optional)
+uuid = 'uuid_example' # str | The webhook uuid
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Delete a webhook
-    api_response = accounting.webhooks_api.delete_webhook(uuid=uuid)
+    api_response = accounting.webhooks_api.delete_webhook(uuid)
     print("The response of WebhooksApi->delete_webhook:\n")
     pprint(api_response)
 except ApiException as e:
@@ -98,7 +104,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The webhook uuid | [optional] 
+ **uuid** | **str**| The webhook uuid | 
 
 ### Return type
 
@@ -108,34 +114,37 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
+**402** | The company does not have the required feature. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_webhook**
-> get_webhook(uuid=uuid)
+> get_webhook(uuid)
 
 Get a webhook
 
+Get a webhook. Use the identifier returned by the corresponding list or create operation. Requires at least one permission: `view.webhook`. Requires company feature(s): `webhooks`. Returns 402 if unavailable.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-uuid = 'uuid_example' # str | The webhook uuid (optional)
+uuid = 'uuid_example' # str | The webhook uuid
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Get a webhook
-    api_response = accounting.webhooks_api.get_webhook(uuid=uuid)
+    api_response = accounting.webhooks_api.get_webhook(uuid)
     print("The response of WebhooksApi->get_webhook:\n")
     pprint(api_response)
 except ApiException as e:
@@ -150,7 +159,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The webhook uuid | [optional] 
+ **uuid** | **str**| The webhook uuid | 
 
 ### Return type
 
@@ -160,34 +169,37 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
+**402** | The company does not have the required feature. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_webhook_history**
-> get_webhook_history(uuid=uuid)
+> get_webhook_history(uuid)
 
 Get webhook's history
 
+Retrieve delivery history for this webhook to inspect previous attempts and troubleshoot delivery failures. Requires at least one permission: `view.webhook`. Requires company feature(s): `webhooks`. Returns 402 if unavailable.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-uuid = 'uuid_example' # str | The webhook uuid (optional)
+uuid = 'uuid_example' # str | The webhook uuid
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Get webhook's history
-    api_response = accounting.webhooks_api.get_webhook_history(uuid=uuid)
+    api_response = accounting.webhooks_api.get_webhook_history(uuid)
     print("The response of WebhooksApi->get_webhook_history:\n")
     pprint(api_response)
 except ApiException as e:
@@ -202,7 +214,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The webhook uuid | [optional] 
+ **uuid** | **str**| The webhook uuid | 
 
 ### Return type
 
@@ -212,11 +224,12 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
+**402** | The company does not have the required feature. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -224,6 +237,8 @@ Name | Type | Description  | Notes
 > list_webhook_events()
 
 List available webhook events
+
+Retrieve event identifiers accepted when creating or updating a webhook subscription.
 
 ### Example
 
@@ -264,27 +279,30 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_webhooks**
-> list_webhooks(fields=fields, page=page, per_page=per_page)
+> list_webhooks(fields=fields, page=page, per_page=per_page, order_by=order_by)
 
 List company's webhooks
 
+List company's webhooks. Retrieve records using the query parameters below. Requires at least one permission: `list.webhooks`. Requires company feature(s): `webhooks`. Returns 402 if unavailable.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = 'fields_example' # str | A comma separated list of fields requested in the response (optional)
-page = 'page_example' # str | The response page (optional)
-per_page = 'per_page_example' # str | The number of items per page (optional)
+fields = 'uuid,link,events' # str | Comma-separated fields to include in each record. Default fields: uuid, link, events. (optional)
+page = 1 # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10 # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = 'created_at:desc' # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's webhooks
-    api_response = accounting.webhooks_api.list_webhooks(fields=fields, page=page, per_page=per_page)
+    api_response = accounting.webhooks_api.list_webhooks(fields=fields, page=page, per_page=per_page, order_by=order_by)
     print("The response of WebhooksApi->list_webhooks:\n")
     pprint(api_response)
 except ApiException as e:
@@ -299,9 +317,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **str**| A comma separated list of fields requested in the response | [optional] 
- **page** | **str**| The response page | [optional] 
- **per_page** | **str**| The number of items per page | [optional] 
+ **fields** | **str**| Comma-separated fields to include in each record. Default fields: uuid, link, events. | [optional] 
+ **page** | **int**| Page number, starting at 1. Values below 1 are treated as 1. | [optional] [default to 1]
+ **per_page** | **int**| Records per page. The server caps page size to 100. Values below 1 use that maximum. | [optional] [default to 10]
+ **order_by** | **str**| Sort by a supported field and direction, using field:asc or field:desc. | [optional] 
 
 ### Return type
 
@@ -311,34 +330,37 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**402** | The company does not have the required feature. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_webhook**
-> update_webhook(add_webhook_request, uuid=uuid)
+> update_webhook(uuid, add_webhook_request)
 
 Update a webhook
 
+Update a webhook. Send the fields accepted by this operation in the request body. Requires at least one permission: `edit.webhook`. Requires company feature(s): `webhooks`. Returns 402 if unavailable.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_webhook_request = accounting_sh.AddWebhookRequest() # AddWebhookRequest | 
-uuid = 'uuid_example' # str | The webhook uuid (optional)
+uuid = 'uuid_example' # str | The webhook uuid
+add_webhook_request = accounting_sh.AddWebhookRequest() # AddWebhookRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Update a webhook
-    api_response = accounting.webhooks_api.update_webhook(add_webhook_request, uuid=uuid)
+    api_response = accounting.webhooks_api.update_webhook(uuid, add_webhook_request)
     print("The response of WebhooksApi->update_webhook:\n")
     pprint(api_response)
 except ApiException as e:
@@ -353,8 +375,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **add_webhook_request** | [**AddWebhookRequest**](AddWebhookRequest.md)|  | 
- **uuid** | **str**| The webhook uuid | [optional] 
+ **uuid** | **str**| The webhook uuid | 
+ **add_webhook_request** | [**AddWebhookRequest**](AddWebhookRequest.md)| Send a JSON object with the fields below. Fields marked required must be supplied. | 
 
 ### Return type
 
@@ -364,11 +386,13 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
+**400** | The request failed validation or could not be processed. Inspect errors, correct the input, and try again. |  -  |
+**402** | The company does not have the required feature. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

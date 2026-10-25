@@ -19,16 +19,18 @@ Method | HTTP request | Description
 
 Add a bill
 
+Add a bill. Send the resource fields in the request body; the response contains the saved record. Requires at least one permission: `add.bill`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_bill_request = accounting_sh.AddBillRequest() # AddBillRequest | 
+add_bill_request = accounting_sh.AddBillRequest() # AddBillRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -48,7 +50,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **add_bill_request** | [**AddBillRequest**](AddBillRequest.md)|  | 
+ **add_bill_request** | [**AddBillRequest**](AddBillRequest.md)| Send a JSON object with the fields below. Fields marked required must be supplied. | 
 
 ### Return type
 
@@ -58,10 +60,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**400** | The request failed validation or could not be processed. Inspect errors, correct the input, and try again. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -70,9 +73,11 @@ Name | Type | Description  | Notes
 
 Add a bill payment
 
+Add a bill payment. Use the parameters and response fields below for this operation. Requires at least one permission: `add.invoice.payment`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -80,7 +85,7 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = 'uuid_example' # str | The bill uuid
-add_bill_payment_request = accounting_sh.AddBillPaymentRequest() # AddBillPaymentRequest | 
+add_bill_payment_request = accounting_sh.AddBillPaymentRequest() # AddBillPaymentRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -101,7 +106,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | **str**| The bill uuid | 
- **add_bill_payment_request** | [**AddBillPaymentRequest**](AddBillPaymentRequest.md)|  | 
+ **add_bill_payment_request** | [**AddBillPaymentRequest**](AddBillPaymentRequest.md)| Send a JSON object with the fields below. Fields marked required must be supplied. | 
 
 ### Return type
 
@@ -111,11 +116,12 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
+**400** | The request failed validation or could not be processed. Inspect errors, correct the input, and try again. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -124,9 +130,11 @@ Name | Type | Description  | Notes
 
 Delete a bill
 
+Delete a bill. This action deletes the selected record. Review references to it before deletion. Requires at least one permission: `delete.bill`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -163,11 +171,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -176,9 +184,11 @@ Name | Type | Description  | Notes
 
 Get a bill
 
+Get a bill. Use the identifier returned by the corresponding list or create operation. Requires at least one permission: `view.bill`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -215,11 +225,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -228,11 +238,11 @@ Name | Type | Description  | Notes
 
 Get a bill in PDF
 
-This endpoint generate a bill in PDF if `selfbilling` is set to true
+Retrieve the generated PDF for this record. HTTP 200 returns application/pdf. If generation is still pending, HTTP 202 returns JSON with success=false and an explanation; retry later. Requires at least one permission: `regenerate.invoice`.
 
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -244,7 +254,9 @@ uuid = 'uuid_example' # str | The invoice uuid
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Get a bill in PDF
-   accounting.bills_api.get_bill_document(uuid)
+    api_response = accounting.bills_api.get_bill_document(uuid)
+    print("The response of BillsApi->get_bill_document:\n")
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling BillsApi->get_bill_document: %s\n" % e)
 
@@ -261,42 +273,46 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**bytearray**
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**200** | Generated PDF document. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
+**202** | Background work is pending. Inspect the JSON response before retrying. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_bills**
-> list_bills(fields=fields, page=page, per_page=per_page)
+> list_bills(fields=fields, page=page, per_page=per_page, order_by=order_by)
 
 List company's bills
 
+List company's bills. Retrieve records using the query parameters below. Requires at least one permission: `list.bills`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = 'fields_example' # str | A comma separated list of fields requested in the response (optional)
-page = 'page_example' # str | The response page (optional)
-per_page = 'per_page_example' # str | The number of items per page (optional)
+fields = 'uuid,contact,bill_number,status' # str | Comma-separated fields to include in each record. Default fields: uuid, contact, bill_number, status. (optional)
+page = 1 # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10 # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = 'created_at:desc' # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's bills
-    api_response = accounting.bills_api.list_bills(fields=fields, page=page, per_page=per_page)
+    api_response = accounting.bills_api.list_bills(fields=fields, page=page, per_page=per_page, order_by=order_by)
     print("The response of BillsApi->list_bills:\n")
     pprint(api_response)
 except ApiException as e:
@@ -311,9 +327,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **str**| A comma separated list of fields requested in the response | [optional] 
- **page** | **str**| The response page | [optional] 
- **per_page** | **str**| The number of items per page | [optional] 
+ **fields** | **str**| Comma-separated fields to include in each record. Default fields: uuid, contact, bill_number, status. | [optional] 
+ **page** | **int**| Page number, starting at 1. Values below 1 are treated as 1. | [optional] [default to 1]
+ **per_page** | **int**| Records per page. The server caps page size to 100. Values below 1 use that maximum. | [optional] [default to 10]
+ **order_by** | **str**| Sort by a supported field and direction, using field:asc or field:desc. | [optional] 
 
 ### Return type
 
@@ -323,21 +340,23 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_bill**
-> update_bill(uuid, add_bill_request)
+> update_bill(uuid, update_bill_request)
 
 Update a bill
 
+Update a bill. Send the fields accepted by this operation in the request body. Requires at least one permission: `edit.bill`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -345,12 +364,12 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = 'uuid_example' # str | The bill uuid
-add_bill_request = accounting_sh.AddBillRequest() # AddBillRequest | 
+update_bill_request = accounting_sh.UpdateBillRequest() # UpdateBillRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Update a bill
-    api_response = accounting.bills_api.update_bill(uuid, add_bill_request)
+    api_response = accounting.bills_api.update_bill(uuid, update_bill_request)
     print("The response of BillsApi->update_bill:\n")
     pprint(api_response)
 except ApiException as e:
@@ -366,7 +385,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | **str**| The bill uuid | 
- **add_bill_request** | [**AddBillRequest**](AddBillRequest.md)|  | 
+ **update_bill_request** | [**UpdateBillRequest**](UpdateBillRequest.md)| Send a JSON object with the fields below. Fields marked required must be supplied. | 
 
 ### Return type
 
@@ -376,11 +395,12 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
+**400** | The request failed validation or could not be processed. Inspect errors, correct the input, and try again. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -389,9 +409,11 @@ Name | Type | Description  | Notes
 
 Update a bill payment
 
+Update a bill payment. Send the fields accepted by this operation in the request body. Requires at least one permission: `edit.invoice.revenues`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -400,7 +422,7 @@ from pprint import pprint
 
 uuid = 'uuid_example' # str | The bill uuid
 payment = 'payment_example' # str | The bill payment uuid
-add_bill_payment_request = accounting_sh.AddBillPaymentRequest() # AddBillPaymentRequest | 
+add_bill_payment_request = accounting_sh.AddBillPaymentRequest() # AddBillPaymentRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -422,7 +444,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | **str**| The bill uuid | 
  **payment** | **str**| The bill payment uuid | 
- **add_bill_payment_request** | [**AddBillPaymentRequest**](AddBillPaymentRequest.md)|  | 
+ **add_bill_payment_request** | [**AddBillPaymentRequest**](AddBillPaymentRequest.md)| Send a JSON object with the fields below. Fields marked required must be supplied. | 
 
 ### Return type
 
@@ -432,11 +454,12 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
+**400** | The request failed validation or could not be processed. Inspect errors, correct the input, and try again. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

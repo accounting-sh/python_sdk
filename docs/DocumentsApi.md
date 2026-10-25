@@ -4,77 +4,26 @@ All URIs are relative to *https://api.accounting.sh*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**cancel_review**](DocumentsApi.md#cancel_review) | **DELETE** /documents/{uuid}/review | Cancel document review
 [**delete_document**](DocumentsApi.md#delete_document) | **DELETE** /documents/{uuid} | Delete a document
 [**get_document**](DocumentsApi.md#get_document) | **GET** /documents/{uuid} | Get a document
 [**list_documents**](DocumentsApi.md#list_documents) | **GET** /documents | List company&#39;s documents
 [**process_document**](DocumentsApi.md#process_document) | **GET** /documents/{uuid}/process | Process a document
-[**review_url**](DocumentsApi.md#review_url) | **GET** /documents/{uuid}/review | Get url to review a document
+[**review_document_retention**](DocumentsApi.md#review_document_retention) | **PUT** /documents/{uuid}/retention | Review accounting retention or a legal hold
 [**update_document**](DocumentsApi.md#update_document) | **PUT** /documents/{uuid} | Update a document
 [**upload_document**](DocumentsApi.md#upload_document) | **POST** /documents | Upload a document
 [**view_document**](DocumentsApi.md#view_document) | **GET** /documents/{uuid}/view | View a document
 
-
-# **cancel_review**
-> cancel_review(uuid)
-
-Cancel document review
-
-### Example
-
-* Bearer (Api Key) Authentication (bearer):
-
-```python
-import accounting_sh
-from accounting_sh.exceptions import ApiException
-from pprint import pprint
-
-uuid = 'uuid_example' # str | The document uuid
-
-accounting = accounting_sh.Accounting("access_token")
-try:
-    # Cancel document review
-    api_response = accounting.documents_api.cancel_review(uuid)
-    print("The response of DocumentsApi->cancel_review:\n")
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DocumentsApi->cancel_review: %s\n" % e)
-
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The document uuid | 
-
-### Return type
-
-[**AuthInit200Response**](AuthInit200Response.md)
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_document**
 > delete_document(uuid)
 
 Delete a document
 
+Delete a document. This action deletes the selected record. Review references to it before deletion. Requires at least one permission: `delete.document`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -111,11 +60,12 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**409** | Accounting evidence is retained or held; the requested mutation is blocked. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -124,9 +74,11 @@ Name | Type | Description  | Notes
 
 Get a document
 
+Get a document. Use the identifier returned by the corresponding list or create operation. Requires at least one permission: `view.document`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -163,36 +115,39 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_documents**
-> list_documents(fields=fields, page=page, per_page=per_page)
+> list_documents(fields=fields, page=page, per_page=per_page, order_by=order_by)
 
 List company's documents
 
+List company's documents. Retrieve records using the query parameters below. Requires at least one permission: `list.documents`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = 'fields_example' # str | A comma separated list of fields requested in the response (optional)
-page = 'page_example' # str | The response page (optional)
-per_page = 'per_page_example' # str | The number of items per page (optional)
+fields = 'uuid,name,mimetype' # str | Comma-separated fields to include in each record. Default fields: uuid, name, mimetype. (optional)
+page = 1 # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10 # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = 'created_at:desc' # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's documents
-    api_response = accounting.documents_api.list_documents(fields=fields, page=page, per_page=per_page)
+    api_response = accounting.documents_api.list_documents(fields=fields, page=page, per_page=per_page, order_by=order_by)
     print("The response of DocumentsApi->list_documents:\n")
     pprint(api_response)
 except ApiException as e:
@@ -207,9 +162,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | **str**| A comma separated list of fields requested in the response | [optional] 
- **page** | **str**| The response page | [optional] 
- **per_page** | **str**| The number of items per page | [optional] 
+ **fields** | **str**| Comma-separated fields to include in each record. Default fields: uuid, name, mimetype. | [optional] 
+ **page** | **int**| Page number, starting at 1. Values below 1 are treated as 1. | [optional] [default to 1]
+ **per_page** | **int**| Records per page. The server caps page size to 100. Values below 1 use that maximum. | [optional] [default to 10]
+ **order_by** | **str**| Sort by a supported field and direction, using field:asc or field:desc. | [optional] 
 
 ### Return type
 
@@ -219,10 +175,10 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Success |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -231,9 +187,11 @@ Name | Type | Description  | Notes
 
 Process a document
 
+Queue background processing of the uploaded document. A successful response acknowledges the queued job, not completed extraction. Already processed documents return 400. This GET starts work; avoid automatic retries. Requires at least one permission: `process.document`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -270,38 +228,42 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
+**400** | The request failed validation or could not be processed. Inspect errors, correct the input, and try again. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **review_url**
-> review_url(uuid)
+# **review_document_retention**
+> review_document_retention(uuid, review_document_retention_request)
 
-Get url to review a document
+Review accounting retention or a legal hold
+
+Review the accounting anchor, retention category or legal hold. This cannot shorten existing protection or change the frozen jurisdiction. Send hold=null explicitly to release a hold. Requires permission: `manage.document.retention`.
 
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-uuid = 'uuid_example' # str | The document uuid
+uuid = 'uuid_example' # str | 
+review_document_retention_request = accounting_sh.ReviewDocumentRetentionRequest() # ReviewDocumentRetentionRequest | 
 
 accounting = accounting_sh.Accounting("access_token")
 try:
-    # Get url to review a document
-    api_response = accounting.documents_api.review_url(uuid)
-    print("The response of DocumentsApi->review_url:\n")
+    # Review accounting retention or a legal hold
+    api_response = accounting.documents_api.review_document_retention(uuid, review_document_retention_request)
+    print("The response of DocumentsApi->review_document_retention:\n")
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DocumentsApi->review_url: %s\n" % e)
+    print("Exception when calling DocumentsApi->review_document_retention: %s\n" % e)
 
 ```
 
@@ -312,21 +274,21 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | **str**| The document uuid | 
+ **uuid** | **str**|  | 
+ **review_document_retention_request** | [**ReviewDocumentRetentionRequest**](ReviewDocumentRetentionRequest.md)|  | 
 
 ### Return type
 
-[**AuthInit200Response**](AuthInit200Response.md)
+[**ReviewDocumentRetention200Response**](ReviewDocumentRetention200Response.md)
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**200** | Retention reviewed |  -  |
+**400** | Invalid accounting anchor or review |  -  |
+**403** | Retention management permission required |  -  |
+**404** | Document not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -335,9 +297,11 @@ Name | Type | Description  | Notes
 
 Update a document
 
+Update a document. Send the fields accepted by this operation in the request body. Requires at least one permission: `edit.document`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -345,7 +309,7 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = 'uuid_example' # str | The document uuid
-update_document_request = accounting_sh.UpdateDocumentRequest() # UpdateDocumentRequest | 
+update_document_request = accounting_sh.UpdateDocumentRequest() # UpdateDocumentRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -366,7 +330,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | **str**| The document uuid | 
- **update_document_request** | [**UpdateDocumentRequest**](UpdateDocumentRequest.md)|  | 
+ **update_document_request** | [**UpdateDocumentRequest**](UpdateDocumentRequest.md)| Send a JSON object with the fields below. Fields marked required must be supplied. | 
 
 ### Return type
 
@@ -376,10 +340,12 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**400** | The request failed validation or could not be processed. Inspect errors, correct the input, and try again. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -388,17 +354,19 @@ Name | Type | Description  | Notes
 
 Upload a document
 
+Upload a document. Send the resource fields in the request body; the response contains the saved record. Requires at least one permission: `add.document`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-name = 'name_example' # str | 
-file = None # bytearray | 
+name = 'name_example' # str | Human-readable name or label.
+file = None # bytearray | File to upload. Send this field as a file part in a multipart/form-data request.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -418,8 +386,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**|  | 
- **file** | [**bytearray**](bytearray.md)|  | 
+ **name** | **str**| Human-readable name or label. | 
+ **file** | **bytearray**| File to upload. Send this field as a file part in a multipart/form-data request. | 
 
 ### Return type
 
@@ -429,10 +397,11 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**400** | The request failed validation or could not be processed. Inspect errors, correct the input, and try again. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -441,9 +410,11 @@ Name | Type | Description  | Notes
 
 View a document
 
+Download the stored document content. The response is a file, rather than a JSON resource envelope. Requires at least one permission: `view.document`.
+
 ### Example
 
-* Bearer (Api Key) Authentication (bearer):
+* Bearer (API key) Authentication (bearer):
 
 ```python
 import accounting_sh
@@ -478,11 +449,11 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
-**500** | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |  -  |
-**401** | Authentication is required to access the resource. |  -  |
-**403** | The server has understood the request, but refuses to execute it. |  -  |
-**404** | The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible. |  -  |
+**200** | Successful response for this operation. Returned fields are described below. |  -  |
+**500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
+**401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
+**403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+**404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

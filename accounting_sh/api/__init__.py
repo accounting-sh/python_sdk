@@ -12,11 +12,13 @@ from accounting_sh.api.companies_api import CompaniesApi
 from accounting_sh.api.contacts_api import ContactsApi
 from accounting_sh.api.countries_api import CountriesApi
 from accounting_sh.api.credentials_api import CredentialsApi
+from accounting_sh.api.credit_notes_api import CreditNotesApi
 from accounting_sh.api.currency_api import CurrencyApi
 from accounting_sh.api.documents_api import DocumentsApi
 from accounting_sh.api.expense_reports_api import ExpenseReportsApi
 from accounting_sh.api.export_api import ExportApi
 from accounting_sh.api.invoices_api import InvoicesApi
+from accounting_sh.api.journal_api import JournalApi
 from accounting_sh.api.logs_api import LogsApi
 from accounting_sh.api.notification_api import NotificationApi
 from accounting_sh.api.notification_types_api import NotificationTypesApi

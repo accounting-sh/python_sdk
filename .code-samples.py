@@ -143,7 +143,7 @@ from pprint import pprint
 uuid = "uuid_example"  # str | The account uuid
 request_bank_connection_request = (
     accounting_sh.RequestBankConnectionRequest()
-)  # RequestBankConnectionRequest |
+)  # RequestBankConnectionRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -168,7 +168,7 @@ from pprint import pprint
 uuid = "uuid_example"  # str | The account uuid
 select_bank_account_request = (
     accounting_sh.SelectBankAccountRequest()
-)  # SelectBankAccountRequest |
+)  # SelectBankAccountRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -189,7 +189,7 @@ from pprint import pprint
 
 add_accounting_code_request = (
     accounting_sh.AddAccountingCodeRequest()
-)  # AddAccountingCodeRequest |
+)  # AddAccountingCodeRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -260,7 +260,7 @@ from pprint import pprint
 uuid = "uuid_example"  # str | The accounting code uuid
 add_accounting_code_request = (
     accounting_sh.AddAccountingCodeRequest()
-)  # AddAccountingCodeRequest |
+)  # AddAccountingCodeRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -279,7 +279,9 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_account_request = accounting_sh.AddAccountRequest()  # AddAccountRequest |
+add_account_request = (
+    accounting_sh.AddAccountRequest()
+)  # AddAccountRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -330,15 +332,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,name,bank,currency,journal_number"  # str | Comma-separated fields to include in each record. Default fields: uuid, name, bank, currency, journal_number. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's accounts
     api_response = accounting.accounts_api.list_accounts(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of AccountsApi->list_accounts:\n")
     pprint(api_response)
@@ -352,7 +355,9 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The account uuid
-add_account_request = accounting_sh.AddAccountRequest()  # AddAccountRequest |
+add_account_request = (
+    accounting_sh.AddAccountRequest()
+)  # AddAccountRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -369,7 +374,9 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_attachment_request = accounting_sh.AddAttachmentRequest()  # AddAttachmentRequest |
+add_attachment_request = (
+    accounting_sh.AddAttachmentRequest()
+)  # AddAttachmentRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -420,15 +427,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,document,attached_to"  # str | Comma-separated fields to include in each record. Default fields: uuid, document, attached_to. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's attachments
     api_response = accounting.attachments_api.list_attachments(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of AttachmentsApi->list_attachments:\n")
     pprint(api_response)
@@ -442,15 +450,16 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 resource = "resource_example"  # str | The resource
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,document,attached_to"  # str | Comma-separated fields to include in each record. Default fields: uuid, document, attached_to. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's attachments link to resource
     api_response = accounting.attachments_api.retrieve_attachments(
-        resource, fields=fields, page=page, per_page=per_page
+        resource, fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of AttachmentsApi->retrieve_attachments:\n")
     pprint(api_response)
@@ -464,7 +473,9 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The attachment uuid
-add_attachment_request = accounting_sh.AddAttachmentRequest()  # AddAttachmentRequest |
+add_attachment_request = (
+    accounting_sh.AddAttachmentRequest()
+)  # AddAttachmentRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -498,16 +509,37 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-login_request = accounting_sh.LoginRequest()  # LoginRequest |
+login_get_alias_request = (
+    accounting_sh.LoginGetAliasRequest()
+)  # LoginGetAliasRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Login user
-    api_response = accounting.auth_api.login(login_request)
+    api_response = accounting.auth_api.login(login_get_alias_request)
     print("The response of AuthApi->login:\n")
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AuthApi->login: %s\n" % e)
+
+
+# ..login_get_alias
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+login_get_alias_request = (
+    accounting_sh.LoginGetAliasRequest()
+)  # LoginGetAliasRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Login user
+    api_response = accounting.auth_api.login_get_alias(login_get_alias_request)
+    print("The response of AuthApi->login_get_alias:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AuthApi->login_get_alias: %s\n" % e)
 
 
 # ..logout
@@ -530,7 +562,9 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-switch_company_request = accounting_sh.SwitchCompanyRequest()  # SwitchCompanyRequest |
+switch_company_request = (
+    accounting_sh.SwitchCompanyRequest()
+)  # SwitchCompanyRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -547,7 +581,9 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_bill_request = accounting_sh.AddBillRequest()  # AddBillRequest |
+add_bill_request = (
+    accounting_sh.AddBillRequest()
+)  # AddBillRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -567,7 +603,7 @@ from pprint import pprint
 uuid = "uuid_example"  # str | The bill uuid
 add_bill_payment_request = (
     accounting_sh.AddBillPaymentRequest()
-)  # AddBillPaymentRequest |
+)  # AddBillPaymentRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -623,7 +659,9 @@ uuid = "uuid_example"  # str | The invoice uuid
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Get a bill in PDF
-    accounting.bills_api.get_bill_document(uuid)
+    api_response = accounting.bills_api.get_bill_document(uuid)
+    print("The response of BillsApi->get_bill_document:\n")
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling BillsApi->get_bill_document: %s\n" % e)
 
@@ -633,15 +671,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,contact,bill_number,status"  # str | Comma-separated fields to include in each record. Default fields: uuid, contact, bill_number, status. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's bills
     api_response = accounting.bills_api.list_bills(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of BillsApi->list_bills:\n")
     pprint(api_response)
@@ -655,12 +694,14 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The bill uuid
-add_bill_request = accounting_sh.AddBillRequest()  # AddBillRequest |
+update_bill_request = (
+    accounting_sh.UpdateBillRequest()
+)  # UpdateBillRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Update a bill
-    api_response = accounting.bills_api.update_bill(uuid, add_bill_request)
+    api_response = accounting.bills_api.update_bill(uuid, update_bill_request)
     print("The response of BillsApi->update_bill:\n")
     pprint(api_response)
 except ApiException as e:
@@ -676,7 +717,7 @@ uuid = "uuid_example"  # str | The bill uuid
 payment = "payment_example"  # str | The bill payment uuid
 add_bill_payment_request = (
     accounting_sh.AddBillPaymentRequest()
-)  # AddBillPaymentRequest |
+)  # AddBillPaymentRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -695,7 +736,9 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_category_request = accounting_sh.AddCategoryRequest()  # AddCategoryRequest |
+add_category_request = (
+    accounting_sh.AddCategoryRequest()
+)  # AddCategoryRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -746,15 +789,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,name,type,color"  # str | Comma-separated fields to include in each record. Default fields: uuid, name, type, color. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's categories
     api_response = accounting.categories_api.list_categories(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of CategoriesApi->list_categories:\n")
     pprint(api_response)
@@ -768,7 +812,9 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The category uuid
-add_category_request = accounting_sh.AddCategoryRequest()  # AddCategoryRequest |
+add_category_request = (
+    accounting_sh.AddCategoryRequest()
+)  # AddCategoryRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -785,11 +831,13 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_company_request = accounting_sh.AddCompanyRequest()  # AddCompanyRequest |
+add_company_request = (
+    accounting_sh.AddCompanyRequest()
+)  # AddCompanyRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
-    # Add a company
+    # Add a company (resellers only)
     api_response = accounting.companies_api.add_company(add_company_request)
     print("The response of CompaniesApi->add_company:\n")
     pprint(api_response)
@@ -853,7 +901,7 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-uuid = "uuid_example"  # str | The company uuid
+uuid = "uuid_example"  # str | Identifier of the authenticated company.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -865,20 +913,38 @@ except ApiException as e:
     print("Exception when calling CompaniesApi->get_company_feature_set: %s\n" % e)
 
 
+# ..get_company_onboarding
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str | The authenticated company's UUID.
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Get company onboarding status
+    api_response = accounting.companies_api.get_company_onboarding(uuid)
+    print("The response of CompaniesApi->get_company_onboarding:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling CompaniesApi->get_company_onboarding: %s\n" % e)
+
+
 # ..list_companies
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,name,currency,prefix"  # str | Comma-separated fields to include in each record. Default fields: uuid, name, currency, prefix. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
-    # List companies on this instance
+    # List companies on this instance (resellers only)
     api_response = accounting.companies_api.list_companies(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of CompaniesApi->list_companies:\n")
     pprint(api_response)
@@ -892,7 +958,9 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The company uuid
-add_company_request = accounting_sh.AddCompanyRequest()  # AddCompanyRequest |
+add_company_request = (
+    accounting_sh.AddCompanyRequest()
+)  # AddCompanyRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -909,7 +977,9 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_contact_request = accounting_sh.AddContactRequest()  # AddContactRequest |
+add_contact_request = (
+    accounting_sh.AddContactRequest()
+)  # AddContactRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -960,16 +1030,17 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-uuid = "uuid_example"  # str | The contact uuid (optional)
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+uuid = "uuid_example"  # str | The contact uuid
+fields = "uuid,vendor,bill_number,status"  # str | Comma-separated fields to include in each record. Default fields: uuid, vendor, bill_number, status. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List a contact's bills
     api_response = accounting.contacts_api.list_contact_bills(
-        uuid=uuid, fields=fields, page=page, per_page=per_page
+        uuid, fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of ContactsApi->list_contact_bills:\n")
     pprint(api_response)
@@ -983,15 +1054,16 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The contact uuid
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,customer,status,emitted"  # str | Comma-separated fields to include in each record. Default fields: uuid, customer, status, emitted. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List a contact's invoices
     api_response = accounting.contacts_api.list_contact_invoices(
-        uuid, fields=fields, page=page, per_page=per_page
+        uuid, fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of ContactsApi->list_contact_invoices:\n")
     pprint(api_response)
@@ -1004,15 +1076,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,name,prefix,currency,registration_number"  # str | Comma-separated fields to include in each record. Default fields: uuid, name, prefix, currency, registration_number. Optional buyer_type is the explicit business/consumer override; null uses automatic inference. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's contacts
     api_response = accounting.contacts_api.list_contacts(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of ContactsApi->list_contacts:\n")
     pprint(api_response)
@@ -1026,7 +1099,9 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The contact uuid
-add_contact_request = accounting_sh.AddContactRequest()  # AddContactRequest |
+add_contact_request = (
+    accounting_sh.AddContactRequest()
+)  # AddContactRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1060,7 +1135,9 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_credential_request = accounting_sh.AddCredentialRequest()  # AddCredentialRequest |
+add_credential_request = (
+    accounting_sh.AddCredentialRequest()
+)  # AddCredentialRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1111,15 +1188,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,permissions,expired_at"  # str | Comma-separated fields to include in each record. Default fields: uuid, permissions, expired_at. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's credentials
     api_response = accounting.credentials_api.list_credentials(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of CredentialsApi->list_credentials:\n")
     pprint(api_response)
@@ -1163,7 +1241,9 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The credential uuid
-add_credential_request = accounting_sh.AddCredentialRequest()  # AddCredentialRequest |
+add_credential_request = (
+    accounting_sh.AddCredentialRequest()
+)  # AddCredentialRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1175,6 +1255,107 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CredentialsApi->update_credential: %s\n" % e)
+
+
+# ..add_credit_note
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+add_credit_note_request = accounting_sh.AddCreditNoteRequest()  # AddCreditNoteRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Issue a partial credit note or credit the remaining invoice balance
+    api_response = accounting.credit_notes_api.add_credit_note(add_credit_note_request)
+    print("The response of CreditNotesApi->add_credit_note:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling CreditNotesApi->add_credit_note: %s\n" % e)
+
+
+# ..delete_credit_note
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Issued credit notes cannot be deleted
+    accounting.credit_notes_api.delete_credit_note(uuid)
+except ApiException as e:
+    print("Exception when calling CreditNotesApi->delete_credit_note: %s\n" % e)
+
+
+# ..get_credit_note
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Retrieve an issued credit note
+    api_response = accounting.credit_notes_api.get_credit_note(uuid)
+    print("The response of CreditNotesApi->get_credit_note:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling CreditNotesApi->get_credit_note: %s\n" % e)
+
+
+# ..get_credit_note_document
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Download the immutable credit note PDF
+    api_response = accounting.credit_notes_api.get_credit_note_document(uuid)
+    print("The response of CreditNotesApi->get_credit_note_document:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling CreditNotesApi->get_credit_note_document: %s\n" % e)
+
+
+# ..list_credit_notes
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+page = 56  # int |  (optional)
+per_page = 56  # int |  (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List this company's issued credit notes
+    api_response = accounting.credit_notes_api.list_credit_notes(
+        page=page, per_page=per_page
+    )
+    print("The response of CreditNotesApi->list_credit_notes:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling CreditNotesApi->list_credit_notes: %s\n" % e)
+
+
+# ..update_credit_note
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Issued credit notes cannot be updated
+    accounting.credit_notes_api.update_credit_note(uuid)
+except ApiException as e:
+    print("Exception when calling CreditNotesApi->update_credit_note: %s\n" % e)
 
 
 # ..get_exchange_rate
@@ -1193,23 +1374,6 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CurrencyApi->get_exchange_rate: %s\n" % e)
-
-
-# ..cancel_review
-import accounting_sh
-from accounting_sh.exceptions import ApiException
-from pprint import pprint
-
-uuid = "uuid_example"  # str | The document uuid
-
-accounting = accounting_sh.Accounting("access_token")
-try:
-    # Cancel document review
-    api_response = accounting.documents_api.cancel_review(uuid)
-    print("The response of DocumentsApi->cancel_review:\n")
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling DocumentsApi->cancel_review: %s\n" % e)
 
 
 # ..delete_document
@@ -1251,15 +1415,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,name,mimetype"  # str | Comma-separated fields to include in each record. Default fields: uuid, name, mimetype. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's documents
     api_response = accounting.documents_api.list_documents(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of DocumentsApi->list_documents:\n")
     pprint(api_response)
@@ -1284,21 +1449,26 @@ except ApiException as e:
     print("Exception when calling DocumentsApi->process_document: %s\n" % e)
 
 
-# ..review_url
+# ..review_document_retention
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-uuid = "uuid_example"  # str | The document uuid
+uuid = "uuid_example"  # str |
+review_document_retention_request = (
+    accounting_sh.ReviewDocumentRetentionRequest()
+)  # ReviewDocumentRetentionRequest |
 
 accounting = accounting_sh.Accounting("access_token")
 try:
-    # Get url to review a document
-    api_response = accounting.documents_api.review_url(uuid)
-    print("The response of DocumentsApi->review_url:\n")
+    # Review accounting retention or a legal hold
+    api_response = accounting.documents_api.review_document_retention(
+        uuid, review_document_retention_request
+    )
+    print("The response of DocumentsApi->review_document_retention:\n")
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling DocumentsApi->review_url: %s\n" % e)
+    print("Exception when calling DocumentsApi->review_document_retention: %s\n" % e)
 
 
 # ..update_document
@@ -1309,7 +1479,7 @@ from pprint import pprint
 uuid = "uuid_example"  # str | The document uuid
 update_document_request = (
     accounting_sh.UpdateDocumentRequest()
-)  # UpdateDocumentRequest |
+)  # UpdateDocumentRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1328,8 +1498,8 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-name = "name_example"  # str |
-file = None  # bytearray |
+name = "name_example"  # str | Human-readable name or label.
+file = None  # bytearray | File to upload. Send this field as a file part in a multipart/form-data request.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1363,7 +1533,7 @@ from pprint import pprint
 
 add_expense_report_request = (
     accounting_sh.AddExpenseReportRequest()
-)  # AddExpenseReportRequest |
+)  # AddExpenseReportRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1470,15 +1640,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,user,status"  # str | Comma-separated fields to include in each record. Default fields: uuid, user, status. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's expense reports.
     api_response = accounting.expense_reports_api.list_expense_reports(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of ExpenseReportsApi->list_expense_reports:\n")
     pprint(api_response)
@@ -1493,7 +1664,7 @@ from pprint import pprint
 
 send_expense_report_login_email_request = (
     accounting_sh.SendExpenseReportLoginEmailRequest()
-)  # SendExpenseReportLoginEmailRequest |
+)  # SendExpenseReportLoginEmailRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1518,7 +1689,7 @@ from pprint import pprint
 uuid = "uuid_example"  # str | The expense report uuid
 add_expense_report_request = (
     accounting_sh.AddExpenseReportRequest()
-)  # AddExpenseReportRequest |
+)  # AddExpenseReportRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1539,7 +1710,7 @@ from pprint import pprint
 
 update_expense_report_account_request = (
     accounting_sh.UpdateExpenseReportAccountRequest()
-)  # UpdateExpenseReportAccountRequest |
+)  # UpdateExpenseReportAccountRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1563,7 +1734,7 @@ from pprint import pprint
 
 update_expense_report_settings_request = (
     accounting_sh.UpdateExpenseReportSettingsRequest()
-)  # UpdateExpenseReportSettingsRequest |
+)  # UpdateExpenseReportSettingsRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1587,7 +1758,7 @@ from pprint import pprint
 
 verify_expense_report_settings_request = (
     accounting_sh.VerifyExpenseReportSettingsRequest()
-)  # VerifyExpenseReportSettingsRequest |
+)  # VerifyExpenseReportSettingsRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1609,15 +1780,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,status,document,created_at,updated_at"  # str | Comma-separated fields to include in each record. Default fields: uuid, status, document, created_at, updated_at. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's exports
     api_response = accounting.export_api.list_exports(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of ExportApi->list_exports:\n")
     pprint(api_response)
@@ -1630,7 +1802,9 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-request_export_request = accounting_sh.RequestExportRequest()  # RequestExportRequest |
+request_export_request = (
+    accounting_sh.RequestExportRequest()
+)  # RequestExportRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1647,7 +1821,9 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_invoice_request = accounting_sh.AddInvoiceRequest()  # AddInvoiceRequest |
+add_invoice_request = (
+    accounting_sh.AddInvoiceRequest()
+)  # AddInvoiceRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1667,7 +1843,7 @@ from pprint import pprint
 uuid = "uuid_example"  # str | The invoice uuid
 add_bill_payment_request = (
     accounting_sh.AddBillPaymentRequest()
-)  # AddBillPaymentRequest |
+)  # AddBillPaymentRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1725,9 +1901,28 @@ uuid = "uuid_example"  # str | The invoice uuid
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Get an invoice in PDF
-    accounting.invoices_api.get_invoice_document(uuid)
+    api_response = accounting.invoices_api.get_invoice_document(uuid)
+    print("The response of InvoicesApi->get_invoice_document:\n")
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling InvoicesApi->get_invoice_document: %s\n" % e)
+
+
+# ..get_invoice_issuance
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Retrieve the immutable source snapshot and original document fingerprints
+    api_response = accounting.invoices_api.get_invoice_issuance(uuid)
+    print("The response of InvoicesApi->get_invoice_issuance:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling InvoicesApi->get_invoice_issuance: %s\n" % e)
 
 
 # ..list_invoices
@@ -1735,15 +1930,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,contact,status,emitted"  # str | Comma-separated fields to include in each record. Default fields: uuid, contact, status, emitted. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's invoices
     api_response = accounting.invoices_api.list_invoices(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of InvoicesApi->list_invoices:\n")
     pprint(api_response)
@@ -1772,12 +1968,14 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The invoice uuid
-add_invoice_request = accounting_sh.AddInvoiceRequest()  # AddInvoiceRequest |
+update_invoice_request = (
+    accounting_sh.UpdateInvoiceRequest()
+)  # UpdateInvoiceRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Update an invoice
-    api_response = accounting.invoices_api.update_invoice(uuid, add_invoice_request)
+    api_response = accounting.invoices_api.update_invoice(uuid, update_invoice_request)
     print("The response of InvoicesApi->update_invoice:\n")
     pprint(api_response)
 except ApiException as e:
@@ -1793,7 +1991,7 @@ uuid = "uuid_example"  # str | The invoice uuid
 payment = "payment_example"  # str | The invoice payment uuid
 add_bill_payment_request = (
     accounting_sh.AddBillPaymentRequest()
-)  # AddBillPaymentRequest |
+)  # AddBillPaymentRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1807,20 +2005,1056 @@ except ApiException as e:
     print("Exception when calling InvoicesApi->update_invoice_payment: %s\n" % e)
 
 
+# ..journal_balances
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+var_from = "2013-10-20"  # date |  (optional)
+to = "2013-10-20"  # date |  (optional)
+code = "code_example"  # str |  (optional)
+contact = "contact_example"  # str |  (optional)
+journal = "journal_example"  # str |  (optional)
+period = "period_example"  # str |  (optional)
+bank_account = "bank_account_example"  # str |  (optional)
+group_by_contact = True  # bool |  (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Account balances
+    api_response = accounting.journal_api.journal_balances(
+        var_from=var_from,
+        to=to,
+        code=code,
+        contact=contact,
+        journal=journal,
+        period=period,
+        bank_account=bank_account,
+        group_by_contact=group_by_contact,
+    )
+    print("The response of JournalApi->journal_balances:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_balances: %s\n" % e)
+
+
+# ..journal_balancesheet
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+var_from = "2013-10-20"  # date |  (optional)
+to = "2013-10-20"  # date |  (optional)
+code = "code_example"  # str |  (optional)
+contact = "contact_example"  # str |  (optional)
+journal = "journal_example"  # str |  (optional)
+period = "period_example"  # str |  (optional)
+bank_account = "bank_account_example"  # str |  (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Balance sheet
+    api_response = accounting.journal_api.journal_balancesheet(
+        var_from=var_from,
+        to=to,
+        code=code,
+        contact=contact,
+        journal=journal,
+        period=period,
+        bank_account=bank_account,
+    )
+    print("The response of JournalApi->journal_balancesheet:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_balancesheet: %s\n" % e)
+
+
+# ..journal_correction_add
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+journal_correction_add_request = (
+    accounting_sh.JournalCorrectionAddRequest()
+)  # JournalCorrectionAddRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Add correction
+    api_response = accounting.journal_api.journal_correction_add(
+        journal_correction_add_request
+    )
+    print("The response of JournalApi->journal_correction_add:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_correction_add: %s\n" % e)
+
+
+# ..journal_correction_delete
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Reject changes to immutable correction
+    accounting.journal_api.journal_correction_delete(uuid)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_correction_delete: %s\n" % e)
+
+
+# ..journal_correction_details
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Details correction
+    api_response = accounting.journal_api.journal_correction_details(uuid)
+    print("The response of JournalApi->journal_correction_details:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_correction_details: %s\n" % e)
+
+
+# ..journal_correction_list
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+page = 56  # int |  (optional)
+per_page = 56  # int |  (optional)
+original_entry = "original_entry_example"  # str |  (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List correction
+    api_response = accounting.journal_api.journal_correction_list(
+        page=page, per_page=per_page, original_entry=original_entry
+    )
+    print("The response of JournalApi->journal_correction_list:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_correction_list: %s\n" % e)
+
+
+# ..journal_correction_update
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Reject changes to immutable correction
+    accounting.journal_api.journal_correction_update(uuid)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_correction_update: %s\n" % e)
+
+
+# ..journal_entry_add
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+journal_uuid = "journal_uuid_example"  # str |
+journal_entry_add_request = (
+    accounting_sh.JournalEntryAddRequest()
+)  # JournalEntryAddRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Add entry
+    api_response = accounting.journal_api.journal_entry_add(
+        journal_uuid, journal_entry_add_request
+    )
+    print("The response of JournalApi->journal_entry_add:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_entry_add: %s\n" % e)
+
+
+# ..journal_entry_delete
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+journal_uuid = "journal_uuid_example"  # str |
+entry_uuid = "entry_uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Delete entry
+    api_response = accounting.journal_api.journal_entry_delete(journal_uuid, entry_uuid)
+    print("The response of JournalApi->journal_entry_delete:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_entry_delete: %s\n" % e)
+
+
+# ..journal_entry_details
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+journal_uuid = "journal_uuid_example"  # str |
+entry_uuid = "entry_uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Details entry
+    api_response = accounting.journal_api.journal_entry_details(
+        journal_uuid, entry_uuid
+    )
+    print("The response of JournalApi->journal_entry_details:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_entry_details: %s\n" % e)
+
+
+# ..journal_entry_list
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+journal_uuid = "journal_uuid_example"  # str |
+page = 56  # int |  (optional)
+per_page = 56  # int |  (optional)
+status = "status_example"  # str |  (optional)
+origin = "origin_example"  # str |  (optional)
+period = "period_example"  # str |  (optional)
+accounting_date = "accounting_date_example"  # str |  (optional)
+var_from = "var_from_example"  # str |  (optional)
+to = "to_example"  # str |  (optional)
+source_type = "source_type_example"  # str |  (optional)
+source_uuid = "source_uuid_example"  # str |  (optional)
+code = "code_example"  # str |  (optional)
+contact = "contact_example"  # str |  (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List entry
+    api_response = accounting.journal_api.journal_entry_list(
+        journal_uuid,
+        page=page,
+        per_page=per_page,
+        status=status,
+        origin=origin,
+        period=period,
+        accounting_date=accounting_date,
+        var_from=var_from,
+        to=to,
+        source_type=source_type,
+        source_uuid=source_uuid,
+        code=code,
+        contact=contact,
+    )
+    print("The response of JournalApi->journal_entry_list:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_entry_list: %s\n" % e)
+
+
+# ..journal_entry_update
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+journal_uuid = "journal_uuid_example"  # str |
+entry_uuid = "entry_uuid_example"  # str |
+journal_entry_update_request = (
+    accounting_sh.JournalEntryUpdateRequest()
+)  # JournalEntryUpdateRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Update entry
+    api_response = accounting.journal_api.journal_entry_update(
+        journal_uuid, entry_uuid, journal_entry_update_request
+    )
+    print("The response of JournalApi->journal_entry_update:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_entry_update: %s\n" % e)
+
+
+# ..journal_evidence_add
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+journal_uuid = "journal_uuid_example"  # str |
+entry_uuid = "entry_uuid_example"  # str |
+journal_evidence_add_request = (
+    accounting_sh.JournalEvidenceAddRequest()
+)  # JournalEvidenceAddRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Add evidence
+    api_response = accounting.journal_api.journal_evidence_add(
+        journal_uuid, entry_uuid, journal_evidence_add_request
+    )
+    print("The response of JournalApi->journal_evidence_add:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_evidence_add: %s\n" % e)
+
+
+# ..journal_evidence_delete
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+journal_uuid = "journal_uuid_example"  # str |
+entry_uuid = "entry_uuid_example"  # str |
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Reject changes to immutable evidence
+    accounting.journal_api.journal_evidence_delete(journal_uuid, entry_uuid, uuid)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_evidence_delete: %s\n" % e)
+
+
+# ..journal_evidence_details
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+journal_uuid = "journal_uuid_example"  # str |
+entry_uuid = "entry_uuid_example"  # str |
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Details evidence
+    api_response = accounting.journal_api.journal_evidence_details(
+        journal_uuid, entry_uuid, uuid
+    )
+    print("The response of JournalApi->journal_evidence_details:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_evidence_details: %s\n" % e)
+
+
+# ..journal_evidence_list
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+journal_uuid = "journal_uuid_example"  # str |
+entry_uuid = "entry_uuid_example"  # str |
+page = 56  # int |  (optional)
+per_page = 56  # int |  (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List evidence
+    api_response = accounting.journal_api.journal_evidence_list(
+        journal_uuid, entry_uuid, page=page, per_page=per_page
+    )
+    print("The response of JournalApi->journal_evidence_list:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_evidence_list: %s\n" % e)
+
+
+# ..journal_evidence_update
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+journal_uuid = "journal_uuid_example"  # str |
+entry_uuid = "entry_uuid_example"  # str |
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Reject changes to immutable evidence
+    accounting.journal_api.journal_evidence_update(journal_uuid, entry_uuid, uuid)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_evidence_update: %s\n" % e)
+
+
+# ..journal_export_add
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+journal_export_add_request = (
+    accounting_sh.JournalExportAddRequest()
+)  # JournalExportAddRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Add export
+    api_response = accounting.journal_api.journal_export_add(journal_export_add_request)
+    print("The response of JournalApi->journal_export_add:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_export_add: %s\n" % e)
+
+
+# ..journal_export_delete
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Reject changes to immutable export
+    accounting.journal_api.journal_export_delete(uuid)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_export_delete: %s\n" % e)
+
+
+# ..journal_export_details
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Details export
+    api_response = accounting.journal_api.journal_export_details(uuid)
+    print("The response of JournalApi->journal_export_details:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_export_details: %s\n" % e)
+
+
+# ..journal_export_list
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+page = 56  # int |  (optional)
+per_page = 56  # int |  (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List export
+    api_response = accounting.journal_api.journal_export_list(
+        page=page, per_page=per_page
+    )
+    print("The response of JournalApi->journal_export_list:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_export_list: %s\n" % e)
+
+
+# ..journal_export_update
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Reject changes to immutable export
+    accounting.journal_api.journal_export_update(uuid)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_export_update: %s\n" % e)
+
+
+# ..journal_initialization_add
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+journal_initialization_add_request = (
+    accounting_sh.JournalInitializationAddRequest()
+)  # JournalInitializationAddRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Add initialization
+    api_response = accounting.journal_api.journal_initialization_add(
+        journal_initialization_add_request
+    )
+    print("The response of JournalApi->journal_initialization_add:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_initialization_add: %s\n" % e)
+
+
+# ..journal_initialization_delete
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Reject changes to immutable initialization
+    accounting.journal_api.journal_initialization_delete(uuid)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_initialization_delete: %s\n" % e)
+
+
+# ..journal_initialization_details
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Details initialization
+    api_response = accounting.journal_api.journal_initialization_details(uuid)
+    print("The response of JournalApi->journal_initialization_details:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_initialization_details: %s\n" % e)
+
+
+# ..journal_initialization_list
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+page = 56  # int |  (optional)
+per_page = 56  # int |  (optional)
+status = "status_example"  # str |  (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List initialization
+    api_response = accounting.journal_api.journal_initialization_list(
+        page=page, per_page=per_page, status=status
+    )
+    print("The response of JournalApi->journal_initialization_list:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_initialization_list: %s\n" % e)
+
+
+# ..journal_initialization_update
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Reject changes to immutable initialization
+    accounting.journal_api.journal_initialization_update(uuid)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_initialization_update: %s\n" % e)
+
+
+# ..journal_issue_add
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Reject changes to immutable issue
+    accounting.journal_api.journal_issue_add()
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_issue_add: %s\n" % e)
+
+
+# ..journal_issue_delete
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Reject changes to immutable issue
+    accounting.journal_api.journal_issue_delete(uuid)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_issue_delete: %s\n" % e)
+
+
+# ..journal_issue_details
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Details issue
+    api_response = accounting.journal_api.journal_issue_details(uuid)
+    print("The response of JournalApi->journal_issue_details:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_issue_details: %s\n" % e)
+
+
+# ..journal_issue_list
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+page = 56  # int |  (optional)
+per_page = 56  # int |  (optional)
+status = "status_example"  # str |  (optional)
+source_type = "source_type_example"  # str |  (optional)
+source_uuid = "source_uuid_example"  # str |  (optional)
+event = "event_example"  # str |  (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List issue
+    api_response = accounting.journal_api.journal_issue_list(
+        page=page,
+        per_page=per_page,
+        status=status,
+        source_type=source_type,
+        source_uuid=source_uuid,
+        event=event,
+    )
+    print("The response of JournalApi->journal_issue_list:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_issue_list: %s\n" % e)
+
+
+# ..journal_issue_update
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Reject changes to immutable issue
+    accounting.journal_api.journal_issue_update(uuid)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_issue_update: %s\n" % e)
+
+
+# ..journal_journal_add
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+journal_journal_add_request = (
+    accounting_sh.JournalJournalAddRequest()
+)  # JournalJournalAddRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Add journal
+    api_response = accounting.journal_api.journal_journal_add(
+        journal_journal_add_request
+    )
+    print("The response of JournalApi->journal_journal_add:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_journal_add: %s\n" % e)
+
+
+# ..journal_journal_delete
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+journal_uuid = "journal_uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Delete journal
+    api_response = accounting.journal_api.journal_journal_delete(journal_uuid)
+    print("The response of JournalApi->journal_journal_delete:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_journal_delete: %s\n" % e)
+
+
+# ..journal_journal_details
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+journal_uuid = "journal_uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Details journal
+    api_response = accounting.journal_api.journal_journal_details(journal_uuid)
+    print("The response of JournalApi->journal_journal_details:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_journal_details: %s\n" % e)
+
+
+# ..journal_journal_list
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+page = 56  # int |  (optional)
+per_page = 56  # int |  (optional)
+status = "status_example"  # str |  (optional)
+type = "type_example"  # str |  (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List journal
+    api_response = accounting.journal_api.journal_journal_list(
+        page=page, per_page=per_page, status=status, type=type
+    )
+    print("The response of JournalApi->journal_journal_list:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_journal_list: %s\n" % e)
+
+
+# ..journal_journal_update
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+journal_uuid = "journal_uuid_example"  # str |
+journal_journal_update_request = (
+    accounting_sh.JournalJournalUpdateRequest()
+)  # JournalJournalUpdateRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Update journal
+    api_response = accounting.journal_api.journal_journal_update(
+        journal_uuid, journal_journal_update_request
+    )
+    print("The response of JournalApi->journal_journal_update:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_journal_update: %s\n" % e)
+
+
+# ..journal_mapping_add
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+journal_mapping_add_request = (
+    accounting_sh.JournalMappingAddRequest()
+)  # JournalMappingAddRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Add mapping
+    api_response = accounting.journal_api.journal_mapping_add(
+        journal_mapping_add_request
+    )
+    print("The response of JournalApi->journal_mapping_add:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_mapping_add: %s\n" % e)
+
+
+# ..journal_mapping_delete
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Delete mapping
+    api_response = accounting.journal_api.journal_mapping_delete(uuid)
+    print("The response of JournalApi->journal_mapping_delete:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_mapping_delete: %s\n" % e)
+
+
+# ..journal_mapping_details
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Details mapping
+    api_response = accounting.journal_api.journal_mapping_details(uuid)
+    print("The response of JournalApi->journal_mapping_details:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_mapping_details: %s\n" % e)
+
+
+# ..journal_mapping_list
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+page = 56  # int |  (optional)
+per_page = 56  # int |  (optional)
+role = "role_example"  # str |  (optional)
+scope = "scope_example"  # str |  (optional)
+status = "status_example"  # str |  (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List mapping
+    api_response = accounting.journal_api.journal_mapping_list(
+        page=page, per_page=per_page, role=role, scope=scope, status=status
+    )
+    print("The response of JournalApi->journal_mapping_list:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_mapping_list: %s\n" % e)
+
+
+# ..journal_mapping_update
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+journal_mapping_update_request = (
+    accounting_sh.JournalMappingUpdateRequest()
+)  # JournalMappingUpdateRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Update mapping
+    api_response = accounting.journal_api.journal_mapping_update(
+        uuid, journal_mapping_update_request
+    )
+    print("The response of JournalApi->journal_mapping_update:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_mapping_update: %s\n" % e)
+
+
+# ..journal_movements
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+code = "code_example"  # str |
+var_from = "2013-10-20"  # date |  (optional)
+to = "2013-10-20"  # date |  (optional)
+contact = "contact_example"  # str |  (optional)
+journal = "journal_example"  # str |  (optional)
+period = "period_example"  # str |  (optional)
+bank_account = "bank_account_example"  # str |  (optional)
+page = 56  # int |  (optional)
+per_page = 56  # int |  (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Posted account movements
+    api_response = accounting.journal_api.journal_movements(
+        code,
+        var_from=var_from,
+        to=to,
+        contact=contact,
+        journal=journal,
+        period=period,
+        bank_account=bank_account,
+        page=page,
+        per_page=per_page,
+    )
+    print("The response of JournalApi->journal_movements:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_movements: %s\n" % e)
+
+
+# ..journal_period_add
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+journal_period_add_request = (
+    accounting_sh.JournalPeriodAddRequest()
+)  # JournalPeriodAddRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Add period
+    api_response = accounting.journal_api.journal_period_add(journal_period_add_request)
+    print("The response of JournalApi->journal_period_add:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_period_add: %s\n" % e)
+
+
+# ..journal_period_delete
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Delete period
+    api_response = accounting.journal_api.journal_period_delete(uuid)
+    print("The response of JournalApi->journal_period_delete:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_period_delete: %s\n" % e)
+
+
+# ..journal_period_details
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Details period
+    api_response = accounting.journal_api.journal_period_details(uuid)
+    print("The response of JournalApi->journal_period_details:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_period_details: %s\n" % e)
+
+
+# ..journal_period_list
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+page = 56  # int |  (optional)
+per_page = 56  # int |  (optional)
+status = "status_example"  # str |  (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List period
+    api_response = accounting.journal_api.journal_period_list(
+        page=page, per_page=per_page, status=status
+    )
+    print("The response of JournalApi->journal_period_list:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_period_list: %s\n" % e)
+
+
+# ..journal_period_update
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+journal_period_update_request = (
+    accounting_sh.JournalPeriodUpdateRequest()
+)  # JournalPeriodUpdateRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Update period
+    api_response = accounting.journal_api.journal_period_update(
+        uuid, journal_period_update_request
+    )
+    print("The response of JournalApi->journal_period_update:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_period_update: %s\n" % e)
+
+
+# ..journal_profitandloss
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+var_from = "2013-10-20"  # date |  (optional)
+to = "2013-10-20"  # date |  (optional)
+code = "code_example"  # str |  (optional)
+contact = "contact_example"  # str |  (optional)
+journal = "journal_example"  # str |  (optional)
+period = "period_example"  # str |  (optional)
+bank_account = "bank_account_example"  # str |  (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Profit and loss
+    api_response = accounting.journal_api.journal_profitandloss(
+        var_from=var_from,
+        to=to,
+        code=code,
+        contact=contact,
+        journal=journal,
+        period=period,
+        bank_account=bank_account,
+    )
+    print("The response of JournalApi->journal_profitandloss:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_profitandloss: %s\n" % e)
+
+
+# ..journal_trialbalance
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+var_from = "2013-10-20"  # date |  (optional)
+to = "2013-10-20"  # date |  (optional)
+code = "code_example"  # str |  (optional)
+contact = "contact_example"  # str |  (optional)
+journal = "journal_example"  # str |  (optional)
+period = "period_example"  # str |  (optional)
+bank_account = "bank_account_example"  # str |  (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Trial balance
+    api_response = accounting.journal_api.journal_trialbalance(
+        var_from=var_from,
+        to=to,
+        code=code,
+        contact=contact,
+        journal=journal,
+        period=period,
+        bank_account=bank_account,
+    )
+    print("The response of JournalApi->journal_trialbalance:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling JournalApi->journal_trialbalance: %s\n" % e)
+
+
 # ..logs
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,channel,level,message,recorded_at"  # str | Comma-separated fields to include in each record. Default fields: uuid, channel, level, message, recorded_at. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
 channel = "channel_example"  # str | The channel to retrieve the logs from (optional)
 level = "level_example"  # str | The log level to retrieve (optional)
 resource = "resource_example"  # str | Retrive logs linked to that resource (optional)
 before = "before_example"  # str | Retrive logs before the provided date (optional)
 after = "after_example"  # str | Retrive logs after the provided date (optional)
 format = "format_example"  # str | In which format to retrieve the logs, available: json or txt (optional)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1835,6 +3069,7 @@ try:
         before=before,
         after=after,
         format=format,
+        order_by=order_by,
     )
     print("The response of LogsApi->logs:\n")
     pprint(api_response)
@@ -1869,15 +3104,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,notification"  # str | Comma-separated fields to include in each record. Default fields: uuid, notification. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's notifications
     api_response = accounting.notification_api.list_notifications(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of NotificationApi->list_notifications:\n")
     pprint(api_response)
@@ -1892,7 +3128,7 @@ from pprint import pprint
 
 send_notification_request = (
     accounting_sh.SendNotificationRequest()
-)  # SendNotificationRequest |
+)  # SendNotificationRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1914,7 +3150,7 @@ from pprint import pprint
 notification = "notification_example"  # str | The notification name
 update_notification_preferences_request = (
     accounting_sh.UpdateNotificationPreferencesRequest()
-)  # UpdateNotificationPreferencesRequest |
+)  # UpdateNotificationPreferencesRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1938,7 +3174,7 @@ from pprint import pprint
 
 add_notification_type_request = (
     accounting_sh.AddNotificationTypeRequest()
-)  # AddNotificationTypeRequest |
+)  # AddNotificationTypeRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -1998,15 +3234,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "name,title,description,allowed_methods,internal"  # str | Comma-separated fields to include in each record. Default fields: name, title, description, allowed_methods, internal. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's notification types
     api_response = accounting.notification_types_api.list_notification_types(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of NotificationTypesApi->list_notification_types:\n")
     pprint(api_response)
@@ -2022,15 +3259,15 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The notification type uuid
-add_notification_type_request = (
-    accounting_sh.AddNotificationTypeRequest()
-)  # AddNotificationTypeRequest |
+update_notification_type_request = (
+    accounting_sh.UpdateNotificationTypeRequest()
+)  # UpdateNotificationTypeRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Update a notification type
     api_response = accounting.notification_types_api.update_notification_type(
-        uuid, add_notification_type_request
+        uuid, update_notification_type_request
     )
     print("The response of NotificationTypesApi->update_notification_type:\n")
     pprint(api_response)
@@ -2048,7 +3285,7 @@ from pprint import pprint
 
 add_o_auth_configuration_request = (
     accounting_sh.AddOAuthConfigurationRequest()
-)  # AddOAuthConfigurationRequest |
+)  # AddOAuthConfigurationRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -2103,15 +3340,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,provider,client_id"  # str | Comma-separated fields to include in each record. Default fields: uuid, provider, client_id. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's oauth configurations
     api_response = accounting.o_auth_config_api.list_o_auth_configurations(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of OAuthConfigApi->list_o_auth_configurations:\n")
     pprint(api_response)
@@ -2142,7 +3380,7 @@ from pprint import pprint
 uuid = "uuid_example"  # str | The oauth configuration uuid
 add_o_auth_configuration_request = (
     accounting_sh.AddOAuthConfigurationRequest()
-)  # AddOAuthConfigurationRequest |
+)  # AddOAuthConfigurationRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -2163,7 +3401,9 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_payment_request = accounting_sh.AddPaymentRequest()  # AddPaymentRequest |
+add_payment_request = (
+    accounting_sh.AddPaymentRequest()
+)  # AddPaymentRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -2214,15 +3454,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,amount,currency,contact"  # str | Comma-separated fields to include in each record. Default fields: uuid, amount, currency, contact. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's payments
     api_response = accounting.payments_api.list_payments(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of PaymentsApi->list_payments:\n")
     pprint(api_response)
@@ -2236,7 +3477,9 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The payment uuid
-add_payment_request = accounting_sh.AddPaymentRequest()  # AddPaymentRequest |
+add_payment_request = (
+    accounting_sh.AddPaymentRequest()
+)  # AddPaymentRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -2253,7 +3496,9 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_quote_request = accounting_sh.AddQuoteRequest()  # AddQuoteRequest |
+add_quote_request = (
+    accounting_sh.AddQuoteRequest()
+)  # AddQuoteRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -2309,7 +3554,9 @@ uuid = "uuid_example"  # str | The quote uuid
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Get a quote in PDF
-    accounting.quotes_api.get_quote_document(uuid)
+    api_response = accounting.quotes_api.get_quote_document(uuid)
+    print("The response of QuotesApi->get_quote_document:\n")
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling QuotesApi->get_quote_document: %s\n" % e)
 
@@ -2319,15 +3566,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,contact,quote_number,status"  # str | Comma-separated fields to include in each record. Default fields: uuid, contact, quote_number, status. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's quotes
     api_response = accounting.quotes_api.list_quotes(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of QuotesApi->list_quotes:\n")
     pprint(api_response)
@@ -2341,12 +3589,14 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The quote uuid
-add_quote_request = accounting_sh.AddQuoteRequest()  # AddQuoteRequest |
+update_quote_request = (
+    accounting_sh.UpdateQuoteRequest()
+)  # UpdateQuoteRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Update a quote
-    api_response = accounting.quotes_api.update_quote(uuid, add_quote_request)
+    api_response = accounting.quotes_api.update_quote(uuid, update_quote_request)
     print("The response of QuotesApi->update_quote:\n")
     pprint(api_response)
 except ApiException as e:
@@ -2358,7 +3608,9 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_receipt_request = accounting_sh.AddReceiptRequest()  # AddReceiptRequest |
+add_receipt_request = (
+    accounting_sh.AddReceiptRequest()
+)  # AddReceiptRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -2414,7 +3666,9 @@ uuid = "uuid_example"  # str | The receipt uuid
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Get a receipt in PDF
-    accounting.receipts_api.get_receipt_document(uuid)
+    api_response = accounting.receipts_api.get_receipt_document(uuid)
+    print("The response of ReceiptsApi->get_receipt_document:\n")
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling ReceiptsApi->get_receipt_document: %s\n" % e)
 
@@ -2424,15 +3678,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,for,from,receipt_number"  # str | Comma-separated fields to include in each record. Default fields: uuid, for, from, receipt_number. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's receipts
     api_response = accounting.receipts_api.list_receipts(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of ReceiptsApi->list_receipts:\n")
     pprint(api_response)
@@ -2446,12 +3701,14 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The receipt uuid
-add_receipt_request = accounting_sh.AddReceiptRequest()  # AddReceiptRequest |
+update_receipt_request = (
+    accounting_sh.UpdateReceiptRequest()
+)  # UpdateReceiptRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Update a receipt
-    api_response = accounting.receipts_api.update_receipt(uuid, add_receipt_request)
+    api_response = accounting.receipts_api.update_receipt(uuid, update_receipt_request)
     print("The response of ReceiptsApi->update_receipt:\n")
     pprint(api_response)
 except ApiException as e:
@@ -2463,7 +3720,9 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_revenue_request = accounting_sh.AddRevenueRequest()  # AddRevenueRequest |
+add_revenue_request = (
+    accounting_sh.AddRevenueRequest()
+)  # AddRevenueRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -2514,15 +3773,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,paid_at,amount,currency"  # str | Comma-separated fields to include in each record. Default fields: uuid, paid_at, amount, currency. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's revenues
     api_response = accounting.revenues_api.list_revenues(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of RevenuesApi->list_revenues:\n")
     pprint(api_response)
@@ -2536,7 +3796,9 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The revenue uuid
-add_revenue_request = accounting_sh.AddRevenueRequest()  # AddRevenueRequest |
+add_revenue_request = (
+    accounting_sh.AddRevenueRequest()
+)  # AddRevenueRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -2553,15 +3815,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,name,process_status"  # str | Comma-separated fields to include in each record. Default fields: uuid, name, process_status. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List documents to be reviewed
     api_response = accounting.rossum_api.list_reviews(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of RossumApi->list_reviews:\n")
     pprint(api_response)
@@ -2611,16 +3874,17 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
-uuid = "uuid_example"  # str | The company uuid (optional)
+uuid = "uuid_example"  # str | The company uuid
+fields = "uuid,key,value"  # str | Comma-separated fields to include in each record. Default fields: uuid, key, value. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's settings
     api_response = accounting.settings_api.list_settings(
-        fields=fields, page=page, per_page=per_page, uuid=uuid
+        uuid, fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of SettingsApi->list_settings:\n")
     pprint(api_response)
@@ -2637,7 +3901,7 @@ uuid = "uuid_example"  # str | The company uuid
 key = "key_example"  # str | The setting key
 update_settings_request = (
     accounting_sh.UpdateSettingsRequest()
-)  # UpdateSettingsRequest |
+)  # UpdateSettingsRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -2677,7 +3941,9 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_tag_request = accounting_sh.AddTagRequest()  # AddTagRequest |
+add_tag_request = (
+    accounting_sh.AddTagRequest()
+)  # AddTagRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -2728,15 +3994,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,key,value,attached_at"  # str | Comma-separated fields to include in each record. Default fields: uuid, key, value, attached_at. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's tags
     api_response = accounting.tags_api.list_tags(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of TagsApi->list_tags:\n")
     pprint(api_response)
@@ -2750,15 +4017,16 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 resource = "resource_example"  # str | The resource
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,key,value,attached_at"  # str | Comma-separated fields to include in each record. Default fields: uuid, key, value, attached_at. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's tags by resource attachment
     api_response = accounting.tags_api.list_tags_by_resource(
-        resource, fields=fields, page=page, per_page=per_page
+        resource, fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of TagsApi->list_tags_by_resource:\n")
     pprint(api_response)
@@ -2772,7 +4040,9 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The tag uuid
-add_tag_request = accounting_sh.AddTagRequest()  # AddTagRequest |
+add_tag_request = (
+    accounting_sh.AddTagRequest()
+)  # AddTagRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -2823,17 +4093,15 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-list_links200_response_links_inner = (
-    accounting_sh.ListLinks200ResponseLinksInner()
-)  # ListLinks200ResponseLinksInner |
-uuid = "uuid_example"  # str | A transaction uuid (optional)
+uuid = "uuid_example"  # str | A transaction uuid
+add_link_request = (
+    accounting_sh.AddLinkRequest()
+)  # AddLinkRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Add a new transaction link
-    api_response = accounting.transactions_api.add_link(
-        list_links200_response_links_inner, uuid=uuid
-    )
+    api_response = accounting.transactions_api.add_link(uuid, add_link_request)
     print("The response of TransactionsApi->add_link:\n")
     pprint(api_response)
 except ApiException as e:
@@ -2847,7 +4115,7 @@ from pprint import pprint
 
 add_transaction_request = (
     accounting_sh.AddTransactionRequest()
-)  # AddTransactionRequest |
+)  # AddTransactionRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -2865,15 +4133,15 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The transaction uuid
-update_transaction_code_request = (
-    accounting_sh.UpdateTransactionCodeRequest()
-)  # UpdateTransactionCodeRequest |
+add_transaction_code_request = (
+    accounting_sh.AddTransactionCodeRequest()
+)  # AddTransactionCodeRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Add a transaction's code
     api_response = accounting.transactions_api.add_transaction_code(
-        uuid, update_transaction_code_request
+        uuid, add_transaction_code_request
     )
     print("The response of TransactionsApi->add_transaction_code:\n")
     pprint(api_response)
@@ -2886,17 +4154,13 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-uuid = "uuid_example"  # str | A transaction uuid (optional)
-link_uuid = (
-    "link_uuid_example"  # str | A transaction link uuid OR the target uuid (optional)
-)
+uuid = "uuid_example"  # str | A transaction uuid
+link_uuid = "link_uuid_example"  # str | A transaction link uuid OR the target uuid
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Delete a transaction link
-    api_response = accounting.transactions_api.delete_link(
-        uuid=uuid, link_uuid=link_uuid
-    )
+    api_response = accounting.transactions_api.delete_link(uuid, link_uuid)
     print("The response of TransactionsApi->delete_link:\n")
     pprint(api_response)
 except ApiException as e:
@@ -2962,7 +4226,7 @@ from pprint import pprint
 
 import_transactions_request = (
     accounting_sh.ImportTransactionsRequest()
-)  # ImportTransactionsRequest |
+)  # ImportTransactionsRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -2981,16 +4245,17 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,account,amount,event_date"  # str | Comma-separated fields to include in each record. Default fields: uuid, account, amount, event_date. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
 account = "account_example"  # str | An account uuid to filter results (optional)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's transactions and transfers
     api_response = accounting.transactions_api.ledger(
-        fields=fields, page=page, per_page=per_page, account=account
+        fields=fields, page=page, per_page=per_page, account=account, order_by=order_by
     )
     print("The response of TransactionsApi->ledger:\n")
     pprint(api_response)
@@ -3003,16 +4268,17 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
-uuid = "uuid_example"  # str | A transaction uuid (optional)
+uuid = "uuid_example"  # str | A transaction uuid
+fields = "target_type,target,link_status"  # str | Comma-separated fields to include in each record. Default fields: target_type, target, link_status. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List a transaction links
     api_response = accounting.transactions_api.list_links(
-        fields=fields, page=page, per_page=per_page, uuid=uuid
+        uuid, fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of TransactionsApi->list_links:\n")
     pprint(api_response)
@@ -3026,16 +4292,22 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The transaction uuid
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,code,description,amount"  # str | Comma-separated fields to include in each record. Default fields: uuid, code, description, amount. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
 account = "account_example"  # str | List to the specified account (optional)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List transaction's codes
     api_response = accounting.transactions_api.list_transaction_codes(
-        uuid, fields=fields, page=page, per_page=per_page, account=account
+        uuid,
+        fields=fields,
+        page=page,
+        per_page=per_page,
+        account=account,
+        order_by=order_by,
     )
     print("The response of TransactionsApi->list_transaction_codes:\n")
     pprint(api_response)
@@ -3048,16 +4320,17 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,account,amount,transaction_date"  # str | Comma-separated fields to include in each record. Default fields: uuid, account, amount, transaction_date. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
 account = "account_example"  # str | List to the specified account (optional)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's transactions
     api_response = accounting.transactions_api.list_transactions(
-        fields=fields, page=page, per_page=per_page, account=account
+        fields=fields, page=page, per_page=per_page, account=account, order_by=order_by
     )
     print("The response of TransactionsApi->list_transactions:\n")
     pprint(api_response)
@@ -3065,24 +4338,98 @@ except ApiException as e:
     print("Exception when calling TransactionsApi->list_transactions: %s\n" % e)
 
 
+# ..reconciliation_reject
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+reconciliation_reject_request = (
+    accounting_sh.ReconciliationRejectRequest()
+)  # ReconciliationRejectRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Remember a rejected transaction/document candidate
+    api_response = accounting.transactions_api.reconciliation_reject(
+        uuid, reconciliation_reject_request
+    )
+    print("The response of TransactionsApi->reconciliation_reject:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling TransactionsApi->reconciliation_reject: %s\n" % e)
+
+
+# ..reconciliation_run
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Schedule background matching for human review
+    api_response = accounting.transactions_api.reconciliation_run(uuid)
+    print("The response of TransactionsApi->reconciliation_run:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling TransactionsApi->reconciliation_run: %s\n" % e)
+
+
+# ..reconciliation_suggestions
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Rank document and payment matches without creating links
+    api_response = accounting.transactions_api.reconciliation_suggestions(uuid)
+    print("The response of TransactionsApi->reconciliation_suggestions:\n")
+    pprint(api_response)
+except ApiException as e:
+    print(
+        "Exception when calling TransactionsApi->reconciliation_suggestions: %s\n" % e
+    )
+
+
+# ..reverse_transaction_link
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+link_uuid = "link_uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Reverse a human-confirmed match and its generated payment
+    api_response = accounting.transactions_api.reverse_transaction_link(uuid, link_uuid)
+    print("The response of TransactionsApi->reverse_transaction_link:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling TransactionsApi->reverse_transaction_link: %s\n" % e)
+
+
 # ..update_link
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-list_links200_response_links_inner = (
-    accounting_sh.ListLinks200ResponseLinksInner()
-)  # ListLinks200ResponseLinksInner |
-uuid = "uuid_example"  # str | A transaction uuid (optional)
-link_uuid = (
-    "link_uuid_example"  # str | A transaction link uuid OR the target uuid (optional)
-)
+uuid = "uuid_example"  # str | A transaction uuid
+link_uuid = "link_uuid_example"  # str | A transaction link uuid OR the target uuid
+add_link_request = (
+    accounting_sh.AddLinkRequest()
+)  # AddLinkRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Update a transaction link
     api_response = accounting.transactions_api.update_link(
-        list_links200_response_links_inner, uuid=uuid, link_uuid=link_uuid
+        uuid, link_uuid, add_link_request
     )
     print("The response of TransactionsApi->update_link:\n")
     pprint(api_response)
@@ -3098,7 +4445,7 @@ from pprint import pprint
 uuid = "uuid_example"  # str | The transaction uuid
 add_transaction_request = (
     accounting_sh.AddTransactionRequest()
-)  # AddTransactionRequest |
+)  # AddTransactionRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -3118,15 +4465,16 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The transaction uuid
-update_transaction_code_request = (
-    accounting_sh.UpdateTransactionCodeRequest()
-)  # UpdateTransactionCodeRequest |
+code = "code_example"  # str | Identifier of the code selected by this route.
+add_transaction_code_request = (
+    accounting_sh.AddTransactionCodeRequest()
+)  # AddTransactionCodeRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Update a transaction's code
     api_response = accounting.transactions_api.update_transaction_code(
-        uuid, update_transaction_code_request
+        uuid, code, add_transaction_code_request
     )
     print("The response of TransactionsApi->update_transaction_code:\n")
     pprint(api_response)
@@ -3139,15 +4487,13 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-uuid = "uuid_example"  # str | A transaction uuid (optional)
-link_uuid = (
-    "link_uuid_example"  # str | A transaction link uuid OR the target uuid (optional)
-)
+uuid = "uuid_example"  # str | A transaction uuid
+link_uuid = "link_uuid_example"  # str | A transaction link uuid OR the target uuid
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # View a transaction link
-    api_response = accounting.transactions_api.view_link(uuid=uuid, link_uuid=link_uuid)
+    api_response = accounting.transactions_api.view_link(uuid, link_uuid)
     print("The response of TransactionsApi->view_link:\n")
     pprint(api_response)
 except ApiException as e:
@@ -3159,7 +4505,9 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_transfer_request = accounting_sh.AddTransferRequest()  # AddTransferRequest |
+add_transfer_request = (
+    accounting_sh.AddTransferRequest()
+)  # AddTransferRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -3210,15 +4558,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,from,to,amount"  # str | Comma-separated fields to include in each record. Default fields: uuid, from, to, amount. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's transfers
     api_response = accounting.transfers_api.list_transfers(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of TransfersApi->list_transfers:\n")
     pprint(api_response)
@@ -3232,7 +4581,9 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The transfer uuid
-add_transfer_request = accounting_sh.AddTransferRequest()  # AddTransferRequest |
+add_transfer_request = (
+    accounting_sh.AddTransferRequest()
+)  # AddTransferRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -3249,12 +4600,10 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_user_request = accounting_sh.AddUserRequest()  # AddUserRequest |
-
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Add user
-    api_response = accounting.users_api.add_user(add_user_request)
+    api_response = accounting.users_api.add_user()
     print("The response of UsersApi->add_user:\n")
     pprint(api_response)
 except ApiException as e:
@@ -3300,15 +4649,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,user,permissions"  # str | Comma-separated fields to include in each record. Default fields: uuid, user, permissions. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's users
     api_response = accounting.users_api.list_users(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of UsersApi->list_users:\n")
     pprint(api_response)
@@ -3316,22 +4666,19 @@ except ApiException as e:
     print("Exception when calling UsersApi->list_users: %s\n" % e)
 
 
-# ..update_me
+# ..update_me_put_alias
 import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-name = "name_example"  # str |  (optional)
-avatar = None  # bytearray |  (optional)
-
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Update current user details
-    api_response = accounting.users_api.update_me(name=name, avatar=avatar)
-    print("The response of UsersApi->update_me:\n")
+    api_response = accounting.users_api.update_me_put_alias()
+    print("The response of UsersApi->update_me_put_alias:\n")
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling UsersApi->update_me: %s\n" % e)
+    print("Exception when calling UsersApi->update_me_put_alias: %s\n" % e)
 
 
 # ..update_user
@@ -3340,12 +4687,11 @@ from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
 uuid = "uuid_example"  # str | The user uuid
-update_user_request = accounting_sh.UpdateUserRequest()  # UpdateUserRequest |
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Update user
-    api_response = accounting.users_api.update_user(uuid, update_user_request)
+    api_response = accounting.users_api.update_user(uuid)
     print("The response of UsersApi->update_user:\n")
     pprint(api_response)
 except ApiException as e:
@@ -3387,16 +4733,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
+uuid = "uuid_example"  # str | The company uuid
 add_company_vat_id_request = (
     accounting_sh.AddCompanyVatIdRequest()
-)  # AddCompanyVatIdRequest |
-uuid = "uuid_example"  # str | The company uuid (optional)
+)  # AddCompanyVatIdRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Add a company's Vat Id
     api_response = accounting.vatid_api.add_company_vat_id(
-        add_company_vat_id_request, uuid=uuid
+        uuid, add_company_vat_id_request
     )
     print("The response of VATIDApi->add_company_vat_id:\n")
     pprint(api_response)
@@ -3409,13 +4755,13 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
+uuid = "uuid_example"  # str | The company uuid
 key = "key_example"  # str | The VAT ID uuid
-uuid = "uuid_example"  # str | The company uuid (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Delete a company's Vat Id
-    api_response = accounting.vatid_api.delete_company_vat_id(key, uuid=uuid)
+    api_response = accounting.vatid_api.delete_company_vat_id(uuid, key)
     print("The response of VATIDApi->delete_company_vat_id:\n")
     pprint(api_response)
 except ApiException as e:
@@ -3427,13 +4773,13 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
+uuid = "uuid_example"  # str | The company uuid
 key = "key_example"  # str | The VAT ID uuid
-uuid = "uuid_example"  # str | The company uuid (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Get a company's Vat Id
-    api_response = accounting.vatid_api.get_company_vat_id(key, uuid=uuid)
+    api_response = accounting.vatid_api.get_company_vat_id(uuid, key)
     print("The response of VATIDApi->get_company_vat_id:\n")
     pprint(api_response)
 except ApiException as e:
@@ -3445,16 +4791,17 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
-uuid = "uuid_example"  # str | The company uuid (optional)
+uuid = "uuid_example"  # str | The company uuid
+fields = "uuid,vat_id,country"  # str | Comma-separated fields to include in each record. Default fields: uuid, vat_id, country. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's Vat Id
     api_response = accounting.vatid_api.list_company_vat_id(
-        fields=fields, page=page, per_page=per_page, uuid=uuid
+        uuid, fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of VATIDApi->list_company_vat_id:\n")
     pprint(api_response)
@@ -3467,17 +4814,17 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
+uuid = "uuid_example"  # str | The company uuid
 key = "key_example"  # str | The VAT ID uuid
 add_company_vat_id_request = (
     accounting_sh.AddCompanyVatIdRequest()
-)  # AddCompanyVatIdRequest |
-uuid = "uuid_example"  # str | The company uuid (optional)
+)  # AddCompanyVatIdRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Update a company's Vat Id
     api_response = accounting.vatid_api.update_company_vat_id(
-        key, add_company_vat_id_request, uuid=uuid
+        uuid, key, add_company_vat_id_request
     )
     print("The response of VATIDApi->update_company_vat_id:\n")
     pprint(api_response)
@@ -3490,7 +4837,9 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_webhook_request = accounting_sh.AddWebhookRequest()  # AddWebhookRequest |
+add_webhook_request = (
+    accounting_sh.AddWebhookRequest()
+)  # AddWebhookRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
@@ -3507,12 +4856,12 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-uuid = "uuid_example"  # str | The webhook uuid (optional)
+uuid = "uuid_example"  # str | The webhook uuid
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Delete a webhook
-    api_response = accounting.webhooks_api.delete_webhook(uuid=uuid)
+    api_response = accounting.webhooks_api.delete_webhook(uuid)
     print("The response of WebhooksApi->delete_webhook:\n")
     pprint(api_response)
 except ApiException as e:
@@ -3524,12 +4873,12 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-uuid = "uuid_example"  # str | The webhook uuid (optional)
+uuid = "uuid_example"  # str | The webhook uuid
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Get a webhook
-    api_response = accounting.webhooks_api.get_webhook(uuid=uuid)
+    api_response = accounting.webhooks_api.get_webhook(uuid)
     print("The response of WebhooksApi->get_webhook:\n")
     pprint(api_response)
 except ApiException as e:
@@ -3541,12 +4890,12 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-uuid = "uuid_example"  # str | The webhook uuid (optional)
+uuid = "uuid_example"  # str | The webhook uuid
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Get webhook's history
-    api_response = accounting.webhooks_api.get_webhook_history(uuid=uuid)
+    api_response = accounting.webhooks_api.get_webhook_history(uuid)
     print("The response of WebhooksApi->get_webhook_history:\n")
     pprint(api_response)
 except ApiException as e:
@@ -3573,15 +4922,16 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-fields = "fields_example"  # str | A comma separated list of fields requested in the response (optional)
-page = "page_example"  # str | The response page (optional)
-per_page = "per_page_example"  # str | The number of items per page (optional)
+fields = "uuid,link,events"  # str | Comma-separated fields to include in each record. Default fields: uuid, link, events. (optional)
+page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
+per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
+order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's webhooks
     api_response = accounting.webhooks_api.list_webhooks(
-        fields=fields, page=page, per_page=per_page
+        fields=fields, page=page, per_page=per_page, order_by=order_by
     )
     print("The response of WebhooksApi->list_webhooks:\n")
     pprint(api_response)
@@ -3594,15 +4944,15 @@ import accounting_sh
 from accounting_sh.exceptions import ApiException
 from pprint import pprint
 
-add_webhook_request = accounting_sh.AddWebhookRequest()  # AddWebhookRequest |
-uuid = "uuid_example"  # str | The webhook uuid (optional)
+uuid = "uuid_example"  # str | The webhook uuid
+add_webhook_request = (
+    accounting_sh.AddWebhookRequest()
+)  # AddWebhookRequest | Send a JSON object with the fields below. Fields marked required must be supplied.
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # Update a webhook
-    api_response = accounting.webhooks_api.update_webhook(
-        add_webhook_request, uuid=uuid
-    )
+    api_response = accounting.webhooks_api.update_webhook(uuid, add_webhook_request)
     print("The response of WebhooksApi->update_webhook:\n")
     pprint(api_response)
 except ApiException as e:
