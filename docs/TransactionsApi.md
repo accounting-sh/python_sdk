@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**import_transactions**](TransactionsApi.md#import_transactions) | **POST** /transactions/import | Import transactions - INTERNAL
 [**ledger**](TransactionsApi.md#ledger) | **GET** /transactions/ledger | List company&#39;s transactions and transfers
 [**list_links**](TransactionsApi.md#list_links) | **GET** /transactions/{uuid}/links | List a transaction links
+[**list_pending_document_links**](TransactionsApi.md#list_pending_document_links) | **GET** /transactions/pending-links | List pending transaction links for a document
 [**list_transaction_codes**](TransactionsApi.md#list_transaction_codes) | **GET** /transactions/{uuid}/codes | List transaction&#39;s codes
 [**list_transactions**](TransactionsApi.md#list_transactions) | **GET** /transactions | List company&#39;s transactions
 [**reconciliation_reject**](TransactionsApi.md#reconciliation_reject) | **POST** /transactions/{uuid}/reconciliation/rejections | Remember a rejected transaction/document candidate
@@ -468,11 +469,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ledger**
-> ledger(fields=fields, page=page, per_page=per_page, account=account, order_by=order_by)
+> ledger(fields=fields, page=page, per_page=per_page, account=account, link_status=link_status, needs_linking=needs_linking, order_by=order_by)
 
 List company's transactions and transfers
 
-Retrieve ledger entries combining transactions and transfers. Optionally filter by the account query parameter. Requires at least one permission: `transaction.list`, `list.transfers`.
+Retrieve ledger entries combining transactions and transfers. Optionally filter by account, link_status and the legacy needs_linking flag. The needs_linking filter includes only transactions with no links or at least one unconfirmed link; transfers are excluded. Requires at least one permission: `transaction.list`, `list.transfers`.
 
 ### Example
 
@@ -487,12 +488,14 @@ fields = 'uuid,account,amount,event_date' # str | Comma-separated fields to incl
 page = 1 # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
 per_page = 10 # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
 account = 'account_example' # str | An account uuid to filter results (optional)
+link_status = 'link_status_example' # str | all preserves the full ledger; unconfirmed includes transactions with no links or any unconfirmed link; confirmed requires a confirmed link and no unconfirmed links. Status views exclude transfers and take precedence over needs_linking. (optional)
+needs_linking = False # bool | Only transactions with no links or any unconfirmed link. Applies before pagination and to total; transfers are excluded. Default false preserves the full ledger. (optional) (default to False)
 order_by = 'created_at:desc' # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's transactions and transfers
-    api_response = accounting.transactions_api.ledger(fields=fields, page=page, per_page=per_page, account=account, order_by=order_by)
+    api_response = accounting.transactions_api.ledger(fields=fields, page=page, per_page=per_page, account=account, link_status=link_status, needs_linking=needs_linking, order_by=order_by)
     print("The response of TransactionsApi->ledger:\n")
     pprint(api_response)
 except ApiException as e:
@@ -511,6 +514,8 @@ Name | Type | Description  | Notes
  **page** | **int**| Page number, starting at 1. Values below 1 are treated as 1. | [optional] [default to 1]
  **per_page** | **int**| Records per page. The server caps page size to 100. Values below 1 use that maximum. | [optional] [default to 10]
  **account** | **str**| An account uuid to filter results | [optional] 
+ **link_status** | **str**| all preserves the full ledger; unconfirmed includes transactions with no links or any unconfirmed link; confirmed requires a confirmed link and no unconfirmed links. Status views exclude transfers and take precedence over needs_linking. | [optional] 
+ **needs_linking** | **bool**| Only transactions with no links or any unconfirmed link. Applies before pagination and to total; transfers are excluded. Default false preserves the full ledger. | [optional] [default to False]
  **order_by** | **str**| Sort by a supported field and direction, using field:asc or field:desc. | [optional] 
 
 ### Return type
@@ -522,6 +527,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful response for this operation. Returned fields are described below. |  -  |
+**400** | Invalid link_status or needs_linking filter |  -  |
 **500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
 **401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
 **403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
@@ -588,6 +594,64 @@ Name | Type | Description  | Notes
 **401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
 **403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
 **404** | The operation could not find the requested resource. Check the identifier and company context. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_pending_document_links**
+> list_pending_document_links(target_type, target, page=page, per_page=per_page)
+
+List pending transaction links for a document
+
+List unconfirmed, unprocessed links for a company-owned document. Requires `transaction_link.list`, `transaction.view` and the target viewing permission. Confirmation uses the existing transaction link PUT endpoint.
+
+### Example
+
+* Bearer (API key) Authentication (bearer):
+
+```python
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+target_type = 'target_type_example' # str | 
+target = 'target_example' # str | 
+page = 1 # int |  (optional) (default to 1)
+per_page = 10 # int | Capped at the standard API page size limit. (optional) (default to 10)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List pending transaction links for a document
+    api_response = accounting.transactions_api.list_pending_document_links(target_type, target, page=page, per_page=per_page)
+    print("The response of TransactionsApi->list_pending_document_links:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling TransactionsApi->list_pending_document_links: %s\n" % e)
+
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **target_type** | **str**|  | 
+ **target** | **str**|  | 
+ **page** | **int**|  | [optional] [default to 1]
+ **per_page** | **int**| Capped at the standard API page size limit. | [optional] [default to 10]
+
+### Return type
+
+[**ListPendingDocumentLinks200Response**](ListPendingDocumentLinks200Response.md)
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Pending links with transaction labels and a total before pagination |  -  |
+**400** | Invalid or unowned target |  -  |
+**403** | Required link, transaction or target permissions missing |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

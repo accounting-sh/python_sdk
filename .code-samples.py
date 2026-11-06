@@ -1816,6 +1816,330 @@ except ApiException as e:
     print("Exception when calling ExportApi->request_export: %s\n" % e)
 
 
+# ..fr_super_pdp_approve
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Approve a received invoice
+    accounting.fr_super_pdp_api.fr_super_pdp_approve(uuid)
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_approve: %s\n" % e)
+
+
+# ..fr_super_pdp_authorize
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Create a SuperPDP consent URL
+    accounting.fr_super_pdp_api.fr_super_pdp_authorize()
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_authorize: %s\n" % e)
+
+
+# ..fr_super_pdp_callback
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+fr_super_pdp_callback_request = (
+    accounting_sh.FrSuperPdpCallbackRequest()
+)  # FrSuperPdpCallbackRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Complete SuperPDP consent
+    accounting.fr_super_pdp_api.fr_super_pdp_callback(fr_super_pdp_callback_request)
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_callback: %s\n" % e)
+
+
+# ..fr_super_pdp_classify
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+fr_super_pdp_classify_request = (
+    accounting_sh.FrSuperPdpClassifyRequest()
+)  # FrSuperPdpClassifyRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Classify reporting lines
+    accounting.fr_super_pdp_api.fr_super_pdp_classify(
+        uuid, fr_super_pdp_classify_request
+    )
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_classify: %s\n" % e)
+
+
+# ..fr_super_pdp_configure
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+fr_super_pdp_configure_request = (
+    accounting_sh.FrSuperPdpConfigureRequest()
+)  # FrSuperPdpConfigureRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Configure SuperPDP synchronization
+    accounting.fr_super_pdp_api.fr_super_pdp_configure(fr_super_pdp_configure_request)
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_configure: %s\n" % e)
+
+
+# ..fr_super_pdp_disconnect
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Disconnect SuperPDP
+    accounting.fr_super_pdp_api.fr_super_pdp_disconnect()
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_disconnect: %s\n" % e)
+
+
+# ..fr_super_pdp_inbox
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+page = 56  # int |  (optional)
+review_status = "pending"  # str |  (optional) (default to 'pending')
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List received invoices
+    accounting.fr_super_pdp_api.fr_super_pdp_inbox(
+        page=page, review_status=review_status
+    )
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_inbox: %s\n" % e)
+
+
+# ..fr_super_pdp_lifecycle
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+fr_super_pdp_lifecycle_request = (
+    accounting_sh.FrSuperPdpLifecycleRequest()
+)  # FrSuperPdpLifecycleRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Queue a buyer lifecycle event
+    accounting.fr_super_pdp_api.fr_super_pdp_lifecycle(
+        uuid, fr_super_pdp_lifecycle_request
+    )
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_lifecycle: %s\n" % e)
+
+
+# ..fr_super_pdp_operations
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+page = 56  # int |  (optional)
+kind = "kind_example"  # str |  (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List SuperPDP operations
+    accounting.fr_super_pdp_api.fr_super_pdp_operations(page=page, kind=kind)
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_operations: %s\n" % e)
+
+
+# ..fr_super_pdp_receipt
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Get a received invoice
+    accounting.fr_super_pdp_api.fr_super_pdp_receipt(uuid)
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_receipt: %s\n" % e)
+
+
+# ..fr_super_pdp_receipt_history
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+page = 56  # int |  (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Get received invoice history
+    accounting.fr_super_pdp_api.fr_super_pdp_receipt_history(uuid, page=page)
+except ApiException as e:
+    print(
+        "Exception when calling FRSuperPDPApi->fr_super_pdp_receipt_history: %s\n" % e
+    )
+
+
+# ..fr_super_pdp_receipt_pdf
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Get a received invoice PDF
+    accounting.fr_super_pdp_api.fr_super_pdp_receipt_pdf(uuid)
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_receipt_pdf: %s\n" % e)
+
+
+# ..fr_super_pdp_reconcile
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+fr_super_pdp_reconcile_request = (
+    accounting_sh.FrSuperPdpReconcileRequest()
+)  # FrSuperPdpReconcileRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Reconcile a reporting submission
+    accounting.fr_super_pdp_api.fr_super_pdp_reconcile(
+        uuid, fr_super_pdp_reconcile_request
+    )
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_reconcile: %s\n" % e)
+
+
+# ..fr_super_pdp_refuse
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+fr_super_pdp_refuse_request = (
+    accounting_sh.FrSuperPdpRefuseRequest()
+)  # FrSuperPdpRefuseRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Refuse a received invoice
+    accounting.fr_super_pdp_api.fr_super_pdp_refuse(uuid, fr_super_pdp_refuse_request)
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_refuse: %s\n" % e)
+
+
+# ..fr_super_pdp_retry
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+uuid = "uuid_example"  # str |
+fr_super_pdp_retry_request = (
+    accounting_sh.FrSuperPdpRetryRequest()
+)  # FrSuperPdpRetryRequest |  (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Retry a SuperPDP operation
+    accounting.fr_super_pdp_api.fr_super_pdp_retry(
+        uuid, fr_super_pdp_retry_request=fr_super_pdp_retry_request
+    )
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_retry: %s\n" % e)
+
+
+# ..fr_super_pdp_settings
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Get SuperPDP settings
+    accounting.fr_super_pdp_api.fr_super_pdp_settings()
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_settings: %s\n" % e)
+
+
+# ..fr_super_pdp_status
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Get SuperPDP connection status
+    accounting.fr_super_pdp_api.fr_super_pdp_status()
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_status: %s\n" % e)
+
+
+# ..fr_super_pdp_submit
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+fr_super_pdp_submit_request = (
+    accounting_sh.FrSuperPdpSubmitRequest()
+)  # FrSuperPdpSubmitRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Submit an issued invoice
+    accounting.fr_super_pdp_api.fr_super_pdp_submit(fr_super_pdp_submit_request)
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_submit: %s\n" % e)
+
+
+# ..fr_super_pdp_sync
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Queue SuperPDP synchronization
+    accounting.fr_super_pdp_api.fr_super_pdp_sync()
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_sync: %s\n" % e)
+
+
+# ..fr_super_pdp_verify
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Queue SuperPDP verification
+    accounting.fr_super_pdp_api.fr_super_pdp_verify()
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_verify: %s\n" % e)
+
+
 # ..add_invoice
 import accounting_sh
 from accounting_sh.exceptions import ApiException
@@ -4249,13 +4573,21 @@ fields = "uuid,account,amount,event_date"  # str | Comma-separated fields to inc
 page = 1  # int | Page number, starting at 1. Values below 1 are treated as 1. (optional) (default to 1)
 per_page = 10  # int | Records per page. The server caps page size to 100. Values below 1 use that maximum. (optional) (default to 10)
 account = "account_example"  # str | An account uuid to filter results (optional)
+link_status = "link_status_example"  # str | all preserves the full ledger; unconfirmed includes transactions with no links or any unconfirmed link; confirmed requires a confirmed link and no unconfirmed links. Status views exclude transfers and take precedence over needs_linking. (optional)
+needs_linking = False  # bool | Only transactions with no links or any unconfirmed link. Applies before pagination and to total; transfers are excluded. Default false preserves the full ledger. (optional) (default to False)
 order_by = "created_at:desc"  # str | Sort by a supported field and direction, using field:asc or field:desc. (optional)
 
 accounting = accounting_sh.Accounting("access_token")
 try:
     # List company's transactions and transfers
     api_response = accounting.transactions_api.ledger(
-        fields=fields, page=page, per_page=per_page, account=account, order_by=order_by
+        fields=fields,
+        page=page,
+        per_page=per_page,
+        account=account,
+        link_status=link_status,
+        needs_linking=needs_linking,
+        order_by=order_by,
     )
     print("The response of TransactionsApi->ledger:\n")
     pprint(api_response)
@@ -4284,6 +4616,32 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling TransactionsApi->list_links: %s\n" % e)
+
+
+# ..list_pending_document_links
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+target_type = "target_type_example"  # str |
+target = "target_example"  # str |
+page = 1  # int |  (optional) (default to 1)
+per_page = (
+    10  # int | Capped at the standard API page size limit. (optional) (default to 10)
+)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List pending transaction links for a document
+    api_response = accounting.transactions_api.list_pending_document_links(
+        target_type, target, page=page, per_page=per_page
+    )
+    print("The response of TransactionsApi->list_pending_document_links:\n")
+    pprint(api_response)
+except ApiException as e:
+    print(
+        "Exception when calling TransactionsApi->list_pending_document_links: %s\n" % e
+    )
 
 
 # ..list_transaction_codes

@@ -17,6 +17,7 @@ from accounting_sh.api.currency_api import CurrencyApi
 from accounting_sh.api.documents_api import DocumentsApi
 from accounting_sh.api.expense_reports_api import ExpenseReportsApi
 from accounting_sh.api.export_api import ExportApi
+from accounting_sh.api.fr_super_pdp_api import FRSuperPDPApi
 from accounting_sh.api.invoices_api import InvoicesApi
 from accounting_sh.api.journal_api import JournalApi
 from accounting_sh.api.logs_api import LogsApi
