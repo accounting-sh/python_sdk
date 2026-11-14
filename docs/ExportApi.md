@@ -72,7 +72,7 @@ Name | Type | Description  | Notes
 
 Request an export
 
-Queue an accounting ZIP using the supplied options. For companies with Journal, the ZIP also includes posted lines in journal.csv and an integrity/completeness manifest in journal-metadata.json, filtered by the export accounting-date range. Journal snapshots exceeding 50000 lines fail rather than truncate. HTTP 202 acknowledges the job. Use GET /export to find the export and its generation status. Requires at least one permission: `export`.
+Queue an accounting ZIP using the supplied options. For companies with Journal, the ZIP also includes posted lines in journal.csv and an integrity/completeness manifest in journal-metadata.json, filtered by the export accounting-date range. French companies also receive an FEC-format extract from the same snapshot when required facts are available; fec-metadata.json reports readiness or an unavailable reason. Extracts require annual completeness review before statutory submission. Journal snapshots exceeding 50000 lines fail rather than truncate. HTTP 202 acknowledges the job. Use GET /export to find the export and its generation status. Requires at least one permission: `export`.
 
 ### Example
 

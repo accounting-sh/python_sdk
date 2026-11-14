@@ -369,6 +369,69 @@ except ApiException as e:
     print("Exception when calling AccountsApi->update_account: %s\n" % e)
 
 
+# ..analytics_cards
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+group = "group_example"  # str | Select a related statistics-card group. See GET /analytics for available group metadata.
+start = "2013-10-20"  # date | Inclusive first activity date in YYYY-MM-DD format. (optional)
+end = "2013-10-20"  # date | Inclusive last activity date; also the balance as-of date where applicable. (optional)
+interval = "month"  # str | Calendar bucket for time-series graphs. (optional) (default to 'month')
+limit = 10  # int | Maximum ranked categories where the graph supports a limit. (optional) (default to 10)
+currency = "currency_example"  # str | Optional ISO 4217 currency filter; does not request arbitrary currency conversion. (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Grouped analytics statistic cards
+    api_response = accounting.analytics_api.analytics_cards(
+        group, start=start, end=end, interval=interval, limit=limit, currency=currency
+    )
+    print("The response of AnalyticsApi->analytics_cards:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AnalyticsApi->analytics_cards: %s\n" % e)
+
+
+# ..analytics_catalog
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Available analytics graphs and card groups
+    api_response = accounting.analytics_api.analytics_catalog()
+    print("The response of AnalyticsApi->analytics_catalog:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AnalyticsApi->analytics_catalog: %s\n" % e)
+
+
+# ..analytics_graph
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+graph = "graph_example"  # str | Select one of the implemented graph identifiers. See GET /analytics for localized titles, metric IDs, bases and feature requirements.
+start = "2013-10-20"  # date | Inclusive first activity date in YYYY-MM-DD format. (optional)
+end = "2013-10-20"  # date | Inclusive last activity date; also the balance as-of date where applicable. (optional)
+interval = "month"  # str | Calendar bucket for time-series graphs. (optional) (default to 'month')
+limit = 10  # int | Maximum ranked categories where the graph supports a limit. (optional) (default to 10)
+currency = "currency_example"  # str | Optional ISO 4217 currency filter; does not request arbitrary currency conversion. (optional)
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # One frontend-ready analytics graph
+    api_response = accounting.analytics_api.analytics_graph(
+        graph, start=start, end=end, interval=interval, limit=limit, currency=currency
+    )
+    print("The response of AnalyticsApi->analytics_graph:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AnalyticsApi->analytics_graph: %s\n" % e)
+
+
 # ..add_attachment
 import accounting_sh
 from accounting_sh.exceptions import ApiException
@@ -950,6 +1013,24 @@ try:
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CompaniesApi->list_companies: %s\n" % e)
+
+
+# ..search_company_registries
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+country = "country_example"  # str |
+q = "q_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Search public company registries for autofill
+    api_response = accounting.companies_api.search_company_registries(country, q)
+    print("The response of CompaniesApi->search_company_registries:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling CompaniesApi->search_company_registries: %s\n" % e)
 
 
 # ..update_company
@@ -1816,6 +1897,25 @@ except ApiException as e:
     print("Exception when calling ExportApi->request_export: %s\n" % e)
 
 
+# ..fr_super_pdp_add_directory
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+fr_super_pdp_add_directory_request = (
+    accounting_sh.FrSuperPdpAddDirectoryRequest()
+)  # FrSuperPdpAddDirectoryRequest |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Queue a SuperPDP directory line
+    accounting.fr_super_pdp_api.fr_super_pdp_add_directory(
+        fr_super_pdp_add_directory_request
+    )
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_add_directory: %s\n" % e)
+
+
 # ..fr_super_pdp_approve
 import accounting_sh
 from accounting_sh.exceptions import ApiException
@@ -1896,6 +1996,36 @@ try:
     accounting.fr_super_pdp_api.fr_super_pdp_configure(fr_super_pdp_configure_request)
 except ApiException as e:
     print("Exception when calling FRSuperPDPApi->fr_super_pdp_configure: %s\n" % e)
+
+
+# ..fr_super_pdp_delete_directory
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+identifier = "identifier_example"  # str |
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Disable a SuperPDP directory line
+    accounting.fr_super_pdp_api.fr_super_pdp_delete_directory(identifier)
+except ApiException as e:
+    print(
+        "Exception when calling FRSuperPDPApi->fr_super_pdp_delete_directory: %s\n" % e
+    )
+
+
+# ..fr_super_pdp_directory
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List cached SuperPDP directory lines
+    accounting.fr_super_pdp_api.fr_super_pdp_directory()
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_directory: %s\n" % e)
 
 
 # ..fr_super_pdp_disconnect

@@ -4,11 +4,14 @@ All URIs are relative to *https://api.accounting.sh*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**fr_super_pdp_add_directory**](FRSuperPDPApi.md#fr_super_pdp_add_directory) | **POST** /fr/superpdp/directory | Queue a SuperPDP directory line
 [**fr_super_pdp_approve**](FRSuperPDPApi.md#fr_super_pdp_approve) | **PUT** /fr/superpdp/inbox/{uuid}/approve | Approve a received invoice
 [**fr_super_pdp_authorize**](FRSuperPDPApi.md#fr_super_pdp_authorize) | **POST** /fr/superpdp/authorize | Create a SuperPDP consent URL
 [**fr_super_pdp_callback**](FRSuperPDPApi.md#fr_super_pdp_callback) | **POST** /fr/superpdp/callback | Complete SuperPDP consent
 [**fr_super_pdp_classify**](FRSuperPDPApi.md#fr_super_pdp_classify) | **PUT** /fr/superpdp/operations/{uuid}/classification | Classify reporting lines
 [**fr_super_pdp_configure**](FRSuperPDPApi.md#fr_super_pdp_configure) | **PUT** /fr/superpdp/settings | Configure SuperPDP synchronization
+[**fr_super_pdp_delete_directory**](FRSuperPDPApi.md#fr_super_pdp_delete_directory) | **DELETE** /fr/superpdp/directory/{identifier} | Disable a SuperPDP directory line
+[**fr_super_pdp_directory**](FRSuperPDPApi.md#fr_super_pdp_directory) | **GET** /fr/superpdp/directory | List cached SuperPDP directory lines
 [**fr_super_pdp_disconnect**](FRSuperPDPApi.md#fr_super_pdp_disconnect) | **DELETE** /fr/superpdp | Disconnect SuperPDP
 [**fr_super_pdp_inbox**](FRSuperPDPApi.md#fr_super_pdp_inbox) | **GET** /fr/superpdp/inbox | List received invoices
 [**fr_super_pdp_lifecycle**](FRSuperPDPApi.md#fr_super_pdp_lifecycle) | **POST** /fr/superpdp/operations/{uuid}/events | Queue a buyer lifecycle event
@@ -25,6 +28,55 @@ Method | HTTP request | Description
 [**fr_super_pdp_sync**](FRSuperPDPApi.md#fr_super_pdp_sync) | **POST** /fr/superpdp/sync | Queue SuperPDP synchronization
 [**fr_super_pdp_verify**](FRSuperPDPApi.md#fr_super_pdp_verify) | **POST** /fr/superpdp/verify | Queue SuperPDP verification
 
+
+# **fr_super_pdp_add_directory**
+> fr_super_pdp_add_directory(fr_super_pdp_add_directory_request)
+
+Queue a SuperPDP directory line
+
+Queue a SuperPDP directory line; provider requests execute asynchronously. Requires the `edit.company` permission and the `einvoicing` company feature.
+
+### Example
+
+* Bearer (API key) Authentication (bearer):
+
+```python
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+fr_super_pdp_add_directory_request = accounting_sh.FrSuperPdpAddDirectoryRequest() # FrSuperPdpAddDirectoryRequest | 
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Queue a SuperPDP directory line
+   accounting.fr_super_pdp_api.fr_super_pdp_add_directory(fr_super_pdp_add_directory_request)
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_add_directory: %s\n" % e)
+
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fr_super_pdp_add_directory_request** | [**FrSuperPdpAddDirectoryRequest**](FrSuperPdpAddDirectoryRequest.md)|  | 
+
+### Return type
+
+void (empty response body)
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**402** | Company feature einvoicing is required. |  -  |
+**202** | Queue a SuperPDP directory line |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **fr_super_pdp_approve**
 > fr_super_pdp_approve(uuid)
@@ -267,6 +319,100 @@ void (empty response body)
 |-------------|-------------|------------------|
 **402** | Company feature einvoicing is required. |  -  |
 **202** | Backfill/routing saved. VAT options and filing frequency use shared company settings. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **fr_super_pdp_delete_directory**
+> fr_super_pdp_delete_directory(identifier)
+
+Disable a SuperPDP directory line
+
+Disable a SuperPDP directory line; provider requests execute asynchronously. Requires the `edit.company` permission and the `einvoicing` company feature.
+
+### Example
+
+* Bearer (API key) Authentication (bearer):
+
+```python
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+identifier = 'identifier_example' # str | 
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Disable a SuperPDP directory line
+   accounting.fr_super_pdp_api.fr_super_pdp_delete_directory(identifier)
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_delete_directory: %s\n" % e)
+
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **identifier** | **str**|  | 
+
+### Return type
+
+void (empty response body)
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**402** | Company feature einvoicing is required. |  -  |
+**202** | Disable a SuperPDP directory line |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **fr_super_pdp_directory**
+> fr_super_pdp_directory()
+
+List cached SuperPDP directory lines
+
+List cached SuperPDP directory lines; provider requests execute asynchronously. Requires the `view.company` permission and the `einvoicing` company feature.
+
+### Example
+
+* Bearer (API key) Authentication (bearer):
+
+```python
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # List cached SuperPDP directory lines
+   accounting.fr_super_pdp_api.fr_super_pdp_directory()
+except ApiException as e:
+    print("Exception when calling FRSuperPDPApi->fr_super_pdp_directory: %s\n" % e)
+
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**402** | Company feature einvoicing is required. |  -  |
+**200** | List cached SuperPDP directory lines |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

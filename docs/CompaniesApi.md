@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**get_company_feature_set**](CompaniesApi.md#get_company_feature_set) | **GET** /companies/{uuid}/features | List a company&#39;s feature set
 [**get_company_onboarding**](CompaniesApi.md#get_company_onboarding) | **GET** /companies/{uuid}/onboarding | Get company onboarding status
 [**list_companies**](CompaniesApi.md#list_companies) | **GET** /companies | List companies on this instance (resellers only)
+[**search_company_registries**](CompaniesApi.md#search_company_registries) | **GET** /company-registries/{country}/search | Search public company registries for autofill
 [**update_company**](CompaniesApi.md#update_company) | **PUT** /companies/{uuid} | Update a company
 
 
@@ -394,6 +395,58 @@ Name | Type | Description  | Notes
 **500** | An unexpected server error occurred. Inspect the response before deciding whether it is safe to retry a mutation. |  -  |
 **401** | Authentication is missing, invalid or expired. Supply a valid API credential or user session. |  -  |
 **403** | The authenticated credential or user does not have permission to perform this operation. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **search_company_registries**
+> search_company_registries(country, q)
+
+Search public company registries for autofill
+
+Public onboarding autocomplete. Country FR or GB is required. Case-insensitive literal name prefixes or registration-number prefixes, minimum 3 characters. Returns up to 10 unsorted matches and has_more; narrow the query rather than paginate. French restricted-diffusion records are excluded. Missing facts are null. Uses imported snapshots, not live registry calls.
+
+### Example
+
+
+```python
+import accounting_sh
+from accounting_sh.exceptions import ApiException
+from pprint import pprint
+
+country = 'country_example' # str | 
+q = 'q_example' # str | 
+
+accounting = accounting_sh.Accounting("access_token")
+try:
+    # Search public company registries for autofill
+    api_response = accounting.companies_api.search_company_registries(country, q)
+    print("The response of CompaniesApi->search_company_registries:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling CompaniesApi->search_company_registries: %s\n" % e)
+
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **country** | **str**|  | 
+ **q** | **str**|  | 
+
+### Return type
+
+[**SearchCompanyRegistries200Response**](SearchCompanyRegistries200Response.md)
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Autofill candidates |  -  |
+**400** | Invalid country or search prefix |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

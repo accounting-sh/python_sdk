@@ -1,6 +1,6 @@
 [project]
 name = "accounting_sh"
-version = "2.1.0"
+version = "2.2.0"
 description = "Accounting API"
 authors = [{"name" = "STAN-TAB CORP. LTD", email="support@stantabcorp.com"}]
 license = { file = "LICENSE" }
@@ -28,7 +28,7 @@ dependencies = [
     "requests>=2.34.2,<3",
     "urllib3>=2.8.0,<3",
     "idna>=3.20,<4",
-    "certifi>=2026.7.22",
+    "certifi>=2026.10.23",
     "typing-extensions>=4.16.0,<5"
 ]
 
@@ -38,5 +38,5 @@ Repository = "https://github.com/accounting-sh/python_sdk.git"
 Issues = "https://github.com/accounting-sh/python_sdk/issues"
 
 [build-system]
-requires = ["setuptools>=84.0.0,<85"]
+requires = ["setuptools>=84.2.1,<85"]
 build-backend = "setuptools.build_meta"

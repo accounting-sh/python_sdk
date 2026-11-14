@@ -4,6 +4,7 @@
 from accounting_sh.api.account_connections_api import AccountConnectionsApi
 from accounting_sh.api.accounting_codes_api import AccountingCodesApi
 from accounting_sh.api.accounts_api import AccountsApi
+from accounting_sh.api.analytics_api import AnalyticsApi
 from accounting_sh.api.attachments_api import AttachmentsApi
 from accounting_sh.api.auth_api import AuthApi
 from accounting_sh.api.bills_api import BillsApi
